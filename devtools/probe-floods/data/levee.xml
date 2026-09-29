@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- D3: a marker building the script places in a city centre. No slot (IGNORE_DISTRICT_PLACEMENT_CAP, as walls),
+     no citizen, never offered in production (its trait belongs to no civilization). -->
+<Database>
+    <Types>
+        <Row Type="BUILDING_DAMPROBE_LEVEE" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="TRAIT_DAMPROBE_NONE" Kind="KIND_TRAIT"/>
+    </Types>
+    <Traits>
+        <Row TraitType="TRAIT_DAMPROBE_NONE" InternalOnly="true"/>
+    </Traits>
+    <Constructibles>
+        <Row ConstructibleType="BUILDING_DAMPROBE_LEVEE" Name="LOC_BUILDING_DAMPROBE_LEVEE_NAME" ConstructibleClass="BUILDING" Cost="1" Population="0" Age="AGE_ANTIQUITY" ExistingDistrictOnly="true"/>
+    </Constructibles>
+    <Buildings>
+        <Row ConstructibleType="BUILDING_DAMPROBE_LEVEE" Movable="false" Purchasable="false" Town="true" TraitType="TRAIT_DAMPROBE_NONE"/>
+    </Buildings>
+    <TypeTags>
+        <Row Type="BUILDING_DAMPROBE_LEVEE" Tag="IGNORE_DISTRICT_PLACEMENT_CAP"/>
+    </TypeTags>
+    <Constructible_ValidDistricts>
+        <Row ConstructibleType="BUILDING_DAMPROBE_LEVEE" DistrictType="DISTRICT_CITY_CENTER"/>
+    </Constructible_ValidDistricts>
+    <GameModifiers>
+        <Row ModifierId="MOD_DAMPROBE_LEVEE_AVOID_FLOOD"/>
+    </GameModifiers>
+</Database>

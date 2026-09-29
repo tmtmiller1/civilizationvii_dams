@@ -1,0 +1,12 @@
+Steam Workshop change notes, one block per release, newest first.
+Generated from CHANGELOG.md by scripts/steam-changelog.mjs; release.sh uploads the block for the version it builds.
+To fix an old Workshop entry, paste the text under its ==== line into that entry's Edit box on the change-notes page.
+A block edited by hand is kept as-is. Delete a block to regenerate it from CHANGELOG.md.
+
+==== 1.0.0 | 2026-09-29 | src eface778978c | gen 12a202ac207e ====
+[b]Version 1.0.0 · 29 September 2026[/b]
+• A Dam for each age (Irrigation, Machinery, Electricity), placed on any river tile. A river takes one Dam of each age, so an older Dam can be joined by a newer one.
+• A finished Dam protects every settlement on its river from flood pillage: the settlement holding it directly, the others through a Levee in their center.
+• The valley is the price. A dammed river loses its floodplains, about 1 Food a tile, for good. Floods still come, are still reported and still leave silt behind; the engine offers no way to prevent that, only to stop the damage.
+• Each age has its own look, growing with the age: a rough weir of heaped boulders, a stone ford with a gated arch, a concrete barrage with a spillway. Each has its own build icon.
+• A settlement that loses its reason for a Levee (its Dam razed, its river tiles lost) loses the Levee a turn later.

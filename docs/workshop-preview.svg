@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Workshop / identity emblem for the Dams mod. Matches the Tower-mods family look (dark ground, gold frame,
+     parchment art, serif wordmark), and shares the Canals hex geometry so the two sit together. Motif: one river hex
+     with a dam wall thrown across it, the water held above, the spillway falling through, the river thin below.
+     Everything is drawn inside the hex and mirrored about its centre line. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#243042"/>
+      <stop offset="100%" stop-color="#121821"/>
+    </linearGradient>
+    <linearGradient id="parchment" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7eed1"/>
+      <stop offset="100%" stop-color="#e7d4a3"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2f5d7a"/>
+      <stop offset="100%" stop-color="#1b3a50"/>
+    </linearGradient>
+    <linearGradient id="spill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dfeaf2"/>
+      <stop offset="100%" stop-color="#f7eed1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e7d4a3" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#e7d4a3" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="hexclip">
+      <polygon points="812,430 662,689.8 362,689.8 212,430 362,170.2 662,170.2"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <!-- Gold frame to echo the in-game parchment/gold palette -->
+  <rect x="26" y="26" width="972" height="972" rx="30" fill="none" stroke="#c9a24c" stroke-width="4" opacity="0.5"/>
+
+  <!-- Light over the tile -->
+  <circle cx="512" cy="430" r="340" fill="url(#glow)"/>
+
+  <!-- The tile -->
+  <polygon points="812,430 662,689.8 362,689.8 212,430 362,170.2 662,170.2"
+           fill="url(#parchment)" stroke="#c9a24c" stroke-width="6" stroke-linejoin="round"/>
+
+  <g clip-path="url(#hexclip)">
+    <!-- The reservoir the dam holds back, filling the tile above the wall -->
+    <path d="M200,150 L824,150 L824,392 Q512,432 200,392 Z" fill="url(#water)"/>
+    <g fill="none" stroke="#e7d4a3" stroke-width="3" stroke-linecap="round" opacity="0.45">
+      <path d="M348,248 q16,-10 32,0 t32,0 t32,0"/>
+      <path d="M580,248 q16,-10 32,0 t32,0 t32,0"/>
+      <path d="M296,352 q16,-10 32,0 t32,0"/>
+      <path d="M664,352 q16,-10 32,0 t32,0"/>
+    </g>
+    <!-- The river below the wall, narrow again; drawn up under the wall so the wall decides where it appears -->
+    <path d="M430,430 L594,430 L552,700 L472,700 Z" fill="url(#water)"/>
+    <!-- The wall, bowed upstream, from bank to bank -->
+    <path d="M200,392 Q512,432 824,392 L824,470 Q512,510 200,470 Z"
+          fill="url(#parchment)" stroke="#c9a24c" stroke-width="6" stroke-linejoin="round"/>
+    <!-- Stone courses across the face -->
+    <g fill="none" stroke="#c9a24c" stroke-width="3" opacity="0.5">
+      <path d="M212,434 Q512,474 812,434"/>
+      <path d="M262,412 v34 M330,420 v34 M396,426 v34 M628,426 v34 M694,420 v34 M762,412 v34"/>
+    </g>
+    <!-- The spillway: a notch in the crest, the water falling down the face, foam where it lands -->
+    <path d="M470,420 L554,420 L548,528 L476,528 Z" fill="url(#spill)"/>
+    <ellipse cx="512" cy="532" rx="56" ry="16" fill="url(#spill)"/>
+    <g fill="none" stroke="#c9a24c" stroke-width="3" stroke-linecap="round" opacity="0.7">
+      <path d="M470,420 L476,528"/>
+      <path d="M554,420 L548,528"/>
+    </g>
+    <g fill="none" stroke="#c9a24c" stroke-width="2.5" opacity="0.4">
+      <path d="M492,432 L496,520"/>
+      <path d="M512,434 L512,520"/>
+      <path d="M532,432 L528,520"/>
+    </g>
+    <!-- Wake below the foam, on the running river -->
+    <g fill="none" stroke="#e7d4a3" stroke-width="3" stroke-linecap="round" opacity="0.4">
+      <path d="M484,580 q14,-10 28,0 t28,0"/>
+      <path d="M486,632 q13,-9 26,0 t26,0"/>
+    </g>
+  </g>
+
+  <!-- Gate towers on the crest, either side of the spillway -->
+  <g fill="url(#parchment)" stroke="#c9a24c" stroke-width="5" stroke-linejoin="round">
+    <rect x="404" y="338" width="56" height="78" rx="4"/>
+    <path d="M398,340 L432,300 L466,340 Z" fill="#c9a24c"/>
+    <rect x="564" y="338" width="56" height="78" rx="4"/>
+    <path d="M558,340 L592,300 L626,340 Z" fill="#c9a24c"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="512" y="838" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif" font-size="110"
+        font-weight="bold" fill="#e7d4a3" letter-spacing="6">DAMS</text>
+  <!-- Tagline -->
+  <text x="512" y="902" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif" font-size="38"
+        fill="#c9a24c" opacity="0.92">Hold the river back</text>
+</svg>

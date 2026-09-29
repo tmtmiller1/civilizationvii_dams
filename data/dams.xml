@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The three Dam buildings and the Levee. RiverPlacement="RIVER" is the placement rule the base Bridge and Gristmill
+  use; ui/dams.js adds the one-Dam-per-river rule. Flood protection is the Khmer Baray's effect (flood pillage
+  immunity, per settlement, data/dams-effects.xml): a settlement holding a Dam has it from here, and ui/dams.js puts
+  a Levee in every other settlement on the dammed river. The Levee takes no slot and no citizen and is never offered
+  in production: its trait belongs to no civilization.
+-->
+<Database>
+    <Types>
+        <Row Type="BUILDING_DAM_ANTIQUITY" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="BUILDING_DAM_EXPLORATION" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="BUILDING_DAM_MODERN" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="BUILDING_DAM_LEVEE" Kind="KIND_CONSTRUCTIBLE"/>
+        <Row Type="TRAIT_DAMS_LEVEE" Kind="KIND_TRAIT"/>
+    </Types>
+    <Traits>
+        <Row TraitType="TRAIT_DAMS_LEVEE" InternalOnly="true"/>
+    </Traits>
+    <Constructibles>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" Name="LOC_BUILDING_DAM_ANTIQUITY_NAME" Description="LOC_BUILDING_DAM_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_TOOLTIP" ConstructibleClass="BUILDING" RiverPlacement="RIVER" Cost="250" Population="1" Age="AGE_ANTIQUITY"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" Name="LOC_BUILDING_DAM_EXPLORATION_NAME" Description="LOC_BUILDING_DAM_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_TOOLTIP" ConstructibleClass="BUILDING" RiverPlacement="RIVER" Cost="450" Population="1" Age="AGE_EXPLORATION"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" Name="LOC_BUILDING_DAM_MODERN_NAME" Description="LOC_BUILDING_DAM_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_TOOLTIP" ConstructibleClass="BUILDING" RiverPlacement="RIVER" Cost="750" Population="1" Age="AGE_MODERN"/>
+        <Row ConstructibleType="BUILDING_DAM_LEVEE" Name="LOC_BUILDING_DAM_LEVEE_NAME" Description="LOC_BUILDING_DAM_LEVEE_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_LEVEE_DESCRIPTION" ConstructibleClass="BUILDING" Cost="1" Population="0" ExistingDistrictOnly="true"/>
+    </Constructibles>
+    <Buildings>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" Movable="false" Town="true" MultiplePerCity="true"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" Movable="false" Town="true" MultiplePerCity="true"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" Movable="false" Town="true" MultiplePerCity="true"/>
+        <Row ConstructibleType="BUILDING_DAM_LEVEE" Movable="false" Purchasable="false" Town="true" TraitType="TRAIT_DAMS_LEVEE"/>
+    </Buildings>
+    <TypeTags>
+        <Row Type="BUILDING_DAM_LEVEE" Tag="IGNORE_DISTRICT_PLACEMENT_CAP"/>
+        <Row Type="BUILDING_DAM_LEVEE" Tag="AGELESS"/>
+    </TypeTags>
+    <Constructible_ValidDistricts>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" DistrictType="DISTRICT_URBAN"/>
+        <Row ConstructibleType="BUILDING_DAM_LEVEE" DistrictType="DISTRICT_CITY_CENTER"/>
+    </Constructible_ValidDistricts>
+    <Constructible_YieldChanges>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="2"/>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="1"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" YieldType="YIELD_FOOD" YieldChange="3"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" YieldType="YIELD_PRODUCTION" YieldChange="2"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" YieldType="YIELD_FOOD" YieldChange="3"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" YieldType="YIELD_PRODUCTION" YieldChange="4"/>
+    </Constructible_YieldChanges>
+    <!-- The Levee is placed by the script, never built: keep it out of the Civilopedia's buildings, where a player would
+         go looking for how to make one. -->
+    <CivilopediaPageExcludes>
+        <Row SectionID="BUILDINGS" PageID="BUILDING_DAM_LEVEE"/>
+    </CivilopediaPageExcludes>
+    <GameModifiers>
+        <Row ModifierId="MOD_DAMS_DAM_ANTIQUITY_FLOOD_IMMUNITY"/>
+        <Row ModifierId="MOD_DAMS_DAM_EXPLORATION_FLOOD_IMMUNITY"/>
+        <Row ModifierId="MOD_DAMS_DAM_MODERN_FLOOD_IMMUNITY"/>
+        <Row ModifierId="MOD_DAMS_LEVEE_FLOOD_IMMUNITY"/>
+    </GameModifiers>
+</Database>

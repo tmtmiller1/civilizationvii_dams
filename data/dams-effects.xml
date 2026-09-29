@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Flood pillage immunity for any settlement holding a Dam or a Levee: the Khmer Baray's effect
+     (MOD_BARAY_RIVER_FLOOD_IMMUNITY, age-antiquity/data/constructibles-gameeffects.xml), made game-wide. -->
+<GameEffects xmlns="GameEffects">
+    <Modifier id="MOD_DAMS_DAM_ANTIQUITY_FLOOD_IMMUNITY" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_BUILDING">
+                <Argument name="BuildingType">BUILDING_DAM_ANTIQUITY</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="RandomEventClass">CLASS_FLOOD</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMS_DAM_EXPLORATION_FLOOD_IMMUNITY" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_BUILDING">
+                <Argument name="BuildingType">BUILDING_DAM_EXPLORATION</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="RandomEventClass">CLASS_FLOOD</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMS_DAM_MODERN_FLOOD_IMMUNITY" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_BUILDING">
+                <Argument name="BuildingType">BUILDING_DAM_MODERN</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="RandomEventClass">CLASS_FLOOD</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMS_LEVEE_FLOOD_IMMUNITY" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_BUILDING">
+                <Argument name="BuildingType">BUILDING_DAM_LEVEE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="RandomEventClass">CLASS_FLOOD</Argument>
+    </Modifier>
+</GameEffects>

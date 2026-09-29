@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Throwaway probe data for D2: floods several times a turn, so a probe sees real floods within a few rolls.
+  Installed and removed by run-harness.sh (DEPLOY=floods). Never leave it in Mods/.
+-->
+<Mod id="dam-flood-probe" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>Dam Flood Probe (dev)</Name>
+        <Description>Throwaway probe data. Makes river floods very frequent. Remove the folder afterwards.</Description>
+        <Authors>Tower</Authors>
+        <Package>DamHarness</Package>
+        <PackageSortIndex>9998</PackageSortIndex>
+        <Version>0.0.1</Version>
+        <AffectsSavedGames>1</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME" />
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="dam-flood-probe-game" scope="game" criteria="always">
+            <Properties><LoadOrder>9000</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/floods.xml</Item><Item>data/levee.xml</Item><Item>data/levee-effects.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>

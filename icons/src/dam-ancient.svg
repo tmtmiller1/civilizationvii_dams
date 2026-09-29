@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Ancient dam, inner art only. build-icon.py renders this and sets it inside the base game's gold ring (taken from
+     buildicon_modbridge) so it sits with the shipped buildicon_* set. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+<defs>
+    <clipPath id="disc"><circle cx="128" cy="128" r="114"/></clipPath>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#15122b"/>
+      <stop offset="0.55" stop-color="#2b2966"/>
+      <stop offset="1" stop-color="#3a3f7a"/>
+    </linearGradient>
+    <linearGradient id="reservoir" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fa6c4"/>
+      <stop offset="1" stop-color="#4d6388"/>
+    </linearGradient>
+    <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9d5cc"/>
+      <stop offset="0.45" stop-color="#a7a298"/>
+      <stop offset="1" stop-color="#5d5a55"/>
+    </linearGradient>
+    <linearGradient id="faceSide" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000" stop-opacity="0.45"/>
+      <stop offset="0.28" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.72" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.45"/>
+    </linearGradient>
+    <linearGradient id="spill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dff1ff"/>
+      <stop offset="0.6" stop-color="#9fc6e6"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5d7496"/>
+      <stop offset="1" stop-color="#1c2638"/>
+    </linearGradient>
+    <linearGradient id="crest" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1ede4"/>
+      <stop offset="1" stop-color="#9c978d"/>
+    </linearGradient>
+    <linearGradient id="tower" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8e8980"/>
+      <stop offset="0.5" stop-color="#d8d3c8"/>
+      <stop offset="1" stop-color="#6c6861"/>
+    </linearGradient>
+    <radialGradient id="mist" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  
+    <linearGradient id="rock" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#b9b2a4"/>
+      <stop offset="0.5" stop-color="#8d8779"/>
+      <stop offset="1" stop-color="#5d584e"/>
+    </linearGradient>
+    <linearGradient id="timber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9a7448"/>
+      <stop offset="1" stop-color="#5d4527"/>
+    </linearGradient>
+    <linearGradient id="concrete" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e3e5e6"/>
+      <stop offset="0.5" stop-color="#b3b7ba"/>
+      <stop offset="1" stop-color="#6e7376"/>
+    </linearGradient>
+  </defs>
+  <g clip-path="url(#disc)">
+    <rect width="256" height="256" fill="url(#sky)"/>
+    <path d="M0 104 C40 84 70 96 100 88 C130 80 160 92 190 84 C215 78 240 90 256 86 L256 120 L0 120 Z" fill="#1d1d3f"/>
+    <path d="M0 102 C60 96 196 96 256 102 L256 128 L0 128 Z" fill="url(#reservoir)"/>
+    <path d="M20 108 L70 106 M120 104 L170 104 M196 107 L236 108" stroke="#c9d8ea" stroke-width="1.5" stroke-opacity="0.6"/>
+    <!-- a bank of boulders thrown across the river, water finding its way between them -->
+    <path d="M-4 124 Q128 150 260 124 L260 214 Q128 236 -4 214 Z" fill="#6b6456"/>
+    <g fill="url(#rock)" stroke="#3f3a33" stroke-width="1.6">
+      <ellipse cx="18" cy="150" rx="26" ry="19"/>
+      <ellipse cx="60" cy="142" rx="30" ry="21"/>
+      <ellipse cx="104" cy="139" rx="26" ry="19"/>
+      <ellipse cx="152" cy="139" rx="27" ry="19"/>
+      <ellipse cx="198" cy="143" rx="30" ry="21"/>
+      <ellipse cx="240" cy="151" rx="26" ry="19"/>
+      <ellipse cx="38" cy="180" rx="30" ry="21"/>
+      <ellipse cx="90" cy="186" rx="26" ry="18"/>
+      <ellipse cx="170" cy="186" rx="26" ry="18"/>
+      <ellipse cx="220" cy="180" rx="30" ry="21"/>
+    </g>
+    <!-- timber piles driven in behind the stones -->
+    <g fill="url(#timber)" stroke="#33251480" stroke-width="1.2">
+      <rect x="44" y="112" width="7" height="30" rx="2"/>
+      <rect x="76" y="108" width="7" height="32" rx="2"/>
+      <rect x="170" y="108" width="7" height="32" rx="2"/>
+      <rect x="202" y="112" width="7" height="30" rx="2"/>
+    </g>
+    <!-- the water that gets through -->
+    <path d="M116 132 L140 132 L146 214 L110 214 Z" fill="url(#spill)" fill-opacity="0.95"/>
+    <g stroke="#ffffff" stroke-opacity="0.75" stroke-width="2">
+      <path d="M122 140 C120 170 124 192 121 212"/>
+      <path d="M134 140 C136 172 132 194 135 212"/>
+    </g>
+    <path d="M60 196 q10 -7 20 0 t20 0" stroke="#dfeaf2" stroke-opacity="0.5" stroke-width="2" fill="none"/>
+    <path d="M160 198 q10 -7 20 0 t20 0" stroke="#dfeaf2" stroke-opacity="0.5" stroke-width="2" fill="none"/>
+    <path d="M-4 212 Q128 234 260 212 L260 260 L-4 260 Z" fill="url(#river)"/>
+    <ellipse cx="128" cy="226" rx="46" ry="12" fill="url(#mist)"/>
+    <ellipse cx="128" cy="222" rx="30" ry="7" fill="#ffffff" fill-opacity="0.85"/>
+  </g>
+</svg>

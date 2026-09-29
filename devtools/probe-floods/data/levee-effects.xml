@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- D3: the Baray's flood immunity (MOD_BARAY_RIVER_FLOOD_IMMUNITY), game-wide, for any city holding the Levee. -->
+<GameEffects xmlns="GameEffects">
+    <Modifier id="MOD_DAMPROBE_LEVEE_AVOID_FLOOD" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT">
+        <SubjectRequirements>
+            <Requirement type="REQUIREMENT_CITY_HAS_BUILDING">
+                <Argument name="BuildingType">BUILDING_DAMPROBE_LEVEE</Argument>
+            </Requirement>
+        </SubjectRequirements>
+        <Argument name="RandomEventClass">CLASS_FLOOD</Argument>
+    </Modifier>
+</GameEffects>

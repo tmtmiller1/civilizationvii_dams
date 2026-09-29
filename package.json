@@ -1,0 +1,14 @@
+{
+  "name": "dams-dev",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Dev-only tooling and quality gate for the Dams Civ VII mod. Not shipped.",
+  "type": "module",
+  "scripts": {
+    "lint": "npx --yes eslint \"ui/**/*.js\" --no-error-on-unmatched-pattern",
+    "check": "node --check ui/dams.js",
+    "icons": "python3 icons/src/build-icon.py",
+    "verify": "npm run lint && npm run check",
+    "check:all": "zsh scripts/check.sh"
+  }
+}

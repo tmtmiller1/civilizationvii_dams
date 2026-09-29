@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Every tag unique: one duplicate LOC tag rolls back the whole file. -->
+<Database>
+    <EnglishText>
+        <Row Tag="LOC_DAMS_MOD_NAME">
+            <Text>Dams</Text>
+        </Row>
+        <Row Tag="LOC_DAMS_MOD_DESCRIPTION">
+            <Text>Adds a Dam building to each age. Build it on a river tile, navigable or not; once it is finished, floods on that river no longer pillage the improvements, buildings and districts of the settlements along it. The cost is the valley: the Dam holds the water back and the floodplains dry out, so the land along the river gives up that Food for good. A river takes one Dam of each age, so an old Dam can be joined by a newer one. Unlocked by Irrigation, Machinery and Electricity.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_ANTIQUITY_NAME">
+            <Text>Ancient Dam</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_EXPLORATION_NAME">
+            <Text>Medieval Dam</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_MODERN_NAME">
+            <Text>Modern Dam</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_DESCRIPTION">
+            <Text>Holds back the river it stands on. Must be placed on a river tile, navigable or not. A river takes one Dam of each age. When it is finished, floods on this river no longer pillage Improvements, Buildings or Districts in any [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] along it. Floods still come and are still reported; they simply do no damage. The valley dries out behind it: this river loses its [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplains[/TIP] and the [icon:YIELD_FOOD] Food they carry.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_TOOLTIP">
+            <Text>Settlements along this river are not pillaged by its floods. The river loses its Floodplains. One of each age per river.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_LEVEE_NAME">
+            <Text>Levee</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_LEVEE_DESCRIPTION">
+            <Text>Raised by a Dam on this settlement's river. Improvements, Buildings and Districts in this [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] are not pillaged by floods.</Text>
+        </Row>
+        <Row Tag="LOC_DAM_NOT_RIVER">
+            <Text>A Dam must be built on a river tile.</Text>
+        </Row>
+        <Row Tag="LOC_DAM_RIVER_TAKEN">
+            <Text>This river already has a Dam from this age.</Text>
+        </Row>
+    </EnglishText>
+</Database>

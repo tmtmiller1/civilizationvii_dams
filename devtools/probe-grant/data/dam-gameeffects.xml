@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Probe-only unlock grants, the shape the city-state improvements use (independents-gameeffects.xml) with the
+     suzerainty requirement removed, so every major player has the Dam unlocked from load. -->
+<GameEffects xmlns="GameEffects">
+    <Modifier id="MOD_DAM_GRANT_ANTIQUITY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAM_ANTIQUITY</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAM_ANTIQUITY" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_DAM_ANTIQUITY</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAM_GRANT_EXPLORATION" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAM_EXPLORATION</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAM_EXPLORATION" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_DAM_EXPLORATION</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAM_GRANT_MODERN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAM_MODERN</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAM_MODERN" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_DAM_MODERN</Argument>
+    </Modifier>
+</GameEffects>

@@ -1,0 +1,10 @@
+dist/
+node_modules/
+steam/
+screenshots/
+devtools/harness/shots/
+devtools/harness/*.log
+devtools/harness/*.csv
+devtools/harness/*.txt
+.DS_Store
+devtools/harness/*.done

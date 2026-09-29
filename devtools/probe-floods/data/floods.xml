@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Every flood severity at every intensity, 300 times per age (base: 0.5 to 4), and every flooded constructible
+     pillaged (base: 20/40/60 %), so a settlement without flood immunity shows the damage at once. -->
+<Database>
+    <RandomEventFrequencies>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_MODERATE"/><Set OccurrencesPerAge="300"/></Update>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_MAJOR"/><Set OccurrencesPerAge="300"/></Update>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_1000_YEAR"/><Set OccurrencesPerAge="300"/></Update>
+    </RandomEventFrequencies>
+    <RandomEventDamages>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_MODERATE" DamageType="CONSTRUCTIBLE_DAMAGED"/><Set Percentage="100"/></Update>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_MAJOR" DamageType="CONSTRUCTIBLE_DAMAGED"/><Set Percentage="100"/></Update>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_1000_YEAR" DamageType="CONSTRUCTIBLE_DAMAGED"/><Set Percentage="100"/></Update>
+    </RandomEventDamages>
+</Database>

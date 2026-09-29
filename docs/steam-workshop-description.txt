@@ -1,0 +1,40 @@
+[h1]Dams[/h1]
+[b]Version 1.0.0. For Civilization VII 1.5.0.[/b]
+Hold back the river. Build the Dam on any river tile, navigable or not. Once it is finished, floods on that river stop pillaging the settlements along it. The cost is the valley: the river's floodplains dry out, and the land beside it gives up their food for good.
+[h2]Mechanics[/h2]
+[list]
+[*][b]Compatible with 1.5.0.[/b]
+[*][b]A Dam for each age[/b], in the ordinary production list, unlocked by Irrigation, Machinery and Electricity, at 250, 450 and 750 production. It brings its own food and production: 2 and 1 in Antiquity, 3 and 2 in Exploration, 3 and 4 in Modern.
+[*][b]Any river.[/b] A navigable river tile or a land tile with a minor river running through it. Towns buy the Dam with gold like any other building.
+[*][b]One Dam of each age to a river.[/b] Once a river has a Dam from the current age, built or under construction, no other tile of it is offered. A Dam from an earlier age does not block a newer one, so a river dammed in Antiquity can take a Medieval Dam later.
+[*][b]Floods stop pillaging.[/b] Every settlement that owns a tile of the dammed river is covered, another player's included. The settlement holding the Dam is covered by the Dam; every other settlement on the river raises a Levee, which takes no building slot and never appears in a production list. A settlement founded on the river later is covered from the next turn.
+[*][b]The valley dries.[/b] The river's floodplains come off the map when the Dam is finished, about 1 food a tile, permanently. A river with six floodplain tiles costs about six food a turn.
+[*][b]Drawn across its river[/b] from the game's own models, one look per age, and it carries its own build icon.
+[/list]
+[h2]What the Dam does not do[/h2]
+[list]
+[*][b]It does not stop the flood.[/b] Floods still happen, and they still leave silt behind: each flood permanently raises the food or production of one to three of the river's tiles. The engine gives a mod no way to prevent that or to take it back. A Dam stops the damage, not the flood.
+[*][b]It protects the settlement, not one river.[/b] A settlement that sits on the dammed river and on a second river is protected on both. The game offers no finer grain than the settlement.
+[*][b]It does not shield units.[/b] A unit standing on a flooded tile still takes damage.
+[/list]
+[h2]Compatibility[/h2]
+[list]
+[*][b]No base-game files are replaced[/b] and no base-game rows change. The mod adds three buildings, the Levee and their tech unlocks.
+[*][b]A save loads with the mod on or off.[/b]
+[*][b]Start a new game with the mod enabled.[/b] In a game already under way when the mod is added, a Dam whose tech was researched before that point is not available.
+[*][b]Single player.[/b] In a network game the mod raises no Levees, so a Dam covers only the settlement that holds it.
+[/list]
+[h2]Languages[/h2]
+English only for now. The mod's text is a handful of strings, so a translation is a small job: ask for a language and I will add it.
+[h2]Source and documentation[/h2]
+[list]
+[*]Open source on GitHub: [url=https://github.com/tmtmiller1/dams]source and full documentation[/url], and the [url=https://github.com/tmtmiller1/dams/releases]release notes[/url].
+[/list]
+[h2]Credits[/h2]
+[list]
+[*][b]Tower[/b], for design and Civilization VII implementation.
+[/list]
+[h2]Special Thanks[/h2]
+[list]
+[*][b]Potato McWhisky[/b], for teaching me to love again, Civilization-wise (Civ VI), after growing up as a Civilization II, IV, and V player. Making this mod is an act of faith that the community will eventually help make Civilization VII as good as the previous entries.
+[/list]

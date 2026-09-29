@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Dams - a Civilization VII mod.
+  Three Dam buildings (Antiquity, Exploration, Modern), built through the ordinary production screen on a river tile,
+  navigable or minor. A finished Dam stops floods on its river and the tiles beside it. Data: the buildings, their
+  tech unlocks and the build icon. Script: the one-Dam-per-river rule, the flood protection, persistence and the
+  drawn dam.
+  AffectsSavedGames=0: the data adds types only (no base rows change), so a save loads with the mod on or off.
+-->
+<Mod id="tower-dams" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>LOC_DAMS_MOD_NAME</Name>
+        <Description>LOC_DAMS_MOD_DESCRIPTION</Description>
+        <Authors>Tower</Authors>
+        <Package>Dams</Package>
+        <PackageSortIndex>100</PackageSortIndex>
+        <Version>1.0.0</Version>
+        <AffectsSavedGames>0</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME"/>
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+        <Criteria id="antiquity-age-current"><AgeInUse>AGE_ANTIQUITY</AgeInUse></Criteria>
+        <Criteria id="exploration-age-current"><AgeInUse>AGE_EXPLORATION</AgeInUse></Criteria>
+        <Criteria id="modern-age-current"><AgeInUse>AGE_MODERN</AgeInUse></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="dams-shell" scope="shell" criteria="always">
+            <Actions>
+                <UpdateText><Item>text/en_us/DamsText.xml</Item></UpdateText>
+                <ImportFiles><Item>icons/dam_ancient.png</Item><Item>icons/dam_ancient_128.png</Item><Item>icons/dam_ancient_64.png</Item><Item>icons/dam_medieval.png</Item><Item>icons/dam_medieval_128.png</Item><Item>icons/dam_medieval_64.png</Item><Item>icons/dam_modern.png</Item><Item>icons/dam_modern_128.png</Item><Item>icons/dam_modern_64.png</Item></ImportFiles>
+                <UpdateIcons><Item>data/dams-icons.xml</Item></UpdateIcons>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="dams-game" scope="game" criteria="always">
+            <Properties><LoadOrder>150</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase><Item>data/dams.xml</Item><Item>data/dams-effects.xml</Item></UpdateDatabase>
+                <UpdateText><Item>text/en_us/DamsText.xml</Item></UpdateText>
+                <ImportFiles><Item>icons/dam_ancient.png</Item><Item>icons/dam_ancient_128.png</Item><Item>icons/dam_ancient_64.png</Item><Item>icons/dam_medieval.png</Item><Item>icons/dam_medieval_128.png</Item><Item>icons/dam_medieval_64.png</Item><Item>icons/dam_modern.png</Item><Item>icons/dam_modern_128.png</Item><Item>icons/dam_modern_64.png</Item></ImportFiles>
+                <UpdateIcons><Item>data/dams-icons.xml</Item></UpdateIcons>
+                <UIScripts><Item>ui/dams.js</Item></UIScripts>
+            </Actions>
+        </ActionGroup>
+        <!-- Tech unlocks live in per-age groups: a node of another age is not in that age's database. -->
+        <ActionGroup id="dams-antiquity" scope="game" criteria="antiquity-age-current">
+            <Properties><LoadOrder>151</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/dams-antiquity.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="dams-exploration" scope="game" criteria="exploration-age-current">
+            <Properties><LoadOrder>151</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/dams-exploration.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+        <ActionGroup id="dams-modern" scope="game" criteria="modern-age-current">
+            <Properties><LoadOrder>151</LoadOrder></Properties>
+            <Actions><UpdateDatabase><Item>data/dams-modern.xml</Item></UpdateDatabase></Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>

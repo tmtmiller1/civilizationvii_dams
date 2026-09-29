@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Medieval dam, inner art only. build-icon.py renders this and sets it inside the base game's gold ring (taken from
+     buildicon_modbridge) so it sits with the shipped buildicon_* set. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+<defs>
+    <clipPath id="disc"><circle cx="128" cy="128" r="114"/></clipPath>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#15122b"/>
+      <stop offset="0.55" stop-color="#2b2966"/>
+      <stop offset="1" stop-color="#3a3f7a"/>
+    </linearGradient>
+    <linearGradient id="reservoir" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fa6c4"/>
+      <stop offset="1" stop-color="#4d6388"/>
+    </linearGradient>
+    <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9d5cc"/>
+      <stop offset="0.45" stop-color="#a7a298"/>
+      <stop offset="1" stop-color="#5d5a55"/>
+    </linearGradient>
+    <linearGradient id="faceSide" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#000" stop-opacity="0.45"/>
+      <stop offset="0.28" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.72" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.45"/>
+    </linearGradient>
+    <linearGradient id="spill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dff1ff"/>
+      <stop offset="0.6" stop-color="#9fc6e6"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="river" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5d7496"/>
+      <stop offset="1" stop-color="#1c2638"/>
+    </linearGradient>
+    <linearGradient id="crest" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1ede4"/>
+      <stop offset="1" stop-color="#9c978d"/>
+    </linearGradient>
+    <linearGradient id="tower" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8e8980"/>
+      <stop offset="0.5" stop-color="#d8d3c8"/>
+      <stop offset="1" stop-color="#6c6861"/>
+    </linearGradient>
+    <radialGradient id="mist" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  
+    <linearGradient id="rock" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#b9b2a4"/>
+      <stop offset="0.5" stop-color="#8d8779"/>
+      <stop offset="1" stop-color="#5d584e"/>
+    </linearGradient>
+    <linearGradient id="timber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9a7448"/>
+      <stop offset="1" stop-color="#5d4527"/>
+    </linearGradient>
+    <linearGradient id="concrete" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e3e5e6"/>
+      <stop offset="0.5" stop-color="#b3b7ba"/>
+      <stop offset="1" stop-color="#6e7376"/>
+    </linearGradient>
+  </defs>
+  <g clip-path="url(#disc)">
+    <rect width="256" height="256" fill="url(#sky)"/>
+    <path d="M0 104 C40 84 70 96 100 88 C130 80 160 92 190 84 C215 78 240 90 256 86 L256 120 L0 120 Z" fill="#1d1d3f"/>
+    <path d="M0 102 C60 96 196 96 256 102 L256 128 L0 128 Z" fill="url(#reservoir)"/>
+    <path d="M20 108 L70 106 M120 104 L170 104 M196 107 L236 108" stroke="#c9d8ea" stroke-width="1.5" stroke-opacity="0.6"/>
+    <!-- the wall: a shallow arch, crest curved up toward the viewer -->
+    <path d="M-4 112 Q128 132 260 112 L260 214 Q128 236 -4 214 Z" fill="url(#face)"/>
+    <path d="M-4 112 Q128 132 260 112 L260 214 Q128 236 -4 214 Z" fill="url(#faceSide)"/>
+    <!-- masonry courses -->
+    <g stroke="#4a4741" stroke-opacity="0.55" stroke-width="1.4" fill="none">
+      <path d="M-4 134 Q128 154 260 134"/>
+      <path d="M-4 156 Q128 176 260 156"/>
+      <path d="M-4 178 Q128 198 260 178"/>
+      <path d="M-4 198 Q128 218 260 198"/>
+    </g>
+    <g stroke="#4a4741" stroke-opacity="0.45" stroke-width="1.2">
+      <path d="M24 118 V139 M58 124 V145 M188 124 V145 M222 118 V139"/>
+      <path d="M40 142 V162 M76 147 V168 M172 147 V168 M208 142 V162"/>
+      <path d="M22 162 V183 M58 168 V189 M190 168 V189 M226 162 V183"/>
+      <path d="M40 184 V204 M76 189 V210 M172 189 V210 M208 184 V204"/>
+    </g>
+    <!-- crest walkway -->
+    <path d="M-4 106 Q128 126 260 106 L260 115 Q128 135 -4 115 Z" fill="url(#crest)"/>
+    <path d="M-4 115 Q128 135 260 115" stroke="#3b3934" stroke-width="1.6" fill="none"/>
+    <!-- spillway notch and falling water -->
+    <path d="M100 124 L156 124 L160 222 Q128 228 96 222 Z" fill="url(#spill)"/>
+    <g stroke="#ffffff" stroke-opacity="0.85" stroke-width="2">
+      <path d="M106 128 C104 160 108 190 104 220"/>
+      <path d="M118 128 C116 165 120 195 117 224"/>
+      <path d="M130 128 C132 162 128 196 131 225"/>
+      <path d="M142 128 C144 160 140 192 143 224"/>
+      <path d="M152 128 C154 162 150 190 153 221"/>
+    </g>
+    <g stroke="#6f93b8" stroke-opacity="0.6" stroke-width="1.4">
+      <path d="M112 132 C110 170 114 200 111 222"/>
+      <path d="M136 132 C138 168 134 198 137 224"/>
+      <path d="M148 132 C146 170 150 196 147 222"/>
+    </g>
+    <!-- gate towers flanking the spillway -->
+    <g>
+      <rect x="82" y="92" width="20" height="40" fill="url(#tower)" stroke="#3b3934" stroke-width="1.4"/>
+      <path d="M79 94 L92 80 L105 94 Z" fill="#6b3a2a" stroke="#2f1d15" stroke-width="1.2"/>
+      <rect x="88" y="104" width="8" height="11" fill="#1a1a24"/>
+      <rect x="154" y="92" width="20" height="40" fill="url(#tower)" stroke="#3b3934" stroke-width="1.4"/>
+      <path d="M151 94 L164 80 L177 94 Z" fill="#6b3a2a" stroke="#2f1d15" stroke-width="1.2"/>
+      <rect x="160" y="104" width="8" height="11" fill="#1a1a24"/>
+    </g>
+    <path d="M-4 212 Q128 234 260 212 L260 260 L-4 260 Z" fill="url(#river)"/>
+    <ellipse cx="128" cy="226" rx="46" ry="12" fill="url(#mist)"/>
+    <ellipse cx="128" cy="222" rx="30" ry="7" fill="#ffffff" fill-opacity="0.85"/>
+  </g>
+</svg>

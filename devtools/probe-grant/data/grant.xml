@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Probe-only: attach the unlock grants so a game created with the shipped mod has the Dam at turn 1. -->
+<Database>
+    <GameModifiers>
+        <Row ModifierId="MOD_DAM_GRANT_ANTIQUITY"/>
+        <Row ModifierId="MOD_DAM_GRANT_EXPLORATION"/>
+        <Row ModifierId="MOD_DAM_GRANT_MODERN"/>
+    </GameModifiers>
+</Database>

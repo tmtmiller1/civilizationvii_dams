@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Throwaway: unlocks the shipped mod's Dam buildings for every major player at game creation. Dev only. -->
+<Mod id="dam-grant-probe" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>Dam Grant Probe (dev)</Name>
+        <Description>Dev only: unlocks the Dam buildings at once.</Description>
+        <Authors>Tower</Authors>
+        <Package>DamGrantProbe</Package>
+        <PackageSortIndex>9997</PackageSortIndex>
+        <Version>0.0.1</Version>
+        <AffectsSavedGames>0</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME" />
+        <Mod id="tower-dams" title="LOC_DAMS_MOD_NAME" />
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="dam-grant-game" scope="game" criteria="always">
+            <Properties><LoadOrder>200</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/dam-gameeffects.xml</Item>
+                    <Item>data/grant.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>

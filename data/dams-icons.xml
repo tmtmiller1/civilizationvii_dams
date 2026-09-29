@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Build icons, one per age (icons/src/build-icon.py). Loaded through UpdateIcons, not UpdateDatabase; the PNGs are
+     imported by the modinfo (ImportFiles) and addressed with their extension, or the icon is blank (canals c38). -->
+<Database>
+    <IconDefinitions>
+        <Row><ID>BUILDING_DAM_ANTIQUITY</ID><Path>fs://game/tower-dams/icons/dam_ancient.png</Path></Row>
+        <Row><ID>BUILDING_DAM_ANTIQUITY</ID><IconSize>128</IconSize><Path>fs://game/tower-dams/icons/dam_ancient_128.png</Path></Row>
+        <Row><ID>BUILDING_DAM_ANTIQUITY</ID><IconSize>64</IconSize><Path>fs://game/tower-dams/icons/dam_ancient_64.png</Path></Row>
+        <Row><ID>BUILDING_DAM_EXPLORATION</ID><Path>fs://game/tower-dams/icons/dam_medieval.png</Path></Row>
+        <Row><ID>BUILDING_DAM_EXPLORATION</ID><IconSize>128</IconSize><Path>fs://game/tower-dams/icons/dam_medieval_128.png</Path></Row>
+        <Row><ID>BUILDING_DAM_EXPLORATION</ID><IconSize>64</IconSize><Path>fs://game/tower-dams/icons/dam_medieval_64.png</Path></Row>
+        <Row><ID>BUILDING_DAM_MODERN</ID><Path>fs://game/tower-dams/icons/dam_modern.png</Path></Row>
+        <Row><ID>BUILDING_DAM_MODERN</ID><IconSize>128</IconSize><Path>fs://game/tower-dams/icons/dam_modern_128.png</Path></Row>
+        <Row><ID>BUILDING_DAM_MODERN</ID><IconSize>64</IconSize><Path>fs://game/tower-dams/icons/dam_modern_64.png</Path></Row>
+    </IconDefinitions>
+</Database>
