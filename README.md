@@ -94,7 +94,7 @@ standing, and a network game.
 ## Installation
 
 1. Subscribe on the Steam Workshop, or download the zip from the
-   [latest release](https://github.com/tmtmiller1/dams/releases/latest).
+   [latest release](https://github.com/tmtmiller1/civilizationvii_dams/releases/latest).
 2. Unzip it so the `dams` folder sits in the Civilization VII Mods directory.
 3. Enable **Dams** from Additional Content in-game.
 
