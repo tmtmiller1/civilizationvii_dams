@@ -84,7 +84,10 @@ second river is protected on both.
   change: major and 1000-year floods get flood classes of their own, so a Dam can hold back one size and not another.
   Everything else that protects against floods (the Khmer Baray, the Water Puppet Theater, the Ho'okupu tradition, and
   other mods' flood immunity) is widened to match, so it still covers all three.
-- A save loads with the mod on or off.
+- A save loads with the mod on or off. The dam-site marker (a map feature with no look and no yield of its own, which
+  the mod places where a Dam may go) is kept in saves; a save loaded without the mod simply has none.
+- How much the AI values a Dam is read when a game is created, so it holds in games started with this version. In a
+  game already under way the AI can still build on its dam sites, but chooses to less often.
 - Works in single player. In a network game the mod places no Levees, so a Dam protects only the settlement that
   holds it.
 - Dams plus a mod that turns floods off: the Dam still dries the floodplains but protects against nothing.
@@ -101,6 +104,9 @@ second river is protected on both.
   floods classes of their own and each age's Dam names the ones it holds back. At load, at the start of each of the
   player's turns and whenever a Dam is finished, the mod reads every Dam off the map and places the right Levee in each
   settlement on its river. That also catches a Dam bought with gold, an AI's Dam and new settlements.
+- **AI Dams.** The game's own AI builds Dams, as it builds any building, and only where one guards something. The mod
+  marks, for each AI, the river tiles on each river that floods, has no Dam as good on it yet, and runs past at least
+  two of the AI's own built-on tiles a flood would pillage; the game offers the AI a Dam there and nowhere else.
 - **Look.** Each finished Dam is drawn across its river from the game's own models, one look per age: a rough weir
   of heaped boulders, a stone ford with a gated arch, a concrete barrage with a spillway. They grow with the age.
 
@@ -113,7 +119,11 @@ the one-per-age rule and the upgrade it allows, the protection of each age again
 with no Levee pillaged by every flood, the Ancient Levee holding moderate floods only, the Medieval Levee moderate and
 major, the Modern Levee all three), the Levees rising to a newer Dam and falling back when it is razed, the dried
 floodplains, each age's look, the icons, a save reloaded with the mod on, a Dam carried across the Exploration to
-Modern transition, and Compact Cities with its ring lock on. Not yet watched: a network game.
+Modern transition, and Compact Cities with its ring lock on. Dam sites, in Exploration games: the game's own AI
+weighed a Dam only on its marked sites, chose one itself on a river that floods, built it, and the Dam was drawn and
+dried the river; your own Dams, built and bought, marked their tiles and landed as before, with the tile's yields
+unchanged. Not yet watched: dam sites in an Antiquity or a Modern game (the same site rule covers all three ages'
+Dams), and a network game.
 
 ## Installation
 

@@ -5,6 +5,12 @@
         <Row Tag="LOC_DAMS_MOD_NAME">
             <Text>Dams</Text>
         </Row>
+        <Row Tag="LOC_FEATURE_DAMS_SITE_NAME">
+            <Text>Dam Site</Text>
+        </Row>
+        <Row Tag="LOC_FEATURE_DAMS_SITE_TOOLTIP">
+            <Text>A river tile where a Dam can be built. Yields as the land beneath it.</Text>
+        </Row>
         <Row Tag="LOC_DAMS_MOD_DESCRIPTION">
             <Text>Adds a Dam building to each age. Build it on a river tile, navigable or not; once it is finished, floods on that river stop pillaging the improvements, buildings and districts of the settlements along it: an Ancient Dam holds back moderate floods, a Medieval Dam major ones as well, and a Modern Dam every flood. The cost is the valley: the Dam holds the water back and the floodplains dry out, so the land along the river gives up that Food for good. A river takes one Dam of each age, so an old Dam can be joined by a newer one. Unlocked by Irrigation, Machinery and Electricity.</Text>
         </Row>

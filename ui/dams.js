@@ -25,7 +25,7 @@
 const TAG = "[Dams]";
 const G = globalThis;
 const KEY = "__dams";
-const VERSION = "1.2.0";
+const VERSION = "1.3.0";
 const DAM_TYPES = ["BUILDING_DAM_ANTIQUITY", "BUILDING_DAM_EXPLORATION", "BUILDING_DAM_MODERN"];
 /** The Levee each Dam raises, by the Dam's tier (its index in DAM_TYPES plus one). A higher tier holds more floods. */
 const LEVEES = [null, "BUILDING_DAM_LEVEE", "BUILDING_DAM_LEVEE_EXPLORATION", "BUILDING_DAM_LEVEE_MODERN"];
@@ -75,6 +75,12 @@ function owningCity(loc) {
   return c && c.owner >= 0 ? c : null;
 }
 function currentAge() { return safe(() => String(GameInfo.Ages.lookup(Game.age).AgeType), ""); }
+/** The player at this machine. Under Autoplay localPlayerID reads -1 and the player reads as not human (u2); the
+ * observer is still that player. */
+function localId() {
+  const id = safe(() => GameContext.localPlayerID, -1);
+  return id >= 0 ? id : safe(() => GameContext.localObserverID, -1);
+}
 
 /** Plot -> river id, and river id -> its plots, from MapRivers (rivers never change after map creation). */
 function indexRivers() {
@@ -239,7 +245,7 @@ function leveePlan(done) {
 /** Places each settlement's planned Levee where it is missing. Returns how many were placed. */
 function protect(plan) {
   if (state.multiplayer) return 0;
-  const local = GameContext.localPlayerID;
+  const local = localId();
   let placed = 0;
   for (const c of plan.values()) {
     if (occupants(c.center).some((o) => o.type === c.levee)) continue;
@@ -281,7 +287,7 @@ function confirmedOrphan(key, turn) {
 }
 
 function destroyAll(constructibles) {
-  const local = GameContext.localPlayerID;
+  const local = localId();
   for (const o of constructibles) {
     safe(() => Game.PlayerOperations.sendRequest(local, "DESTROY_ELEMENT", { Kind: "CONSTRUCTIBLE", Owner: o.owner, LocalID: o.id }));
   }
@@ -543,7 +549,7 @@ function install() {
   safe(() => engine.on("ConstructibleBuildCompleted", onBuildCompleted));
   safe(() => engine.on("ConstructibleAddedToMap", onConstructibleMoved));
   safe(() => engine.on("ConstructibleRemovedFromMap", onConstructibleMoved));
-  safe(() => engine.on("PlayerTurnActivated", (d) => { if (d && (d.player ?? d.Player) === GameContext.localPlayerID) setTimeout(sweep, SETTLE_MS); }));
+  safe(() => engine.on("PlayerTurnActivated", (d) => { if (d && (d.player ?? d.Player) === localId()) setTimeout(sweep, SETTLE_MS); }));
   setTimeout(sweep, SETTLE_MS * 2);
   log(`active ${VERSION}: ${state.riverPlots.size} rivers indexed${state.multiplayer ? " (network game: no Levees)" : ""}`);
   return true;
@@ -569,6 +575,10 @@ if (!G[KEY]) {
     get enabled() { return state.enabled; },
     uninstall, sweep, damsOnMap, citiesOnRiver, riverAt, flowAngle, wallAngle, drawDam, clearDam, dry, forget,
     unprotect, damVerdict, leveePlan: () => leveePlan(damsOnMap().filter((d) => d.complete)),
+    // for ui/dams-ai.js
+    localId, occupants, isFloodplain, tierOf, currentAge, types: DAM_TYPES,
+    riverPlots: (river) => state.riverPlots.get(river) || [],
+    get multiplayer() { return state.multiplayer; },
     looks: DAM_LOOKS,
     drawn: () => [...state.overlays.keys()],
   };

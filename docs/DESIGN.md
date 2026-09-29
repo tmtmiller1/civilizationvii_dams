@@ -1,7 +1,9 @@
 # Dams: design
 
-Status: 1.2.0 built and watched (runs `d26` to `d29`): protection graded by age, Levees by tier, save and reload, Compact
-Cities, the age transition. A network game is unwatched.
+Status: 1.3.0 built and watched in Exploration games (runs `v1` to `v1c`): dam sites, the game's own AI building a Dam
+on its marked site, the player's lists and orders through the site marker. 1.2.0 watched (runs `d26` to `d29`):
+protection graded by age, Levees by tier, save and reload, Compact Cities, the age transition. Dam sites in an
+Antiquity or a Modern game and a network game are unwatched.
 Sibling of `tower_mods/canals`: a Dam is a building made through the ordinary production screen, placed on a river
 tile (navigable or minor), that protects the settlements along that river from its floods.
 
@@ -180,7 +182,17 @@ Not covered:
 
 - A dried floodplain stays dried if the Dam is later razed.
 - The flood-risk lens stops marking a dammed river's floodplains once they are dried, though floods still come.
-- An AI's Dams are placed by the AI's own rules, which the one-per-age check does not see.
+- AI Dams (`ui/dams-sites.js`, 2026-09-29). Left to itself the game's AI weighed a Dam on every river tile it could
+  build on (`u1`: 1,010 evaluations in 60 turns), blind to floods: on seed 9001 only 8 of 61 rivers can flood at all.
+  No AI bias keeps it off a building (Canals `w1`, `w1b`), and the data cannot say "a river that floods". So each Dam
+  requires a dam-site marker (`data/dams-sites.xml`, `Constructible_RequiredFeatures`, the mechanism watched in Canals
+  `m1`-`m8`), and the script marks, for each AI, the candidate tiles of each river that floods, has no Dam as good,
+  and runs past at least two of its own built-on tiles a flood would pillage (a marker standing in for a floodplain
+  still counts, or it would lift itself: `v1`). The player's lists are widened to every candidate river tile and the
+  order marks its tile. The AI's value of the Dam is raised (`data/dams-ai.xml`, +3,000; at +400 it scored about 1,900
+  and lost, `v1b`). `v1c`: AI 2 committed to a Dam on its marked site (6,13, a flooding river) on turn 10, finished
+  it by turn 24, the sweep drew it and dried the river; the AI weighed a Dam nowhere else; the player's production and
+  purchase Dams landed and were drawn. Sites come from the map: `canStart` gives an AI's settlements no plots (`u2`).
 - A network game is unwatched.
 - A Dam goes where the game lets the settlement put a building. A young settlement is offered only the river tiles
   beside its centre (`d28e`, with the mod's wrapper off), so "any river tile" means any the settlement could build on.

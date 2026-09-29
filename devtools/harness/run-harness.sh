@@ -78,7 +78,17 @@ restore_emig() {
   [ "$EMIG_MOVED" = 1 ] && [ -d "$EBAK" ] || return 0
   rm -rf "$EDIR"; mv "$EBAK" "$EDIR" && say "restored the player's Mods/emigration ($(grep -o '<Version>[^<]*' "$EDIR/emigration.modinfo"))"
 }
-trap 'restore_emig; restore_foreign' EXIT INT TERM
+# AI_VERBOSE=1 turns on the engine's AI scoring logs (AI_ConstructibleBroker.csv shows which buildings the AI chose
+# and where). AppOptions.txt is the player's file: backed up here, put back on every exit path.
+OPTS="$S/AppOptions.txt"
+restore_opts() { [ -f "$OPTS.dam-bak" ] && mv "$OPTS.dam-bak" "$OPTS" && say "AppOptions.txt restored"; return 0; }
+if [ "${AI_VERBOSE:-0}" = "1" ] && [ -f "$OPTS" ]; then
+  cp -p "$OPTS" "$OPTS.dam-bak"
+  if grep -q "^AIVerboseLogging" "$OPTS"; then sed -i '' 's/^AIVerboseLogging .*/AIVerboseLogging 1/' "$OPTS";
+  else sed -i '' 's/^;AIVerboseLogging 0/AIVerboseLogging 1/' "$OPTS"; fi
+  say "AIVerboseLogging on (AppOptions.txt backed up)"
+fi
+trap 'restore_opts; restore_emig; restore_foreign' EXIT INT TERM
 
 rm -rf "$BAK"; mkdir -p "$BAK"; cp -p "$AUTO"/*.Civ7Save "$BAK"/ 2>/dev/null
 say "autosaves backed up: $(ls "$BAK" 2>/dev/null | wc -l | tr -d ' ')"
@@ -158,6 +168,9 @@ grep "\[DAM\]" "$LOG" | cut -c1-4000 > "$HERE/$LABEL-UI.log"
 grep "\[Emigration\] \(event\|events:\|boot\)" "$LOG" | cut -c1-600 > "$HERE/$LABEL-emig.log" 2>/dev/null
 grep -i "error\|exception\|failed" "$LOG" | grep -iv "\[DAM\]" | tail -30 > "$HERE/$LABEL-errors.txt"
 for dl in Database.log Modding.log Game_RandomEvents.csv; do cp -p "$S/Logs/$dl" "$HERE/$LABEL-$dl" 2>/dev/null; done
+if [ "${AI_VERBOSE:-0}" = "1" ]; then
+  for ai in "$S/Logs/"*onstructible*.csv(N); do cp -p "$ai" "$HERE/$LABEL-$(basename "$ai")" && say "collected $(basename "$ai") ($(wc -l < "$ai" | tr -d ' ') lines)"; done
+fi
 if [ "$result" = crashed ]; then
   say "waiting 60s for the crash report to land"
   sleep 60

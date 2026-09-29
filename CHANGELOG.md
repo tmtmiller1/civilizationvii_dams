@@ -3,7 +3,16 @@
 All notable changes to Dams are documented here. This project follows semantic versioning. The probes and harness
 runs live in `devtools/`, outside the shipped files.
 
-## [Unreleased]
+## [1.3.0] - 2026-09-29
+
+- AI players build Dams themselves, as they build any building, and only where a Dam guards something. The mod marks,
+  for each AI, the river tiles of its settlements on each river that floods, has no Dam as good on it yet, and runs
+  past at least two of the AI's own built-on tiles a flood would pillage. The game offers an AI the Dam there and
+  nowhere else, and the AI decides when to build it. Before, the game's AI could put a Dam on any river tile it
+  owned, most of them on rivers that never flood.
+- A Dam needs a dam site on its tile, a marker the mod places. Your build and purchase lists offer every river tile of
+  the settlement as before, and ordering a Dam marks its tile. A marked tile yields what it did. On an AI site that
+  held a floodplain or woods the marker takes their place until the Dam is built or the site dropped.
 
 ## [1.2.0] - 2026-09-29
 
