@@ -3,6 +3,12 @@ Generated from CHANGELOG.md by scripts/steam-changelog.mjs; release.sh uploads t
 To fix an old Workshop entry, paste the text under its ==== line into that entry's Edit box on the change-notes page.
 A block edited by hand is kept as-is. Delete a block to regenerate it from CHANGELOG.md.
 
+==== 1.2.0 | 2026-09-29 | src dcfa30fbebe2 | gen 8049e0b8505f ====
+[b]Version 1.2.0 · 29 September 2026[/b]
+• Flood protection now grows with the age. An Ancient Dam holds back moderate floods, a Medieval Dam moderate and major floods, and a Modern Dam every flood, the 1000-year flood included. Floods a Dam does not hold back pillage as they would without it. Each Dam's text says which floods it holds back.
+• Levees follow the best Dam on their river: a newer Dam raises them to match at once, and razing it drops them back to the next best a turn later.
+• Major and 1000-year floods have flood classes of their own. Every other source of flood immunity, from the base game or another mod, is widened to cover them, so it still protects against all three.
+
 ==== 1.1.0 | 2026-09-29 | src 5d71892b35fd | gen 640ce7620989 ====
 [b]Version 1.1.0 · 29 September 2026[/b]
 • Dams can go on any river tile of the settlement, and Levees are placed, alongside compact-city mods that confine every building to the ring around the city centre. Those mods keep applying to every other building.

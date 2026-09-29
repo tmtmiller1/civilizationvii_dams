@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Flood classes by severity. The base game files all three floods (moderate, major, 1000-year) under CLASS_FLOOD, and
+  the only per-settlement protection the engine has, EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT, is chosen by class. Giving
+  the major and the 1000-year flood classes of their own lets each age's Dam hold back a different set:
+  Ancient the moderate flood, Medieval the moderate and the major, Modern all three. data/dams-floods.sql moves the two
+  events into these classes and keeps every other flood immunity covering all three.
+-->
+<Database>
+    <Types>
+        <Row Type="CLASS_DAMS_FLOOD_MAJOR" Kind="KIND_RANDOM_EVENT_CLASS"/>
+        <Row Type="CLASS_DAMS_FLOOD_1000_YEAR" Kind="KIND_RANDOM_EVENT_CLASS"/>
+    </Types>
+    <EventClasses>
+        <Row EventClass="CLASS_DAMS_FLOOD_MAJOR"/>
+        <Row EventClass="CLASS_DAMS_FLOOD_1000_YEAR"/>
+    </EventClasses>
+</Database>

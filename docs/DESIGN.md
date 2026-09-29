@@ -1,6 +1,7 @@
 # Dams: design
 
-Status: protection built and watched (run `d5`); placement, look and build-menu icon being verified (run `d4`).
+Status: 1.2.0 built and watched (runs `d26` to `d29`): protection graded by age, Levees by tier, save and reload, Compact
+Cities, the age transition. A network game is unwatched.
 Sibling of `tower_mods/canals`: a Dam is a building made through the ordinary production screen, placed on a river
 tile (navigable or minor), that protects the settlements along that river from its floods.
 
@@ -38,6 +39,19 @@ owns a tile of that river. The known difference from the request: a settlement t
 second river is protected on both (Carthage in `d5`: a Song Hong flood also damaged nothing). Unowned river tiles
 hold nothing a flood could pillage.
 
+**Graded by age (1.2.0).** Asked for 2026-09-29: an older Dam should protect less. The engine has no partial
+protection: `EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT` takes only a class, and `RandomEventDamages` sets a flood's damage
+share for everyone. But the base game files all three floods under `CLASS_FLOOD` while giving each its own
+`RandomEvents` row, so `data/dams-floods.xml` and `.sql` move the major and the 1000-year flood into classes of their
+own and each age's Dam names the classes it holds back: Ancient the moderate flood, Medieval the moderate and major,
+Modern all three. Everything else that names `CLASS_FLOOD` (the three base immunities, the flood tooltips and icons, the
+bridge pillage rows, and any other mod's immunity, through two triggers) is widened so the split changes nothing but
+the Dams. Weighting each flood by `RandomEventFrequencies` and its `CONSTRUCTIBLE_DAMAGED` share (20/40/60 %), the
+damage a Dam prevents is about 17/50/100 % at Light (the default), 29/57/100 % at Moderate and 36/73/100 % at Heavy.
+Each settlement's Levee matches the best Dam on its rivers (`leveePlan` in `ui/dams.js`). Watched in `d26`, `d26b`,
+`d27`, `d27b`. The rejected alternative was a per-turn chance to hold (a hidden shield switched on by a roll): it only
+needed known verbs, but a Dam that randomly fails reads as a bug.
+
 Units are not covered. The engine has a unit-side immunity (`EFFECT_UNITS_IMMUNE_TO_RANDOM_EVENTS`) but no
 requirement that ties a unit to a river or a settlement's land, so it would have to cover all of a player's units.
 
@@ -68,6 +82,14 @@ harness collects it as `<label>-Game_RandomEvents.csv`.
 | `d22`, `d23` | Save and reload | Dam read back and redrawn; the Levee in the non-holding city intact at load, after the first sweep and a turn later; the holding city has none |
 | `g1-*` | The in-game production list | "Medieval Dam" and "Modern Dam" rows carry their icons among the base buildings. Antiquity's row was absent because the capital owned no river tile yet, the Gristmill's rule |
 | `d6` | Navigable placement, the icon in the list, the meshes | Navigable AND minor offered and both built; the row reads "Dam" with `dam_128.png` bound; the Levee is correctly absent; meshes inconclusive (all four drew on one tile) |
+| `d26` | 1.2.0: the flood split in the database; moderate floods against each tier | Floods still fire after the split (severity 0 and 1 in `Game_RandomEvents.csv`, fertility as before). Moderate floods pillaged the control 6 of 6 times and no protected tier's farms. The new classes had no plot icon (fixed: the base `CLASS_FLOOD` also has a context-less row) |
+| `d26b` | The same with only major and 1000-year floods | Every tier as designed: Ancient Levee pillaged by major (2) and 1000-year (3); Medieval Levee held major (2), pillaged by 1000-year (1); Modern Levee held major (4) and 1000-year (2). One Song Duong flood logged 1 damaged tile while the Modern-Levee settlement's farms stayed intact; the count is river-wide and was not traced |
+| `d27` | Levee tiers in play | 22/22: text and icons; Ancient Dam raises the Ancient Levee in the other settlement; a Modern Dam upstream puts the Modern Levee in at once and removes the Ancient one a turn later; razing it brings the Ancient Levee back at once and removes the Modern one a turn later. Saved as `DAM-d27` |
+| `d27b` | `DAM-d27` reloaded | 4/4: Levees back with the save, untouched by the first sweep after the load and a turn later; both Dams drawn |
+| `d28` | Next to Compact Cities 1.6, ring lock on (Antiquity) | The ring lock was live (Library, Granary, Monument pinned to the centre) and the four 1.1.0 types kept no adjacency, but the two new Levees were pinned: `dams-placement.sql` listed only the old four. Fixed |
+| `d28b` | The same in Exploration, after the fix | 8/9: all six types keep no adjacency; an Ancient Dam put the Levee in the other settlement on its river. C2 asked for the wrong age's Dam (fixed in the probe) |
+| `d28d`, `d28e` | Why a young capital is offered only the river tile beside it | The same with Compact Cities off (`d28d`) and with the Dams wrapper off too (`d28e`): the engine itself offers only (58,37) of four owned river tiles. It is the game's own rule for a building's tile, not Compact Cities and not Dams |
+| `d29` | A Medieval Dam across the Exploration to Modern transition (`dam-short-age-probe`) | 7/7: still on the map, complete and drawn; the other settlement's Medieval Levee carried over (the settlement's id changed with the age, the Levee stayed); floodplains still dry; the Medieval modifiers and the flood split present in the Modern database |
 
 ## Placement, build and completion
 
@@ -159,4 +181,6 @@ Not covered:
 - A dried floodplain stays dried if the Dam is later razed.
 - The flood-risk lens stops marking a dammed river's floodplains once they are dried, though floods still come.
 - An AI's Dams are placed by the AI's own rules, which the one-per-age check does not see.
-- Age transition with a Dam standing, and a network game, are unwatched.
+- A network game is unwatched.
+- A Dam goes where the game lets the settlement put a building. A young settlement is offered only the river tiles
+  beside its centre (`d28e`, with the mod's wrapper off), so "any river tile" means any the settlement could build on.

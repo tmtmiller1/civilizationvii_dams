@@ -12,5 +12,11 @@
         <Row><ID>BUILDING_DAM_MODERN</ID><Path>fs://game/tower-dams/icons/dam_modern.png</Path></Row>
         <Row><ID>BUILDING_DAM_MODERN</ID><IconSize>128</IconSize><Path>fs://game/tower-dams/icons/dam_modern_128.png</Path></Row>
         <Row><ID>BUILDING_DAM_MODERN</ID><IconSize>64</IconSize><Path>fs://game/tower-dams/icons/dam_modern_64.png</Path></Row>
+        <!-- The two flood classes split out in data/dams-floods.xml keep the base flood icons: the plot icon
+             (base-standard data/icons/random-event-icons.xml) and the font icon. -->
+        <Row><ID>CLASS_DAMS_FLOOD_MAJOR</ID><Path>fs://game/settle_flood</Path></Row>
+        <Row><ID>CLASS_DAMS_FLOOD_1000_YEAR</ID><Path>fs://game/settle_flood</Path></Row>
+        <Row><ID>CLASS_DAMS_FLOOD_MAJOR</ID><Context>FONTICON</Context><IconSize>64</IconSize><Path>blp:fi_class_flood_64</Path></Row>
+        <Row><ID>CLASS_DAMS_FLOOD_1000_YEAR</ID><Context>FONTICON</Context><IconSize>64</IconSize><Path>blp:fi_class_flood_64</Path></Row>
     </IconDefinitions>
 </Database>

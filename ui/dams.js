@@ -7,9 +7,11 @@
 //      Dam per river, counting Dams still under construction.
 //   2. Protection. A script cannot stop a flood or change which tiles it covers (engine-closed.md: applyEvent starts
 //      nothing, clearing a floodplain does not stop its river flooding). What the engine can do is keep a flood from
-//      pillaging, per settlement (EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT, the Khmer Baray's effect). A settlement
-//      holding a Dam has it from data. Every other settlement that owns a tile of the dammed river gets a Levee
-//      (BUILDING_DAM_LEVEE, no slot, never offered in production) in its center, which carries the same effect.
+//      pillaging, per settlement (EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT, the Khmer Baray's effect), by flood class.
+//      The data splits the floods into three classes by severity, so the protection is graded by age: an Ancient Dam
+//      holds back moderate floods, a Medieval Dam major ones too, a Modern Dam every flood. A settlement holding a Dam
+//      has its Dam's protection from data. Every settlement that owns a tile of a dammed river and holds no Dam as good
+//      as the best one on its rivers gets that Dam's Levee (no slot, never offered in production) in its center.
 //      The Dam's price is the valley: the floodplain features come off the dammed river, and those tiles lose the
 //      floodplain's own yield. Floods still come and still leave their silt; no mod can stop that (d13-d15).
 //   3. Safety net. On load and at the start of every local turn, the map is read again: every finished Dam, every
@@ -23,9 +25,10 @@
 const TAG = "[Dams]";
 const G = globalThis;
 const KEY = "__dams";
-const VERSION = "1.1.0";
+const VERSION = "1.2.0";
 const DAM_TYPES = ["BUILDING_DAM_ANTIQUITY", "BUILDING_DAM_EXPLORATION", "BUILDING_DAM_MODERN"];
-const LEVEE = "BUILDING_DAM_LEVEE";
+/** The Levee each Dam raises, by the Dam's tier (its index in DAM_TYPES plus one). A higher tier holds more floods. */
+const LEVEES = [null, "BUILDING_DAM_LEVEE", "BUILDING_DAM_LEVEE_EXPLORATION", "BUILDING_DAM_LEVEE_MODERN"];
 const SETTLE_MS = 1500;
 const RING = [
   "DIRECTION_EAST", "DIRECTION_SOUTHEAST", "DIRECTION_SOUTHWEST",
@@ -203,53 +206,74 @@ function citiesOnRiver(river) {
   return [...seen.values()];
 }
 
-function hasLevee(center) { return occupants(center).some((o) => o.type === LEVEE); }
+function tierOf(type) { return DAM_TYPES.indexOf(String(type)) + 1; }
+function isLevee(type) { return LEVEES.includes(type); }
+/** Raises map[key] to at least tier. */
+function raise(map, key, tier) { map.set(key, Math.max(map.get(key) || 0, tier)); }
 
 /**
- * A Levee in every settlement on a dammed river that lacks one. A settlement holding a finished Dam is covered by the
- * Dam itself and gets none, so its building list does not show both. Returns how many were placed.
+ * The Levee each settlement should hold, keyed by settlement: the Levee of the best finished Dam on any river it owns a
+ * tile of, unless it holds a Dam at least that good itself. Settlements that need none are absent. The protection is
+ * per settlement in the engine, so a settlement on two dammed rivers takes the better of the two.
  */
-function protect(dams) {
+function leveePlan(done) {
+  const best = new Map();
+  const held = new Map();
+  for (const d of done) {
+    raise(best, d.river, tierOf(d.type));
+    const c = owningCity(d.loc);
+    if (c) raise(held, `${c.owner}:${c.id}`, tierOf(d.type));
+  }
+  const need = new Map();
+  for (const [river, tier] of best) {
+    for (const c of citiesOnRiver(river)) {
+      const prev = need.get(c.key);
+      if (!prev || tier > prev.tier) need.set(c.key, { ...c, tier });
+    }
+  }
+  const plan = new Map();
+  for (const [key, c] of need) if (c.tier > (held.get(key) || 0)) plan.set(key, { ...c, levee: LEVEES[c.tier] });
+  return plan;
+}
+
+/** Places each settlement's planned Levee where it is missing. Returns how many were placed. */
+function protect(plan) {
   if (state.multiplayer) return 0;
   const local = GameContext.localPlayerID;
   let placed = 0;
-  const done = dams.filter((d) => d.complete);
-  const holders = new Set(done.map((d) => owningCity(d.loc)).filter(Boolean).map((c) => `${c.owner}:${c.id}`));
-  for (const river of new Set(done.map((d) => d.river))) {
-    for (const c of citiesOnRiver(river)) {
-      if (holders.has(c.key) || hasLevee(c.center)) continue;
-      safe(() => Game.PlayerOperations.sendRequest(local, "CREATE_ELEMENT", { Kind: "CONSTRUCTIBLE", Type: LEVEE, Location: c.center, Owner: c.owner }));
-      placed++;
-    }
+  for (const c of plan.values()) {
+    if (occupants(c.center).some((o) => o.type === c.levee)) continue;
+    safe(() => Game.PlayerOperations.sendRequest(local, "CREATE_ELEMENT", { Kind: "CONSTRUCTIBLE", Type: c.levee, Location: c.center, Owner: c.owner }));
+    placed++;
   }
   return placed;
 }
 
 /**
- * A Levee stays only while its settlement still owns a tile of a dammed river. A Dam can be pillaged or razed, and a
- * settlement can lose its river tiles to a border change or a trade; without this, it would keep flood immunity for
- * good after the reason had gone.
+ * A Levee stays only while it is the one its settlement's plan calls for. A Dam can be pillaged or razed, a better Dam
+ * can be finished upstream, and a settlement can lose its river tiles to a border change or a trade; without this, it
+ * would keep the old protection for good after the reason had gone.
  *
- * A Levee goes only once it has been orphaned on two different turns. The first sweep after a load can run before the
- * map's buildings read back, see no Dams at all, and would otherwise strip every Levee on the map. Returns how many
+ * A Levee goes only once it has been out of plan on two different turns. The first sweep after a load can run before
+ * the map's buildings read back, see no Dams at all, and would otherwise strip every Levee on the map. Returns how many
  * were removed.
  */
-function unprotect(dams) {
+function unprotect(plan) {
   if (state.multiplayer) return 0;
   const turn = safe(() => Game.turn, -1);
-  const keep = citiesToKeep(dams);
   let removed = 0;
   for (const city of allCities()) {
-    const levees = occupants(city.center).filter((o) => o.type === LEVEE && o.id != null);
-    if (keep.has(city.key) || !levees.length) { state.orphans.delete(city.key); continue; }
+    const want = plan.has(city.key) ? plan.get(city.key).levee : null;
+    const extra = occupants(city.center).filter((o) => isLevee(o.type) && o.type !== want && o.id != null);
+    if (!extra.length) { state.orphans.delete(city.key); continue; }
     if (!confirmedOrphan(city.key, turn)) continue;
-    removed += destroyAll(levees);
+    removed += destroyAll(extra);
     state.orphans.delete(city.key);
   }
   return removed;
 }
 
-/** True once a settlement has been seen without a reason for its Levee on an earlier turn than this one. */
+/** True once a settlement has been seen with a Levee it should not hold on an earlier turn than this one. */
 function confirmedOrphan(key, turn) {
   const first = state.orphans.get(key);
   if (first == null) { state.orphans.set(key, turn); return false; }
@@ -262,15 +286,6 @@ function destroyAll(constructibles) {
     safe(() => Game.PlayerOperations.sendRequest(local, "DESTROY_ELEMENT", { Kind: "CONSTRUCTIBLE", Owner: o.owner, LocalID: o.id }));
   }
   return constructibles.length;
-}
-
-/** Keys of every settlement that owns a tile of a river with a finished Dam. */
-function citiesToKeep(dams) {
-  const keep = new Set();
-  for (const river of new Set(dams.filter((d) => d.complete).map((d) => d.river))) {
-    for (const c of citiesOnRiver(river)) keep.add(c.key);
-  }
-  return keep;
 }
 
 /** Every settlement on the map, as { key, center }. */
@@ -473,8 +488,9 @@ function sweep() {
   for (const plot of [...state.overlays.keys()]) if (!live.has(plot)) clearDam(plot);
   let drawn = 0;
   for (const d of done) if (drawDam(d)) drawn++;
-  const placed = protect(done);
-  const removed = unprotect(done);
+  const plan = leveePlan(done);
+  const placed = protect(plan);
+  const removed = unprotect(plan);
   const dried = dry(done);
   if (drawn || placed || removed || dried) {
     log(`sweep: ${done.length} dams, ${drawn} drawn, ${placed} levees placed, ${removed} removed, ${dried} floodplains dried`);
@@ -552,7 +568,7 @@ if (!G[KEY]) {
     set enabled(v) { state.enabled = !!v; },
     get enabled() { return state.enabled; },
     uninstall, sweep, damsOnMap, citiesOnRiver, riverAt, flowAngle, wallAngle, drawDam, clearDam, dry, forget,
-    unprotect, damVerdict,
+    unprotect, damVerdict, leveePlan: () => leveePlan(damsOnMap().filter((d) => d.complete)),
     looks: DAM_LOOKS,
     drawn: () => [...state.overlays.keys()],
   };

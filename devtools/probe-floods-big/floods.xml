@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Variant of probe-floods/data/floods.xml for d26b (DEPLOY bigfloods): no moderate floods, major and 1000-year floods
+     300 times per age, every flooded constructible pillaged, so a protected settlement sees the floods its tier must
+     let through or hold back. -->
+<Database>
+    <RandomEventFrequencies>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_MODERATE"/><Set OccurrencesPerAge="0"/></Update>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_MAJOR"/><Set OccurrencesPerAge="300"/></Update>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_1000_YEAR"/><Set OccurrencesPerAge="300"/></Update>
+    </RandomEventFrequencies>
+    <RandomEventDamages>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_MODERATE" DamageType="CONSTRUCTIBLE_DAMAGED"/><Set Percentage="100"/></Update>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_MAJOR" DamageType="CONSTRUCTIBLE_DAMAGED"/><Set Percentage="100"/></Update>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_1000_YEAR" DamageType="CONSTRUCTIBLE_DAMAGED"/><Set Percentage="100"/></Update>
+    </RandomEventDamages>
+</Database>

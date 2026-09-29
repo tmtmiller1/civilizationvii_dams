@@ -6,7 +6,7 @@
             <Text>Dams</Text>
         </Row>
         <Row Tag="LOC_DAMS_MOD_DESCRIPTION">
-            <Text>Adds a Dam building to each age. Build it on a river tile, navigable or not; once it is finished, floods on that river no longer pillage the improvements, buildings and districts of the settlements along it. The cost is the valley: the Dam holds the water back and the floodplains dry out, so the land along the river gives up that Food for good. A river takes one Dam of each age, so an old Dam can be joined by a newer one. Unlocked by Irrigation, Machinery and Electricity.</Text>
+            <Text>Adds a Dam building to each age. Build it on a river tile, navigable or not; once it is finished, floods on that river stop pillaging the improvements, buildings and districts of the settlements along it: an Ancient Dam holds back moderate floods, a Medieval Dam major ones as well, and a Modern Dam every flood. The cost is the valley: the Dam holds the water back and the floodplains dry out, so the land along the river gives up that Food for good. A river takes one Dam of each age, so an old Dam can be joined by a newer one. Unlocked by Irrigation, Machinery and Electricity.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_DAM_ANTIQUITY_NAME">
             <Text>Ancient Dam</Text>
@@ -17,17 +17,35 @@
         <Row Tag="LOC_BUILDING_DAM_MODERN_NAME">
             <Text>Modern Dam</Text>
         </Row>
-        <Row Tag="LOC_BUILDING_DAM_DESCRIPTION">
-            <Text>Holds back the river it stands on. Must be placed on a river tile, navigable or not. A river takes one Dam of each age. When it is finished, floods on this river no longer pillage Improvements, Buildings or Districts in any [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] along it. Floods still come and are still reported; they simply do no damage. The valley dries out behind it: this river loses its [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplains[/TIP] and the [icon:YIELD_FOOD] Food they carry.</Text>
+        <Row Tag="LOC_BUILDING_DAM_ANTIQUITY_DESCRIPTION">
+            <Text>Holds back the river it stands on. Must be placed on a river tile, navigable or not. A river takes one Dam of each age. When it is finished, moderate floods on this river no longer pillage Improvements, Buildings or Districts in any [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] along it. Major and 1000-year floods still do damage. Floods still come and are still reported. The valley dries out behind it: this river loses its [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplains[/TIP] and the [icon:YIELD_FOOD] Food they carry.</Text>
         </Row>
-        <Row Tag="LOC_BUILDING_DAM_TOOLTIP">
-            <Text>Settlements along this river are not pillaged by its floods. The river loses its Floodplains. One of each age per river.</Text>
+        <Row Tag="LOC_BUILDING_DAM_ANTIQUITY_TOOLTIP">
+            <Text>Settlements along this river are not pillaged by moderate floods. The river loses its Floodplains. One of each age per river.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_EXPLORATION_DESCRIPTION">
+            <Text>Holds back the river it stands on. Must be placed on a river tile, navigable or not. A river takes one Dam of each age. When it is finished, moderate and major floods on this river no longer pillage Improvements, Buildings or Districts in any [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] along it. A 1000-year flood still does damage. Floods still come and are still reported. The valley dries out behind it: this river loses its [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplains[/TIP] and the [icon:YIELD_FOOD] Food they carry.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_EXPLORATION_TOOLTIP">
+            <Text>Settlements along this river are not pillaged by moderate or major floods. The river loses its Floodplains. One of each age per river.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_MODERN_DESCRIPTION">
+            <Text>Holds back the river it stands on. Must be placed on a river tile, navigable or not. A river takes one Dam of each age. When it is finished, floods of every size, the 1000-year flood included, on this river no longer pillage Improvements, Buildings or Districts in any [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] along it. Floods still come and are still reported. The valley dries out behind it: this river loses its [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplains[/TIP] and the [icon:YIELD_FOOD] Food they carry.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_MODERN_TOOLTIP">
+            <Text>Settlements along this river are not pillaged by any flood. The river loses its Floodplains. One of each age per river.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_DAM_LEVEE_NAME">
             <Text>Levee</Text>
         </Row>
         <Row Tag="LOC_BUILDING_DAM_LEVEE_DESCRIPTION">
-            <Text>Raised by a Dam on this settlement's river. Improvements, Buildings and Districts in this [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] are not pillaged by floods.</Text>
+            <Text>Raised by an Ancient Dam on this settlement's river. Improvements, Buildings and Districts in this [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] are not pillaged by moderate floods.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_LEVEE_EXPLORATION_DESCRIPTION">
+            <Text>Raised by a Medieval Dam on this settlement's river. Improvements, Buildings and Districts in this [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] are not pillaged by moderate or major floods.</Text>
+        </Row>
+        <Row Tag="LOC_BUILDING_DAM_LEVEE_MODERN_DESCRIPTION">
+            <Text>Raised by a Modern Dam on this settlement's river. Improvements, Buildings and Districts in this [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] are not pillaged by floods of any size.</Text>
         </Row>
         <Row Tag="LOC_DAM_NOT_RIVER">
             <Text>A Dam must be built on a river tile.</Text>

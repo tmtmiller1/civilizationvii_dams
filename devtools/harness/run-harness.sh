@@ -15,8 +15,13 @@
 #   START_AGE=AGE_EXPLORATION SEED=4242 zsh run-harness.sh damh-game-d1.js d1b 600
 #   REALISM=REALISM_SETTING_HEAVY SEED=9001 zsh run-harness.sh damh-game-d2.js d2 900 floods   # frequent floods
 #   SEED=9001 zsh run-harness.sh damh-game-d4.js d4 900 mod+grant   # the shipped mod, Dams unlocked at turn 1
+#   CONFIG="CompactCities-RingLock=ENABLED" SEED=9001 zsh run-harness.sh damh-game-d28.js d28 900 mod+grant+compact
+#   START_AGE=AGE_EXPLORATION SEED=9001 zsh run-harness.sh damh-game-d29.js d29 2400 mod+grant+shortage   # age transition
 #   SAVE=DAM-d6.Civ7Save zsh run-harness.sh damh-game-d7.js d7 600 mod+grant   # load a save instead (KEEP_SAVES=1 keeps DAM-*)
-# NOTE: "mod" installs tower_mods/dams as Mods/tower-dams and removes it on cleanup.
+#   SEED=9001 zsh run-harness.sh damh-game-emig-interop.js emig1 2400 mod+floods+emig   # with Emigration from the repo
+# NOTE: "mod" installs tower_mods/dams as Mods/tower-dams and removes it on cleanup. "emig" moves the player's
+# Mods/emigration aside, installs tower_mods/emigration in its place (modinfo + the folders it lists, never dist/,
+# whose same-id modinfo would blank the screen) and puts the player's copy back on every exit path.
 #
 # The game comes up full screen in front of whatever is on the Mac. Do not run it while someone is
 # using the machine.
@@ -33,6 +38,9 @@ HDIR="$MODS/dam-harness"
 FDIR="$MODS/dam-flood-probe"
 MDIR="$MODS/tower-dams"
 GDIR="$MODS/dam-grant-probe"
+ADIR="$MODS/dam-short-age-probe"
+CDIR="$MODS/dam-compact-cities"
+CREPO="$(cd "$HERE/../../../../other_peoples_mods/3781288701" 2>/dev/null && pwd)"
 MOD="$(cd "$HERE/../.." && pwd)"
 BAK="$S/dam-harness-backup/auto-$LABEL"
 say() { echo "[$(date +%H:%M:%S)] $*"; }
@@ -62,18 +70,39 @@ if [ -n "$FOREIGN" ]; then
     mv "$MODS/$d" "$STASH/" && say "stashed foreign mod $d (will be restored)"
   done
 fi
-trap 'restore_foreign' EXIT INT TERM
+EDIR="$MODS/emigration"
+EBAK="$S/dam-harness-backup/emigration-live-$LABEL"
+EREPO="$(cd "$HERE/../../../emigration" && pwd)"
+EMIG_MOVED=0
+restore_emig() {
+  [ "$EMIG_MOVED" = 1 ] && [ -d "$EBAK" ] || return 0
+  rm -rf "$EDIR"; mv "$EBAK" "$EDIR" && say "restored the player's Mods/emigration ($(grep -o '<Version>[^<]*' "$EDIR/emigration.modinfo"))"
+}
+trap 'restore_emig; restore_foreign' EXIT INT TERM
 
 rm -rf "$BAK"; mkdir -p "$BAK"; cp -p "$AUTO"/*.Civ7Save "$BAK"/ 2>/dev/null
 say "autosaves backed up: $(ls "$BAK" 2>/dev/null | wc -l | tr -d ' ')"
 
-rm -rf "$HDIR" "$FDIR" "$MDIR" "$GDIR"; mkdir -p "$HDIR/ui"
+rm -rf "$HDIR" "$FDIR" "$MDIR" "$GDIR" "$ADIR" "$CDIR"; mkdir -p "$HDIR/ui"
 for part in ${(s:+:)DEPLOY}; do
   case "$part" in
     none) ;;
     floods) mkdir -p "$FDIR"; cp -R "$HERE/../probe-floods/." "$FDIR/"; say "deployed: dam-flood-probe (floods 300x per age, levee marker)" ;;
+    bigfloods) mkdir -p "$FDIR"; cp -R "$HERE/../probe-floods/." "$FDIR/"; cp "$HERE/../probe-floods-big/floods.xml" "$FDIR/data/floods.xml"; say "deployed: dam-flood-probe with major and 1000-year floods only" ;;
     mod) mkdir -p "$MDIR"; cp "$MOD/dams.modinfo" "$MDIR/"; for d in data text ui icons; do [ -d "$MOD/$d" ] && cp -R "$MOD/$d" "$MDIR/"; done; rm -rf "$MDIR/icons/src"; say "deployed: the mod from tower_mods/dams" ;;
+    emig)
+      [ -d "$EBAK" ] && { say "stale $EBAK exists - restore it by hand first"; exit 1; }
+      mkdir -p "$(dirname "$EBAK")"
+      [ -d "$EDIR" ] && mv "$EDIR" "$EBAK" && EMIG_MOVED=1
+      mkdir -p "$EDIR"; cp "$EREPO/emigration.modinfo" "$EDIR/"
+      for d in ui text data images; do cp -R "$EREPO/$d" "$EDIR/"; done
+      say "deployed: emigration from the repo ($(grep -o '<Version>[^<]*' "$EDIR/emigration.modinfo")), player's copy kept at $EBAK" ;;
     grant) mkdir -p "$GDIR"; cp -R "$HERE/../probe-grant/." "$GDIR/"; say "deployed: dam-grant-probe (Dams unlocked at turn 1)" ;;
+    shortage) mkdir -p "$ADIR"; cp -R "$HERE/../probe-short-age/." "$ADIR/"; say "deployed: dam-short-age-probe (Exploration ends at 12 points)" ;;
+    compact)
+      [ -n "$CREPO" ] || { say "compact: the reference copy of Compact Cities (other_peoples_mods/3781288701) is missing"; exit 1; }
+      sqlite3 "$DB" "select count(*) from Mods where ModId='compact-cities'" | grep -qx 0 || { say "compact: the player already has a compact-cities row; a second copy would shadow it. Stop here."; exit 1; }
+      mkdir -p "$CDIR"; cp -R "$CREPO/." "$CDIR/"; CDEPLOYED=1; say "deployed: Compact Cities 1.6 from the reference corpus (removed on cleanup)" ;;
     *) say "unknown DEPLOY part '$part'"; exit 1 ;;
   esac
 done
@@ -82,7 +111,7 @@ if [ -n "${SAVE:-}" ]; then
   [ -f "$S/Saves/Single/$SAVE" ] || { say "missing save $S/Saves/Single/$SAVE"; exit 1; }
   sed -e "s/AugustusExp66.Civ7Save/$SAVE/" "$HERE/damh-shell-load.js" > "$HDIR/ui/damh-shell.js"
 else
-  sed -e "s/__AGE__/${START_AGE:-}/" -e "s/__SEED__/${SEED:-}/" -e "s/__REALISM__/${REALISM:-}/" "$HERE/damh-shell-new.js" > "$HDIR/ui/damh-shell.js"
+  sed -e "s/__AGE__/${START_AGE:-}/" -e "s/__SEED__/${SEED:-}/" -e "s/__REALISM__/${REALISM:-}/" -e "s/__CONFIG__/${CONFIG:-}/" "$HERE/damh-shell-new.js" > "$HDIR/ui/damh-shell.js"
 fi
 sed -e "s|__PROBE_OPTS__|${PROBE_OPTS:-}|" "$HERE/$SCRIPT" > "$HDIR/ui/damh-game.js"
 say "harness installed: $SCRIPT (${SAVE:-NEW game, age=${START_AGE:-default} seed=${SEED:-random}})"
@@ -126,6 +155,7 @@ done
 say "result=$result after ${t}s"
 
 grep "\[DAM\]" "$LOG" | cut -c1-4000 > "$HERE/$LABEL-UI.log"
+grep "\[Emigration\] \(event\|events:\|boot\)" "$LOG" | cut -c1-600 > "$HERE/$LABEL-emig.log" 2>/dev/null
 grep -i "error\|exception\|failed" "$LOG" | grep -iv "\[DAM\]" | tail -30 > "$HERE/$LABEL-errors.txt"
 for dl in Database.log Modding.log Game_RandomEvents.csv; do cp -p "$S/Logs/$dl" "$HERE/$LABEL-$dl" 2>/dev/null; done
 if [ "$result" = crashed ]; then
@@ -136,10 +166,10 @@ if [ "$result" = crashed ]; then
 fi
 
 pkill -TERM CivilizationVII; sleep 8; pgrep -x CivilizationVII >/dev/null && { sleep 10; pkill -KILL CivilizationVII; }
-rm -rf "$HDIR" "$FDIR" "$MDIR" "$GDIR"
-sqlite3 "$DB" "delete from Mods where ModId in ('dam-harness','dam-flood-probe','tower-dams','dam-grant-probe')" 2>/dev/null
+rm -rf "$HDIR" "$FDIR" "$MDIR" "$GDIR" "$ADIR" "$CDIR"
+sqlite3 "$DB" "delete from Mods where ModId in ('dam-harness','dam-flood-probe','tower-dams','dam-grant-probe','dam-short-age-probe'$([ -n "${CDEPLOYED:-}" ] && echo ",'compact-cities'"))" 2>/dev/null
 [ "${KEEP_SAVES:-0}" = "1" ] || rm -f "$S/Saves/Single/DAM-"*.Civ7Save 2>/dev/null
-say "cleaned up: $(ls "$MODS" | grep -icE 'dam-harness|dam-flood-probe|tower-dams|dam-grant-probe' | tr -d ' ') of our folders left in Mods/"
+say "cleaned up: $(ls "$MODS" | grep -icE 'dam-harness|dam-flood-probe|tower-dams|dam-grant-probe|dam-short-age-probe|dam-compact-cities' | tr -d ' ') of our folders left in Mods/"
 
 if [ "$(ls "$AUTO"/*.Civ7Save 2>/dev/null | xargs -n1 basename | sort)" != "$(ls "$BAK" 2>/dev/null | sort)" ]; then
   say "autosaves changed during the run; putting the player's back"
