@@ -3,6 +3,11 @@ Generated from CHANGELOG.md by scripts/steam-changelog.mjs; release.sh uploads t
 To fix an old Workshop entry, paste the text under its ==== line into that entry's Edit box on the change-notes page.
 A block edited by hand is kept as-is. Delete a block to regenerate it from CHANGELOG.md.
 
+==== 1.1.0 | 2026-09-29 | src 5d71892b35fd | gen 640ce7620989 ====
+[b]Version 1.1.0 · 29 September 2026[/b]
+• Dams can go on any river tile of the settlement, and Levees are placed, alongside compact-city mods that confine every building to the ring around the city centre. Those mods keep applying to every other building.
+• Known conflict: Dams plus a mod that turns floods off: the Dam still dries the floodplains but protects against nothing.
+
 ==== 1.0.0 | 2026-09-29 | src eface778978c | gen 12a202ac207e ====
 [b]Version 1.0.0 · 29 September 2026[/b]
 • A Dam for each age (Irrigation, Machinery, Electricity), placed on any river tile. A river takes one Dam of each age, so an older Dam can be joined by a newer one.

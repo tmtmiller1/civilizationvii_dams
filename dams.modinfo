@@ -14,7 +14,7 @@
         <Authors>Tower</Authors>
         <Package>Dams</Package>
         <PackageSortIndex>100</PackageSortIndex>
-        <Version>1.0.0</Version>
+        <Version>1.1.0</Version>
         <AffectsSavedGames>0</AffectsSavedGames>
     </Properties>
     <Dependencies>
@@ -37,7 +37,7 @@
         <ActionGroup id="dams-game" scope="game" criteria="always">
             <Properties><LoadOrder>150</LoadOrder></Properties>
             <Actions>
-                <UpdateDatabase><Item>data/dams.xml</Item><Item>data/dams-effects.xml</Item></UpdateDatabase>
+                <UpdateDatabase><Item>data/dams.xml</Item><Item>data/dams-effects.xml</Item><Item>data/dams-placement.sql</Item></UpdateDatabase>
                 <UpdateText><Item>text/en_us/DamsText.xml</Item></UpdateText>
                 <ImportFiles><Item>icons/dam_ancient.png</Item><Item>icons/dam_ancient_128.png</Item><Item>icons/dam_ancient_64.png</Item><Item>icons/dam_medieval.png</Item><Item>icons/dam_medieval_128.png</Item><Item>icons/dam_medieval_64.png</Item><Item>icons/dam_modern.png</Item><Item>icons/dam_modern_128.png</Item><Item>icons/dam_modern_64.png</Item></ImportFiles>
                 <UpdateIcons><Item>data/dams-icons.xml</Item></UpdateIcons>

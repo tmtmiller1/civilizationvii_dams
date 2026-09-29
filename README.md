@@ -66,6 +66,7 @@ second river is protected on both.
 - A save loads with the mod on or off.
 - Works in single player. In a network game the mod places no Levees, so a Dam protects only the settlement that
   holds it.
+- Dams plus a mod that turns floods off: the Dam still dries the floodplains but protects against nothing.
 - English only for now.
 
 ## How it works

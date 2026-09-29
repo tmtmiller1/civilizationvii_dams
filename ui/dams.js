@@ -23,7 +23,7 @@
 const TAG = "[Dams]";
 const G = globalThis;
 const KEY = "__dams";
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 const DAM_TYPES = ["BUILDING_DAM_ANTIQUITY", "BUILDING_DAM_EXPLORATION", "BUILDING_DAM_MODERN"];
 const LEVEE = "BUILDING_DAM_LEVEE";
 const SETTLE_MS = 1500;

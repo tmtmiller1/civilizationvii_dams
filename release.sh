@@ -76,7 +76,7 @@ echo "==> Zipping $ZIP_PATH"
 echo "==> Verifying zip contents against allow-list"
 ALLOW="^${MOD_DIR}/(${MODINFO//./\\.}|README\\.md|LICENSE|CHANGELOG\\.md)$"
 ALLOW="$ALLOW"'|^'"$MOD_DIR"'/ui/dams\.js$'
-ALLOW="$ALLOW"'|^'"$MOD_DIR"'/data/dams(-[a-z]+)?\.xml$'
+ALLOW="$ALLOW"'|^'"$MOD_DIR"'/data/dams(-[a-z]+)?\.(xml|sql)$'
 ALLOW="$ALLOW"'|^'"$MOD_DIR"'/text/[a-z_]+/DamsText\.xml$'
 ALLOW="$ALLOW"'|^'"$MOD_DIR"'/icons/dam_(ancient|medieval|modern)(_128|_64)?\.png$'
 UNEXPECTED="$(unzip -Z1 "$ZIP_PATH" | grep -vE '/$' | grep -vE "$ALLOW" || true)"

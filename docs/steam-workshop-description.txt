@@ -23,6 +23,7 @@ When a Dam is finished, the river's floodplains are removed from the map. Each o
 [*]Saves load with the mod on or off.
 [*]Start a new game with the mod enabled. In a game already in progress, a Dam whose tech was researched before the mod was added isn't available.
 [*]Single player. In multiplayer, a Dam protects only the settlement that holds it.
+[*]Dams plus a mod that turns floods off: the Dam still dries the floodplains but protects against nothing.
 [/list]
 [h2]Languages[/h2]
 English only for now. Ask in the comments if you'd like a translation.

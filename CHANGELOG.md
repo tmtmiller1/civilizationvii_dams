@@ -5,6 +5,13 @@ runs live in `devtools/`, outside the shipped files.
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-09-29
+
+- Dams can go on any river tile of the settlement, and Levees are placed, alongside compact-city mods that confine
+  every building to the ring around the city centre. Those mods keep applying to every other building.
+- Known conflict: Dams plus a mod that turns floods off: the Dam still dries the floodplains but protects against
+  nothing.
+
 ## [1.0.0] - 2026-09-29
 
 - A Dam for each age (Irrigation, Machinery, Electricity), placed on any river tile. A river takes one Dam of each
