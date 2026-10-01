@@ -1,6 +1,6 @@
 # Compatibility with other mods
 
-Last reviewed 2026-09-29 against Dams 1.2.0 on Civilization VII 1.5.0.
+Last reviewed 2026-10-01 against Dams 2.0.0 on Civilization VII 1.5.0.
 
 This file records what Dams touches, which kinds of mod touch the same things, and what a player would see when
 both are enabled. It was built by reading code, not by playing: 1,187 community mods in the reference corpus
@@ -16,11 +16,11 @@ and a player needs to recognise the kind of mod, not one title.
 
 | Surface | What Dams does with it |
 | --- | --- |
-| Database (game scope, LoadOrder 150/151) | Adds `BUILDING_DAM_ANTIQUITY/EXPLORATION/MODERN` (Urban district, `RiverPlacement="RIVER"`, `MultiplePerCity`, Town), three Levees `BUILDING_DAM_LEVEE`, `_EXPLORATION`, `_MODERN` (City Center, `AGELESS`, `IGNORE_DISTRICT_PLACEMENT_CAP`, trait `TRAIT_DAMS_LEVEE`), their yields, one tech unlock row per age (Irrigation, Machinery, Electricity), six `GameModifiers` using `EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT`, Civilopedia exclusions for the Levees, icons. Keeps `AdjacentDistrict` empty on its buildings with a trigger (finding 1). |
+| Database (game scope, LoadOrder 150/151) | Adds `BUILDING_DAM_ANTIQUITY/EXPLORATION/MODERN` (Urban district, `RiverPlacement="RIVER"`, `MultiplePerCity`, Town, `CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES_CITY"` with a flat 40/70/150, Gold upkeep 1/2/3, and per-class `Constructible_PillageRandomEvents` rows so a flood a Dam cannot hold pillages it), three Levees `BUILDING_DAM_LEVEE`, `_EXPLORATION`, `_MODERN` (City Center, `AGELESS`, `IGNORE_DISTRICT_PLACEMENT_CAP`, trait `TRAIT_DAMS_LEVEE`), their yields, one tech unlock row per age (Irrigation, Machinery, Electricity), six `GameModifiers` using `EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT`, Civilopedia exclusions for the Levees, a Civilopedia group in Game Concepts, `FEATURE_DAMS_SITE` (kept only so a 1.3.0 save loads), icons, text in twelve languages. Keeps `AdjacentDistrict` empty on its buildings with a trigger (finding 1). |
 | Flood classes (base rows) | Adds `CLASS_DAMS_FLOOD_MAJOR` and `CLASS_DAMS_FLOOD_1000_YEAR` and moves `RANDOM_EVENT_FLOOD_MAJOR` and `RANDOM_EVENT_FLOOD_1000_YEAR` into them; the moderate flood stays `CLASS_FLOOD`. Copies the `CLASS_FLOOD` rows of `RandomEventUI` and `Constructible_PillageRandomEvents` to the new classes, and appends both to every `RandomEventClass` modifier argument that names `CLASS_FLOOD`, except its own. Two triggers do the same for rows other mods add later (finding 14). |
-| `Game.CityOperations` / `Game.CityCommands` | Wraps `canStart` and `canStartQuery` on both hosts. For a Dam it removes plots on a river that already has a Dam of that age. For every other building it returns the engine's answer untouched. Never widens an answer. |
-| Map | `WorldBuilder.MapPlots.setFeature(NO_FEATURE)` on the floodplain tiles of a dammed river. Reads rivers once from `MapRivers` when the game loads. |
-| Players' cities | `CREATE_ELEMENT` / `DESTROY_ELEMENT` of the Levee in settlement centres. |
+| `Game.CityOperations` / `Game.CityCommands` | Nothing since 2.0.0: every placement and price rule is in the data. |
+| Map (single player and hotseat only) | `WorldBuilder.MapPlots.setFeature(NO_FEATURE)` on the floodplain tiles of a dammed river; on loading a 1.3.0 save, lifts its dam-site markers and puts back the feature each replaced. Reads rivers once from `MapRivers` when the game loads. |
+| Players' cities (single player and hotseat only) | `CREATE_ELEMENT` / `DESTROY_ELEMENT` of the Levee in settlement centres. |
 | Events | `ConstructibleBuildCompleted`, `ConstructibleAddedToMap`, `ConstructibleRemovedFromMap`, `PlayerTurnActivated`. |
 | Look | WorldUI model groups named `Dams_<plot>`. |
 | Globals | `globalThis.__dams`. Dams saves no state of its own; it reads everything off the map. |
@@ -30,17 +30,17 @@ and a player needs to recognise the kind of mod, not one title.
 | Kind of mod | Result | Status |
 | --- | --- | --- |
 | Gives every building a placement adjacency (ring or compact-city mods) | Dams keep their own placement, Levees placed | Watched |
-| Turns floods off | The Dam protects against nothing and still dries the floodplains | Read from code |
+| Turns floods off | The Dam still yields but protects against nothing, and in single player still dries the floodplains | Read from code |
 | Makes floods more damaging | The Dam matters more; protection holds | Watched at 100 % damage |
 | Emigration | Refugees leave a protected settlement after a flood, until Emigration's next release | Watched by Emigration's harness |
 | Build Wonders Over Antiquated Buildings | A Wonder can replace an earlier-age Dam, ending its protection | Read from code |
-| Gives bonuses for floodplains (civilization, belief and tradition mods) | Those bonuses are lost on a dammed river | Read from code |
+| Gives bonuses for floodplains (civilization, belief and tradition mods) | In single player those bonuses are lost on a dammed river | Read from code |
 | Gives flood immunity of its own | Still covers every flood; stacks harmlessly | Base sources watched; other mods tested on the database |
 | Reads the flood class for anything else (narrative triggers, UI, disaster tallies) | Major and 1000-year floods carry a new class name | Read from code |
 | Canals | Works together | Read from code |
-| Another script that restricts where buildings go | Works in either order | Read from code |
-| Replaces the production or purchase screen | Works if it builds its lists through the engine calls, which every one found does | Read from code |
-| Rescales building costs or reshapes the tech tree | Dam arrives at a different time or price; nothing breaks | Read from code |
+| Another script that restricts where buildings go | Nothing to clash with: Dams wraps no placement call | Read from code |
+| Replaces the production or purchase screen | Works: the Dam's rules are the engine's own | Read from code |
+| Rescales building costs or reshapes the tech tree | Dam arrives at a different time or price; nothing breaks. A mod that rewrites every building's `CostProgressionModel` would replace the Dams' per-settlement step | Read from code |
 | Adds or removes rivers during play | Not seen until the next load | Read from code |
 | Two copies of Dams installed at once | Unpredictable | Known engine behaviour |
 
@@ -71,10 +71,10 @@ whose rows are inserted first.
 
 Status: read from code.
 
-Disaster mods that set `RandomEventFrequencies.OccurrencesPerAge` to 0 for the flood events leave the Dam nothing
-to protect against. It still gives its yields and still takes the floodplain features off its river when finished,
-so the player pays the cost for no benefit. The tooltip cannot know this. A player running such a mod should build
-Dams for their yields only, on rivers with no floodplains worth keeping.
+Disaster mods that set `RandomEventFrequencies.OccurrencesPerAge` to 0 for the flood events leave the Dam nothing to
+protect against. It still gives its yields, and in single player still takes the floodplain features off its river
+when finished, so there the player pays that cost for no benefit. The tooltip cannot know this. A player running such
+a mod should build Dams for their yields only, on rivers with no floodplains worth keeping.
 
 ### 3. Mods that make floods more damaging
 
@@ -82,10 +82,10 @@ Status: watched for the protection itself (runs `d3b`, `d3c`, `d5`): with flood 
 protected city lost 0 of 4 farms over three floods while unprotected cities lost 8 of 9. Not run with a specific
 disaster mod.
 
-Mods that raise flood damage percentages or frequencies make a Dam worth more, and the protection holds for the
-floods a Dam holds back, since it works on the flood class rather than on any one damage row. A mod that makes major or
-1000-year floods more common makes the older Dams worth less, since those are the floods they let through. What it does not stop is the flood itself: the tiles
-still flood and still gain the flood's yields, as in an unmodded game.
+Mods that raise flood damage percentages or frequencies make a Dam worth more, and the protection holds for the floods
+a Dam holds back, since it works on the flood class rather than on any one damage row. A mod that makes major or
+1000-year floods more common makes the older Dams worth less, since those are the floods they let through. What it
+does not stop is the flood itself: the tiles still flood and still gain the flood's yields, as in an unmodded game.
 
 ### 4. Emigration
 
@@ -121,10 +121,10 @@ announced.
 Status: read from code.
 
 About forty mods in the corpus refer to floodplain features in gameplay data: civilization and leader abilities,
-beliefs, traditions, start biases. The base game has such bonuses too. A finished Dam removes the floodplain
-features from its river, so any bonus that needs a floodplain tile stops applying on that river, whichever mod
-grants it. Start biases are unaffected (they are read at map creation). This is the Dam's intended cost; with such a
-mod it can be a larger cost than the tooltip suggests.
+beliefs, traditions, start biases. The base game has such bonuses too. In single player and hotseat a finished Dam
+removes the floodplain features from its river, so any bonus that needs a floodplain tile stops applying on that
+river, whichever mod grants it. Start biases are unaffected (they are read at map creation). This is the Dam's
+intended cost; with such a mod it can be a larger cost than the tooltip suggests.
 
 ### 7. Mods that give flood immunity of their own
 
@@ -141,8 +141,7 @@ there is redundant but harmless.
 
 Status: read from code, not run together.
 
-Both mods wrap the same placement calls. Dams only narrows, for Dam types only; Canals narrows every non-Canal
-building on an opened canal and widens only for Canals. The two work in either order.
+Canals narrows every non-Canal building on an opened canal; Dams wraps no placement call, so the two cannot clash.
 
 - A Dam cannot be built on an opened canal: Canals refuses every other building there.
 - A Canal cannot be started on a tile that holds a Dam: Canals never offers a tile holding buildings.
@@ -153,20 +152,15 @@ building on an opened canal and widens only for Canals. The two work in either o
 
 Status: read from code.
 
-Dams' wrappers only ever narrow the engine's answer, and only for Dam types. Other wrappers that narrow (Tower's
-National Park keeps buildings off park land) combine with it in any order. A wrapper that widens the answer for a
-Dam would have to be written for Dams specifically; none exists.
-
-Dams' `uninstall()` (a development hook, never called in play) puts back the functions it saved. If another mod
-wrapped after Dams, that also removes the other mod's wrapper until reload.
+Since 2.0.0 Dams wraps no placement call; its rules are the engine's own (river placement, the per-settlement cost
+step). Another mod's wrapper (Tower's National Park keeps buildings off park land) applies to Dams as to any building.
 
 ### 10. Production and purchase screen replacements
 
-Status: read from code; the one installed on the development machine was read in full, the rest by search.
+Status: read from code.
 
-The one-Dam-per-river rule reaches the lists because Dams rewrites the answer of `canStartQuery` and `canStart`.
-Every replacement screen found in the corpus builds its lists by calling those on `Game.CityOperations` and
-`Game.CityCommands` when it draws, so it receives Dams' answer.
+A Dam is an ordinary building to the engine, so any replacement screen lists it, with its price, as it lists any
+other building.
 
 ### 11. Cost and tech-tree mods
 
@@ -181,8 +175,8 @@ so the Dam only arrives earlier or later.
 
 Status: read from code. None found in the corpus; sandbox panels and map editors could.
 
-Dams reads the map's rivers once, when the game loads. A river added by an editor mid-game has no Dam rule (any
-number of Dams may go on it) and no Levees until the next load; a river removed keeps its old record until then. A
+Dams reads the map's rivers once, when the game loads. A river added by an editor mid-game is offered for Dams by the
+engine at once, but gets no Levees and no drying until the next load; a river removed keeps its old record until then. A
 save and load puts it right.
 
 ### 13. Two copies of Dams
