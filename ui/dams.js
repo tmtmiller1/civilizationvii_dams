@@ -1,10 +1,9 @@
 // dams.js - Dams, a Civilization VII mod. Game scope.
 //
 // What it does:
-//   1. Placement. The Dam buildings (data/dams.xml) use the engine's river rule (RiverPlacement="RIVER"). This
-//      script adds one rule on top by wrapping the calls that place a building (Game.CityOperations BUILD and
-//      Game.CityCommands PURCHASE, and canStartQuery, which the production and purchase lists are built from): one
-//      Dam per river, counting Dams still under construction.
+//   1. Placement is data only (data/dams.xml): the engine's river rule (RiverPlacement="RIVER"), with a price that
+//      rises with each Dam a player has. The script adds no rule of its own, so the game's AI, the player and a
+//      network game all meet the same one.
 //   2. Protection. A script cannot stop a flood or change which tiles it covers (engine-closed.md: applyEvent starts
 //      nothing, clearing a floodplain does not stop its river flooding). What the engine can do is keep a flood from
 //      pillaging, per settlement (EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT, the Khmer Baray's effect), by flood class.
@@ -12,20 +11,22 @@
 //      holds back moderate floods, a Medieval Dam major ones too, a Modern Dam every flood. A settlement holding a Dam
 //      has its Dam's protection from data. Every settlement that owns a tile of a dammed river and holds no Dam as good
 //      as the best one on its rivers gets that Dam's Levee (no slot, never offered in production) in its center.
-//      The Dam's price is the valley: the floodplain features come off the dammed river, and those tiles lose the
-//      floodplain's own yield. Floods still come and still leave their silt; no mod can stop that (d13-d15).
+//      In single player the Dam's price includes the valley: the floodplain features come off the dammed river, and
+//      those tiles lose the floodplain's own yield. Floods still come and still leave their silt; no mod can stop that
+//      (d13-d15).
 //   3. Safety net. On load and at the start of every local turn, the map is read again: every finished Dam, every
 //      settlement on its river, a Levee wherever one is missing. So a Dam bought with gold (no completion event), an
 //      AI's Dam, a new settlement or a tile bought later is caught within a turn.
 //   4. Look. Each finished Dam is drawn from shipped meshes across its river (WorldUI model groups), one look per age.
-//   Multiplayer: CREATE_ELEMENT is a local call, so in a network game no Levees are placed; a Dam still protects the
-//   settlement that holds it.
+//   Multiplayer: CREATE_ELEMENT and WorldBuilder writes are local calls, so in a network game no Levees are placed and
+//   no floodplains dried; a Dam still protects the settlement that holds it, from data. Everything else (placement,
+//   price, yields, the look) is the same there.
 "use strict";
 
 const TAG = "[Dams]";
 const G = globalThis;
 const KEY = "__dams";
-const VERSION = "1.3.0";
+const VERSION = "2.0.0";
 const DAM_TYPES = ["BUILDING_DAM_ANTIQUITY", "BUILDING_DAM_EXPLORATION", "BUILDING_DAM_MODERN"];
 /** The Levee each Dam raises, by the Dam's tier (its index in DAM_TYPES plus one). A higher tier holds more floods. */
 const LEVEES = [null, "BUILDING_DAM_LEVEE", "BUILDING_DAM_LEVEE_EXPLORATION", "BUILDING_DAM_LEVEE_MODERN"];
@@ -39,11 +40,11 @@ function log(m) { try { console.error(TAG + " " + m); } catch (_) { /* ignore */
 function safe(fn, fb) { try { return fn(); } catch (_e) { return fb; } }
 
 const state = {
-  enabled: true, multiplayer: false, originals: null,
+  enabled: true, multiplayer: false,
   riverOf: new Map(), riverPlots: new Map(), damIndexes: new Set(), overlays: new Map(),
   dams: null, damsAt: 0, orphans: new Map(),
 };
-/** How long a read of the map's Dams may be reused. The placement lists ask many times in a row. */
+/** How long a read of the map's Dams may be reused. */
 const DAMS_TTL_MS = 2000;
 
 // --- map reads -----------------------------------------------------------------------------------
@@ -65,6 +66,7 @@ function occupants(loc) {
     return {
       type: String(def.ConstructibleType),
       complete: !!safe(() => inst.complete, false),
+      damaged: !!safe(() => inst.damaged, false),
       owner: safe(() => inst.owner, -1),
       id: safe(() => (inst.localId != null ? inst.localId : inst.id), null),
     };
@@ -97,9 +99,8 @@ function indexRivers() {
 function riverAt(loc) { return loc ? (state.riverOf.has(idx(loc)) ? state.riverOf.get(idx(loc)) : null) : null; }
 
 /**
- * Every Dam on the map, finished or not, read from the river tiles themselves. The production and purchase lists ask
- * for this many times in a row, and the scan touches every river tile, so the answer is held for a moment; anything
- * that can add or finish a Dam clears it (forget()).
+ * Every Dam on the map, finished or not, read from the river tiles themselves. The scan touches every river tile, so
+ * the answer is held for a moment; anything that can add or finish a Dam clears it (forget()).
  */
 function damsOnMap() {
   if (state.dams && Date.now() - state.damsAt < DAMS_TTL_MS) return state.dams;
@@ -109,7 +110,7 @@ function damsOnMap() {
       const loc = locOf(p);
       for (const o of occupants(loc)) {
         if (!DAM_TYPES.includes(o.type)) continue;
-        out.push({ plot: p, loc, river: id, type: o.type, complete: o.complete, owner: o.owner });
+        out.push({ plot: p, loc, river: id, type: o.type, complete: o.complete, damaged: o.damaged, owner: o.owner });
       }
     }
   }
@@ -117,83 +118,6 @@ function damsOnMap() {
   return out;
 }
 function forget() { state.dams = null; }
-function damDef(type) {
-  for (const t of DAM_TYPES) {
-    const d = safe(() => GameInfo.Constructibles.lookup(t), null);
-    if (d && (d.$index === type || safe(() => GameInfo.Types.lookup(t).Hash, null) === type)) return d;
-  }
-  return null;
-}
-
-// --- placement -----------------------------------------------------------------------------------
-
-function plotOf(args) { return args && args.X != null && args.Y != null ? { x: args.X, y: args.Y } : null; }
-
-/**
- * A plot a Dam may take: a river tile whose river has no other Dam of the same age (built or under way). A Dam from an
- * earlier age does not block a later one, so a river dammed in Antiquity can take a Medieval Dam as the city grows;
- * blocking it would leave the player stuck with the weakest dam forever.
- */
-function damVerdict(loc, dams, type) {
-  const river = riverAt(loc);
-  if (river == null) return "LOC_DAM_NOT_RIVER";
-  const same = (d) => !type || String(d.type) === String(type);
-  if (dams.some((d) => d.river === river && d.plot !== idx(loc) && same(d))) return "LOC_DAM_RIVER_TAKEN";
-  return null;
-}
-
-/** Whether this call is a Dam placement the mod has an opinion about. */
-function isDamCall(type, placeType, args, res) {
-  return !!(state.enabled && type === placeType && args && damDef(args.ConstructibleType)
-    && res && typeof res === "object");
-}
-
-/** The engine's list of offered plots, with the rivers that already have a Dam taken out. */
-function filterPlots(res, dams, type) {
-  const keep = (a) => (Array.isArray(a) ? a.filter((p) => !damVerdict(locOf(p), dams, type)) : a);
-  const out = { ...res, Plots: keep(res.Plots), ExpandUrbanPlots: keep(res.ExpandUrbanPlots) };
-  const any = (out.Plots && out.Plots.length) || (out.ExpandUrbanPlots && out.ExpandUrbanPlots.length);
-  if (res.Success && !any) return { ...out, Success: false, FailureReasons: ["LOC_DAM_RIVER_TAKEN"] };
-  return out;
-}
-
-function wrapCanStart(oCan, placeType) {
-  return function (cityID, type, args, ...rest) {
-    const res = oCan(cityID, type, args, ...rest);
-    if (!isDamCall(type, placeType, args, res)) return res;
-    const dams = damsOnMap();
-    const damType = safe(() => damDef(args.ConstructibleType).ConstructibleType, null);
-    const loc = plotOf(args);
-    if (!loc) return filterPlots(res, dams, damType);
-    const why = damVerdict(loc, dams, damType);
-    return why ? { ...res, Success: false, FailureReasons: [why] } : res;
-  };
-}
-
-/** The lists come from canStartQuery: give each Dam entry the verdict of the wrapped canStart. */
-function wrapCanStartQuery(oQuery, host, placeType) {
-  return function (cityID, opType, queryType, ...rest) {
-    const res = oQuery(cityID, opType, queryType, ...rest);
-    if (!state.enabled || opType !== placeType || !Array.isArray(res)) return res;
-    for (const e of res) {
-      if (!e || !damDef(e.index)) continue;
-      const verdict = safe(() => host.canStart(cityID, placeType, { ConstructibleType: e.index }, false), null);
-      if (verdict) e.result = verdict;
-    }
-    return res;
-  };
-}
-
-function wrapHost(host, type) {
-  if (!host || typeof host.canStart !== "function") return null;
-  const saved = { host, canStart: host.canStart };
-  host.canStart = wrapCanStart(saved.canStart.bind(host), type);
-  if (typeof host.canStartQuery === "function") {
-    saved.canStartQuery = host.canStartQuery;
-    host.canStartQuery = wrapCanStartQuery(saved.canStartQuery.bind(host), host, type);
-  }
-  return saved;
-}
 
 // --- protection ----------------------------------------------------------------------------------
 
@@ -308,10 +232,11 @@ function allCities() {
 }
 
 /**
- * The price of the Dam: the valley below it dries out. The floodplain features come off the dammed river and those
+ * Single player: the valley below the Dam dries out. The floodplain features come off the dammed river and those
  * tiles lose the floodplain's own yield, about 1 Food each, for good. This is a cost by design, not a mechanism: floods
  * still come and still add their Food or Production to the river's tiles whether or not a floodplain is there
- * (d13, d14), and the gain cannot be written back (d15). Returns how many were dried.
+ * (d13, d14), and the gain cannot be written back (d15). Not in a network game, where the write would be local to
+ * this machine. Returns how many were dried.
  */
 function dry(dams) {
   if (state.multiplayer) return 0;
@@ -494,7 +419,8 @@ function sweep() {
   for (const plot of [...state.overlays.keys()]) if (!live.has(plot)) clearDam(plot);
   let drawn = 0;
   for (const d of done) if (drawDam(d)) drawn++;
-  const plan = leveePlan(done);
+  // A pillaged Dam (a flood bigger than it holds overtops it, data/dams-floods.xml) guards nothing until repaired.
+  const plan = leveePlan(done.filter((d) => !d.damaged));
   const placed = protect(plan);
   const removed = unprotect(plan);
   const dried = dry(done);
@@ -525,18 +451,6 @@ function onConstructibleMoved(data) {
 
 // --- install -------------------------------------------------------------------------------------
 
-/** Wrap both paths a building is placed through; each one the mod misses simply keeps the engine's own rule. */
-function wrapPlacement() {
-  const hosts = [];
-  const build = wrapHost(safe(() => Game.CityOperations, null), safe(() => CityOperationTypes.BUILD, null));
-  if (build) hosts.push(build);
-  else log("Game.CityOperations not wrappable; one Dam per river is not enforced in production");
-  const purchase = wrapHost(safe(() => Game.CityCommands, null), safe(() => CityCommandTypes.PURCHASE, null));
-  if (purchase) hosts.push(purchase);
-  else log("Game.CityCommands not wrappable; one Dam per river is not enforced for purchases");
-  return hosts;
-}
-
 function install() {
   for (const t of DAM_TYPES) {
     const d = safe(() => GameInfo.Constructibles.lookup(t), null);
@@ -545,21 +459,16 @@ function install() {
   if (!state.damIndexes.size) { log("no Dam buildings in the database; inactive"); return false; }
   state.multiplayer = !!safe(() => Configuration.getGame().isNetworkMultiplayer, false);
   indexRivers();
-  state.originals = { hosts: wrapPlacement() };
   safe(() => engine.on("ConstructibleBuildCompleted", onBuildCompleted));
   safe(() => engine.on("ConstructibleAddedToMap", onConstructibleMoved));
   safe(() => engine.on("ConstructibleRemovedFromMap", onConstructibleMoved));
   safe(() => engine.on("PlayerTurnActivated", (d) => { if (d && (d.player ?? d.Player) === localId()) setTimeout(sweep, SETTLE_MS); }));
   setTimeout(sweep, SETTLE_MS * 2);
-  log(`active ${VERSION}: ${state.riverPlots.size} rivers indexed${state.multiplayer ? " (network game: no Levees)" : ""}`);
+  log(`active ${VERSION}: ${state.riverPlots.size} rivers indexed${state.multiplayer ? " (network game: no Levees, no drying)" : ""}`);
   return true;
 }
 
 function uninstall() {
-  for (const h of (state.originals && state.originals.hosts) || []) {
-    h.host.canStart = h.canStart;
-    if (h.canStartQuery) h.host.canStartQuery = h.canStartQuery;
-  }
   safe(() => engine.off("ConstructibleBuildCompleted", onBuildCompleted));
   safe(() => engine.off("ConstructibleAddedToMap", onConstructibleMoved));
   safe(() => engine.off("ConstructibleRemovedFromMap", onConstructibleMoved));
@@ -574,8 +483,7 @@ if (!G[KEY]) {
     set enabled(v) { state.enabled = !!v; },
     get enabled() { return state.enabled; },
     uninstall, sweep, damsOnMap, citiesOnRiver, riverAt, flowAngle, wallAngle, drawDam, clearDam, dry, forget,
-    unprotect, damVerdict, leveePlan: () => leveePlan(damsOnMap().filter((d) => d.complete)),
-    // for ui/dams-ai.js
+    unprotect, leveePlan: () => leveePlan(damsOnMap().filter((d) => d.complete && !d.damaged)),
     localId, occupants, isFloodplain, tierOf, currentAge, types: DAM_TYPES,
     riverPlots: (river) => state.riverPlots.get(river) || [],
     get multiplayer() { return state.multiplayer; },

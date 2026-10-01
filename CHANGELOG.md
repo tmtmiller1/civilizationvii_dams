@@ -3,6 +3,29 @@
 All notable changes to Dams are documented here. This project follows semantic versioning. The probes and harness
 runs live in `devtools/`, outside the shipped files.
 
+## [2.0.0] - 2026-10-01
+
+- Single player and multiplayer play by the same rules, all of them in the game's data. In 1.3.0 a Dam needed a
+  dam-site marker that the mod never placed in a network game; a Dam now needs no marker.
+- A Dam can go on any river tile, and a settlement on two rivers can dam both. The one-Dam-per-river rule and the dam
+  sites are gone; instead each Dam of an age a settlement already has adds about a quarter of the base cost to the
+  next one there (+40, +70, +150 Production), for you and the AI alike.
+- Rebalanced: Ancient Dam 150 Production, +2 Food +2 Production, 1 Gold upkeep; Medieval Dam 275, +3 Food +3
+  Production, 2 Gold; Modern Dam 600, +4 Food +6 Production, 3 Gold. A Dam pays its way on any river, flooding or not.
+- In single player and hotseat a Dam still dries its river's floodplains, as before; in an online or LAN game the river
+  keeps them.
+- The game's AI weighs a Dam as it weighs any other building.
+- A flood bigger than a Dam can hold pillages it if it reaches the Dam's tile: a major or 1000-year flood an Ancient
+  Dam, a 1000-year flood a Medieval Dam. A pillaged Dam protects nothing until repaired, and its Levees fall back.
+- Levees are placed in single player and hotseat; in an online or LAN game each Dam protects its own settlement.
+- A save from 1.3.0 loads with its dam-site markers lifted and the woods, wetland or floodplain each one replaced put
+  back.
+- Civilopedia: a Dams group in Game Concepts with three pages (Dams, Flood Protection, Levees) covering each age's
+  Dam, its price and placement, which floods it holds back, overtopping, the dried floodplains, and how Levees spread
+  its protection.
+- Translated into German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese, Russian, and
+  Simplified and Traditional Chinese: the buildings, their tooltips, the mod's description and the Civilopedia pages.
+
 ## [1.3.0] - 2026-09-29
 
 - AI players build Dams themselves, as they build any building, and only where a Dam guards something. The mod marks,

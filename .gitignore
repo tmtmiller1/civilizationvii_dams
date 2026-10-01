@@ -8,3 +8,4 @@ devtools/harness/*.csv
 devtools/harness/*.txt
 .DS_Store
 devtools/harness/*.done
+devtools/harness/*.ips

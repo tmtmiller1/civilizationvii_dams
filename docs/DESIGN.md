@@ -1,18 +1,20 @@
 # Dams: design
 
-Status: 1.3.0 built and watched in Exploration games (runs `v1` to `v1c`): dam sites, the game's own AI building a Dam
-on its marked site, the player's lists and orders through the site marker. 1.2.0 watched (runs `d26` to `d29`):
-protection graded by age, Levees by tier, save and reload, Compact Cities, the age transition. Dam sites in an
-Antiquity or a Modern game and a network game are unwatched.
+Status: 2.0.0 built and watched in single player (2026-10-01, runs `e1` to `e5b`): every rule a player meets moved
+into data, so single player and a network game play alike; see "2.0.0: data only" below. A network game is open
+(`e6`). 1.3.0 watched in Exploration games (runs `v1` to `v1c`); 1.2.0 watched (runs `d26` to `d29`): protection
+graded by age, Levees by tier, save and reload, Compact Cities, the age transition.
 Sibling of `tower_mods/canals`: a Dam is a building made through the ordinary production screen, placed on a river
 tile (navigable or minor), that protects the settlements along that river from its floods.
 
 ## What the player gets
 
 - A Dam building in each age (Irrigation, Machinery, Electricity), placeable on any river tile: a
-  `TERRAIN_NAVIGABLE_RIVER` tile or a land tile with a minor river. One Dam per river.
-- Once it is finished, floods on that river no longer pillage the improvements, buildings and districts of any
-  settlement that owns a tile of the river. Floods still come and still leave their fertility.
+  `TERRAIN_NAVIGABLE_RIVER` tile or a land tile with a minor river. Each Dam of an age a settlement has adds about a
+  quarter of the base cost to the next one there.
+- It yields Food and Production on any river. Once it is finished, floods no longer pillage the improvements,
+  buildings and districts of its settlement, and in single player of every settlement that owns a tile of the river.
+  Floods still come and still leave their fertility.
 - Its own model on the map and its own icon in the build menu.
 
 ## What the engine allows (watched 2026-09-28 on 1.5.0 unless marked)
@@ -92,16 +94,63 @@ harness collects it as `<label>-Game_RandomEvents.csv`.
 | `d28b` | The same in Exploration, after the fix | 8/9: all six types keep no adjacency; an Ancient Dam put the Levee in the other settlement on its river. C2 asked for the wrong age's Dam (fixed in the probe) |
 | `d28d`, `d28e` | Why a young capital is offered only the river tile beside it | The same with Compact Cities off (`d28d`) and with the Dams wrapper off too (`d28e`): the engine itself offers only (58,37) of four owned river tiles. It is the game's own rule for a building's tile, not Compact Cities and not Dams |
 | `d29` | A Medieval Dam across the Exploration to Modern transition (`dam-short-age-probe`) | 7/7: still on the map, complete and drawn; the other settlement's Medieval Levee carried over (the settlement's id changed with the age, the Levee stayed); floodplains still dry; the Medieval modifiers and the flood split present in the Modern database |
+| `e1`, `e1b` | 2.0.0 in Antiquity, the mod alone (`damh-game-e1.js`) | The data as shipped; the Ancient Dam locked until Irrigation (its `NeededUnlock` is the Irrigation node's row index) and open once Irrigation was researched by rolling turns (turn 28); offered tiles are river tiles with no marker; a real BUILD order queued with no marker; one finished Dam is exactly +2 Food, +2 Production, -1 Gold; drying cleared its river. Cost did not move (150, 150, 150): see `e1c*` |
+| `e1c2`-`e1c5` | Which cost model raises a Dam's price | Bought with the game's PURCHASE: `PREVIOUS_COPIES` 25 leaves it (two Medieval Dams at 1,100 Gold each, `e1c3`); `PREVIOUS_COPIES_CITY` 25 takes the second in a settlement to 300 (`e1c4`), so Param1 is flat Production; at 70 to 345 (`e1c5`). Two Dams on one river in one settlement both landed (river 61). The Monument's 5 % per building did not move in `e1c2` |
+| `e2`, `e2b` | Overtopping in Exploration (`dam-floodfreq-probe`, the game's own pillage shares) | `e2`: almost every flood moderate, an Ancient Dam held them. `e2b` (major and 1000-year only): an Ancient Dam pillaged by 3 of 3 major floods (Tarim), a Medieval Dam held 3 (Vistula); no 1000-year flood came in Exploration |
+| `e2c` | The same in Antiquity, Dams of all three ages placed by script | Exactly the table: Ancient pillaged by major (Karkheh) and 1000-year (Awash, Karkheh); Medieval held a major and was pillaged by a 1000-year (Song Duong); Modern held a major and three 1000-year floods with its farms intact (Sejenane), and its settlement's other river too (Grijalva) |
+| `e2d`, `e2e` | Does a settlement keep its immunity while its Dam is pillaged | `e2d`: all three tiers held every moderate flood (Ancient: 9 hits). `e2e` (major 300, moderate 30, Ancient Dams only): Karkheh's Dam, pillaged on turns 22 and 25, was still pillaged when a moderate flood came on turn 46, and that flood pillaged a farm (7,12). A pillaged Dam protects nothing until repaired. The AI repaired some Dams the next turn, others not for 20 turns |
+| `e3`, `e3b` | 2.0.0 in Modern, the mod alone | Cost 600, 750, 900 with one and two Modern Dams in the settlement; one Dam +4 Food, +6 Production, -3 Gold; drying. Before Electricity the Dam is refused with no `NeededUnlock`, as is the base Laboratory (also Electricity) |
+| `e4` | The game's AI over 60 turns of Autoplay, Exploration, Dams unlocked at turn 1 (`damh-game-u1.js`, `AI_VERBOSE`) | No Dam built. The broker weighed the Medieval Dam 582 times at a mean of 558 (max 1,056): about the Gristmill (651) and the Harbor (582), well under what it builds first (Temple 2,198, Kiln 1,980). No spam; also no use |
+| `e5a`, `e5b` | A 1.3.0 save with dam-site markers, loaded with 2.0.0 (`MODSRC` = v1.3.0) | 1.3.0 marked 3 AI sites, one over a desert floodplain; loaded with 2.0.0 all 3 were lifted ("old dam sites: 3 of 3 lifted"), the floodplain was back, the record emptied |
+| `e6`-`e6c` | A LAN game hosted alone (`damh-shell-lan.js`, `LAN=1`) | `e6`: the game started, read `isNetworkMultiplayer` true, the mod logged its network path; no Dam tile was offered to the capital and the run did not record why (the LAN game ignored the seed: 58 rivers). `e6b`, `e6c`: the lobby never opened a session, the game never started. Open |
 
 ## Placement, build and completion
 
 - `RiverPlacement="RIVER"` (the base Bridge and Gristmill rule), `DISTRICT_URBAN`, `MultiplePerCity`, per-age tech
   unlock files (a node exists only in its own age's database).
-- `ui/dams.js` wraps `canStart` and `canStartQuery` on `Game.CityOperations` (BUILD) and `Game.CityCommands`
-  (PURCHASE): a plot on a river that already has a Dam, finished or queued, is refused with `LOC_DAM_RIVER_TAKEN`.
+- The limit is the price: `CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES_CITY"` (the Ancient Walls' model)
+  with `CostProgressionParam1` a flat 40 / 70 / 150 Production per Dam already in the settlement, plus Gold upkeep
+  (`Constructible_Maintenances`). Watched 2026-10-01: `Constructible_BuildingCostProgressions` only feeds
+  `PREVIOUS_BUILDINGS_CITY` and did nothing on its own (`e1`, `e1b`); the empire-wide `PREVIOUS_COPIES` (Settlers'
+  model) leaves a building's price alone (`e1c3`: two Medieval Dams bought at 1,100 Gold each); `PREVIOUS_COPIES_CITY`
+  at 25 took the second to 300 (`e1c4`), so Param1 is flat Production, and at 70 to 345 (`e1c5`). The cost read
+  `city.Production.getConstructibleProductionCost` shows it; the Monument's 5 % per building did not move in `e1c2`.
+  The 1.0.0 to 1.3.0 one-Dam-per-river wrapper on `canStart` is gone (2.0.0).
 - No bookkeeping: every sweep (load, each local turn, each Dam completion) reads the Dams off the river tiles, so a
   bought Dam, an AI's Dam and a settlement founded later are all caught within a turn.
 - Multiplayer: `CREATE_ELEMENT` is local, so no Levees in a network game; the Dam still protects its own settlement.
+
+## 2.0.0: data only (2026-10-01)
+
+1.3.0 could not be built at all in a network game: `Constructible_RequiredFeatures` required the dam-site marker in
+every game, and `ui/dams-sites.js` placed none when `isNetworkMultiplayer`, since a feature write is local (found by
+reading the code; not run). The user asked for single player and multiplayer to work the same, as simply and as
+crash-free as possible, with Dams buildable on any river tile, worth it for yields and for protection, balanced, and
+not spammed by the AI.
+
+- **Every rule in data.** The site requirement, the +3,000 AI bias (`dams-ai.xml`) and the one-per-river wrapper are
+  gone. A rule only the script enforces binds neither the AI (its builds do not pass through `canStart`) nor anyone
+  in a network game the script cannot write in.
+- **Why not one per river.** The data cannot say "on the same river as". One per settlement (`MultiplePerCity`
+  false) can be said, but the user wanted a settlement on two rivers to dam both.
+- **Per settlement, not per player.** No cost model counts a building across the empire (`e1c3`), so the price rises
+  within a settlement only; the Gold upkeep is what weighs on an empire full of Dams.
+- **Why the AI will not spam.** At the game's default weighting and the 1.2.0 price the AI weighed the Dam 573 times
+  in 60 turns of `u1` and built none. The new Dam is cheaper for its yield, so it should build some; the rising cost
+  bounds how many. How often it does is to be watched.
+- **Yields against base buildings.** Gristmill 175 for +4 Food, Sawmill 175 for +3 Production, Factory 780 for +12
+  Production with 4 Gold and 4 Happiness upkeep, each with adjacencies. Dams: 150 / 275 / 600 for +2+2 / +3+3 / +4+6,
+  1 / 2 / 3 Gold, no adjacencies; a little under for the protection, and no longer the 1.2.0 price of 250 / 450 / 750
+  for +2+1 / +3+2 / +3+4, which a Dam on a river that never floods did not repay.
+- **Overtopping** (the user's request was "a pillaged Dam causes a flood"; a script cannot start one, so the reverse):
+  `Constructible_PillageRandomEvents` is the chance a flood class pillages a building (base: Ancient Bridge 100,
+  Modern Bridge 0), not an event a pillage sets off. Each Dam is 100 for the classes it cannot hold and 0 for the
+  rest (`data/dams-floods.xml`). A flood reaches only original floodplain tiles, so a Dam elsewhere is never
+  overtopped. The Levee plan skips a Dam whose instance reads `damaged`.
+- **Single player keeps the script's extras** (the user's call): the Levees and the drying of the dammed river's
+  floodplains, both local writes and so skipped in a network game. Everything else is the same in both modes.
+- **Old saves.** `FEATURE_DAMS_SITE` stays defined so a 1.3.0 save loads; `ui/dams-sites.js` now only lifts its
+  markers and puts back what each replaced (`Dams_Sites_v1`), outside a network game.
 
 ## Visuals
 
@@ -156,17 +205,15 @@ Nor can the gain be written back (`d15`): `WorldBuilder.MapPlots.setFertility` d
 move with it, through thirteen write shapes and a `setTerrain` round trip. Fertility is a separate map property from
 whatever the flood writes.
 
-**What the Dam costs instead:** `dry()` in `ui/dams.js` takes the floodplain features off the dammed river, about 1
-Food a tile, permanently. The valley below the Dam dries out, which is a price the player can see on the map, and it
-is what the mod's text says. It is a design choice rather than a mechanism: it does not stop the silt, because
-nothing can.
+**What the Dam costs instead (single player and hotseat):** `dry()` in `ui/dams.js` takes the floodplain features off
+the dammed river, about 1 Food a tile, permanently. The valley below the Dam dries out, which is a price the player can
+see on the map. It is a design choice rather than a mechanism: it does not stop the silt, because nothing can.
 
 ## Player-facing behavior, and what is not covered
 
 Handled, after a pass through the mod from the player's side:
 
-- **Upgrading.** A river takes one Dam of each age, so a river dammed in Antiquity can take a Medieval Dam later.
-  Blocking it would have left the player stuck with the weakest Dam for the rest of the game.
+- **Upgrading.** Each age has its own Dam type, so a river dammed in Antiquity can take a Medieval Dam later.
 - **Levees follow their reason.** A settlement that no longer owns a tile of a dammed river (its Dam razed, its
   river tiles traded or lost) has its Levee removed. Only once it has been orphaned on two different turns: the first
   sweep after a load can run before the map's buildings read back, and would otherwise strip every Levee (`d23`).
@@ -182,17 +229,23 @@ Not covered:
 
 - A dried floodplain stays dried if the Dam is later razed.
 - The flood-risk lens stops marking a dammed river's floodplains once they are dried, though floods still come.
-- AI Dams (`ui/dams-sites.js`, 2026-09-29). Left to itself the game's AI weighed a Dam on every river tile it could
-  build on (`u1`: 1,010 evaluations in 60 turns), blind to floods: on seed 9001 only 8 of 61 rivers can flood at all.
-  No AI bias keeps it off a building (Canals `w1`, `w1b`), and the data cannot say "a river that floods". So each Dam
-  requires a dam-site marker (`data/dams-sites.xml`, `Constructible_RequiredFeatures`, the mechanism watched in Canals
-  `m1`-`m8`), and the script marks, for each AI, the candidate tiles of each river that floods, has no Dam as good,
-  and runs past at least two of its own built-on tiles a flood would pillage (a marker standing in for a floodplain
-  still counts, or it would lift itself: `v1`). The player's lists are widened to every candidate river tile and the
-  order marks its tile. The AI's value of the Dam is raised (`data/dams-ai.xml`, +3,000; at +400 it scored about 1,900
-  and lost, `v1b`). `v1c`: AI 2 committed to a Dam on its marked site (6,13, a flooding river) on turn 10, finished
-  it by turn 24, the sweep drew it and dried the river; the AI weighed a Dam nowhere else; the player's production and
-  purchase Dams landed and were drawn. Sites come from the map: `canStart` gives an AI's settlements no plots (`u2`).
+- AI Dams, 1.3.0 only (`ui/dams-sites.js`, 2026-09-29; replaced in 2.0.0). Left to itself the game's AI weighed a Dam
+  on every river tile it could build on (`u1`: 1,010 evaluations in 60 turns), blind to floods: on seed 9001 only 8 of
+  61 rivers read `isFloodable`, which engine-closed.md finds does not predict floods (what does: whether the river had
+  floodplain tiles at map creation). No AI bias keeps it off a building (Canals `w1`, `w1b`), and the data cannot say
+  "a river that floods". So each Dam requires a dam-site marker (`data/dams-sites.xml`,
+  `Constructible_RequiredFeatures`, the mechanism watched in Canals `m1`-`m8`), and the script marks, for each AI, the
+  candidate tiles of each river that floods, has no Dam as good, and runs past at least two of its own built-on tiles
+  a flood would pillage (a marker standing in for a floodplain still counts, or it would lift itself: `v1`). The
+  player's lists are widened to every candidate river tile and the order marks its tile. The AI's value of the Dam is
+  raised (`data/dams-ai.xml`, +3,000; at +400 it scored about 1,900 and lost, `v1b`). `v1c`: AI 2 committed to a Dam
+  on its marked site (6,13, a flooding river) on turn 10, finished it by turn 24, the sweep drew it and dried the
+  river; the AI weighed a Dam nowhere else; the player's production and purchase Dams landed and were drawn. Sites
+  come from the map: `canStart` gives an AI's settlements no plots (`u2`).
 - A network game is unwatched.
 - A Dam goes where the game lets the settlement put a building. A young settlement is offered only the river tiles
   beside its centre (`d28e`, with the mod's wrapper off), so "any river tile" means any the settlement could build on.
+- 2.0.0 still unwatched (2026-10-01): a Dam offered and built in a network game (`e6`-`e6c`); Levees falling back when
+  a Dam on a shared river is pillaged (the planner skips a Dam whose instance reads `damaged`, read only in code);
+  Machinery opening the Medieval Dam in play (the row is in the Exploration database; Irrigation was watched end to
+  end in `e1b`). The AI never chose a Dam in `e4`: whether to nudge it is a design call.

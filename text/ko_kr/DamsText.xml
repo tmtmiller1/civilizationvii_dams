@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_DAMS_MOD_NAME" Language="ko_KR"><Text>댐</Text></Replace>
+        <Replace Tag="LOC_FEATURE_DAMS_SITE_NAME" Language="ko_KR"><Text>댐 부지</Text></Replace>
+        <Replace Tag="LOC_FEATURE_DAMS_SITE_TOOLTIP" Language="ko_KR"><Text>이전 버전의 댐 모드가 남긴 표식입니다. 아래 땅과 같은 생산량을 제공하며, 게임을 불러올 때 제거됩니다.</Text></Replace>
+        <Replace Tag="LOC_DAMS_MOD_DESCRIPTION" Language="ko_KR"><Text>각 시대에 댐 건물을 추가하며, 각각 관개, 기계, 전기로 해금됩니다. 깊은 강이든 얕은 하천이든 강이 있는 모든 타일에 건설할 수 있습니다. 댐은 식량과 생산력을 제공하며, 완성되면 홍수가 발생해도 해당 정착지의 시설, 건물, 특수지구가 약탈당하지 않습니다. 고대 댐은 보통 수준의 홍수를, 중세 댐은 심각한 홍수까지, 근대 댐은 모든 홍수를 막습니다. 싱글 플레이에서는 댐이 있는 강의 다른 정착지도 제방을 통해 같은 보호를 받으며, 댐 뒤쪽 강의 범람원은 말라붙어 식량을 영구히 잃습니다. 정착지에 이미 있는 댐이 많을수록 그곳에 짓는 다음 댐의 비용이 증가합니다.</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_ANTIQUITY_NAME" Language="ko_KR"><Text>고대 댐</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_EXPLORATION_NAME" Language="ko_KR"><Text>중세 댐</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_MODERN_NAME" Language="ko_KR"><Text>근대 댐</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_ANTIQUITY_DESCRIPTION" Language="ko_KR"><Text>댐이 서 있는 강을 막아 줍니다. 깊은 강이든 얕은 하천이든 강이 있는 타일에 배치해야 합니다. 완성되면 이 [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]정착지[/TIP]에서, 그리고 싱글 플레이에서는 이 강을 따라 있는 다른 모든 정착지에서도 보통 수준의 홍수가 발생해도 시설, 건물, 특수지구가 약탈당하지 않습니다. 심각한 홍수와 천년 홍수는 여전히 피해를 주며, 댐에 도달한 홍수는 댐을 약탈합니다. 홍수는 여전히 발생하고, 알림이 표시되며, 침적토를 남깁니다. 싱글 플레이에서는 댐 뒤쪽의 유역이 말라붙어, 이 강은 [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]범람원[/TIP]과 그곳에서 얻던 [icon:YIELD_FOOD] 식량을 잃습니다. 이 정착지에 이미 있는 고대 댐 하나마다 이곳에 짓는 다음 고대 댐의 비용에 [icon:YIELD_PRODUCTION] 생산력 40이 추가됩니다.</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_ANTIQUITY_TOOLTIP" Language="ko_KR"><Text>보통 수준의 홍수가 발생해도 이 정착지가 약탈당하지 않습니다. 그보다 큰 홍수가 댐에 도달하면 댐이 약탈당합니다. 싱글 플레이에서는 이 강의 다른 정착지도 보호되며, 강은 범람원을 잃습니다.</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_EXPLORATION_DESCRIPTION" Language="ko_KR"><Text>댐이 서 있는 강을 막아 줍니다. 깊은 강이든 얕은 하천이든 강이 있는 타일에 배치해야 합니다. 완성되면 이 [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]정착지[/TIP]에서, 그리고 싱글 플레이에서는 이 강을 따라 있는 다른 모든 정착지에서도 보통 수준의 홍수나 심각한 홍수가 발생해도 시설, 건물, 특수지구가 약탈당하지 않습니다. 천년 홍수는 여전히 피해를 주며, 댐에 도달하면 댐을 약탈합니다. 홍수는 여전히 발생하고, 알림이 표시되며, 침적토를 남깁니다. 싱글 플레이에서는 댐 뒤쪽의 유역이 말라붙어, 이 강은 [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]범람원[/TIP]과 그곳에서 얻던 [icon:YIELD_FOOD] 식량을 잃습니다. 이 정착지에 이미 있는 중세 댐 하나마다 이곳에 짓는 다음 중세 댐의 비용에 [icon:YIELD_PRODUCTION] 생산력 70이 추가됩니다.</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_EXPLORATION_TOOLTIP" Language="ko_KR"><Text>보통 수준의 홍수나 심각한 홍수가 발생해도 이 정착지가 약탈당하지 않습니다. 천년 홍수가 댐에 도달하면 댐이 약탈당합니다. 싱글 플레이에서는 이 강의 다른 정착지도 보호되며, 강은 범람원을 잃습니다.</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_MODERN_DESCRIPTION" Language="ko_KR"><Text>댐이 서 있는 강을 막아 줍니다. 깊은 강이든 얕은 하천이든 강이 있는 타일에 배치해야 합니다. 완성되면 이 [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]정착지[/TIP]에서, 그리고 싱글 플레이에서는 이 강을 따라 있는 다른 모든 정착지에서도 천년 홍수를 포함한 어떤 규모의 홍수가 발생해도 시설, 건물, 특수지구가 약탈당하지 않습니다. 홍수는 여전히 발생하고, 알림이 표시되며, 침적토를 남깁니다. 싱글 플레이에서는 댐 뒤쪽의 유역이 말라붙어, 이 강은 [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]범람원[/TIP]과 그곳에서 얻던 [icon:YIELD_FOOD] 식량을 잃습니다. 이 정착지에 이미 있는 근대 댐 하나마다 이곳에 짓는 다음 근대 댐의 비용에 [icon:YIELD_PRODUCTION] 생산력 150이 추가됩니다.</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_MODERN_TOOLTIP" Language="ko_KR"><Text>어떤 홍수도 이 정착지를 약탈하지 않습니다. 싱글 플레이에서는 이 강의 다른 정착지도 보호되며, 강은 범람원을 잃습니다.</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_LEVEE_NAME" Language="ko_KR"><Text>제방</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_LEVEE_DESCRIPTION" Language="ko_KR"><Text>이 정착지의 강에 있는 고대 댐이 쌓은 제방입니다. 보통 수준의 홍수가 발생해도 이 [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]정착지[/TIP]의 시설, 건물, 특수지구가 약탈당하지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_LEVEE_EXPLORATION_DESCRIPTION" Language="ko_KR"><Text>이 정착지의 강에 있는 중세 댐이 쌓은 제방입니다. 보통 수준의 홍수나 심각한 홍수가 발생해도 이 [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]정착지[/TIP]의 시설, 건물, 특수지구가 약탈당하지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_LEVEE_MODERN_DESCRIPTION" Language="ko_KR"><Text>이 정착지의 강에 있는 근대 댐이 쌓은 제방입니다. 어떤 규모의 홍수가 발생해도 이 [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]정착지[/TIP]의 시설, 건물, 특수지구가 약탈당하지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_DAMS_TITLE" Language="ko_KR"><Text>댐</Text></Replace>
+        <Replace Tag="LOC_PEDIA_DAMS_TERM_DAM" Language="ko_KR"><Text>댐</Text></Replace>
+        <Replace Tag="LOC_PEDIA_DAMS_TERM_FLOOD" Language="ko_KR"><Text>홍수</Text></Replace>
+        <Replace Tag="LOC_PEDIA_DAMS_TERM_FLOODPLAIN" Language="ko_KR"><Text>범람원</Text></Replace>
+        <Replace Tag="LOC_PEDIA_DAMS_TERM_LEVEE" Language="ko_KR"><Text>제방</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_TITLE" Language="ko_KR"><Text>댐</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_CONTENT_TITLE" Language="ko_KR"><Text>기본</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_CONTENT_PARA_1" Language="ko_KR"><Text>댐은 강이 있는 타일, 즉 깊은 강이나 얕은 하천이 있는 육지 타일에 배치하는 건물입니다. 어디에 있든 [icon:YIELD_FOOD] 식량과 [icon:YIELD_PRODUCTION] 생산력을 제공하며, 완성되면 홍수가 발생해도 해당 [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]정착지[/TIP]의 시설, 건물, 특수지구가 약탈당하지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_CONTENT_PARA_2" Language="ko_KR"><Text>시대마다 고유한 댐이 있으며, 각 댐은 이전 댐보다 더 큰 홍수를 막습니다. 댐은 어느 강에서든 생산량을 제공하므로 범람하지 않는 강에 지을 가치도 있습니다. 범람하는 강에서는 정착지를 보호하는 역할도 합니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_AGES_TITLE" Language="ko_KR"><Text>시대별 댐</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_AGES_PARA_1" Language="ko_KR"><Text>[BLIST][LI][B]고대 댐[/B] (고대): 관개로 해금됩니다. 비용은 [icon:YIELD_PRODUCTION] 생산력 150, 턴당 [icon:YIELD_GOLD] 금 1입니다. [icon:YIELD_FOOD] 식량 +2, [icon:YIELD_PRODUCTION] 생산력 +2. 보통 수준의 홍수를 막습니다.[LI][B]중세 댐[/B] (대항해시대): 기계로 해금됩니다. 비용은 [icon:YIELD_PRODUCTION] 생산력 275, 턴당 [icon:YIELD_GOLD] 금 2입니다. [icon:YIELD_FOOD] 식량 +3, [icon:YIELD_PRODUCTION] 생산력 +3. 보통 수준의 홍수와 심각한 홍수를 막습니다.[LI][B]근대 댐[/B] (근대): 전기로 해금됩니다. 비용은 [icon:YIELD_PRODUCTION] 생산력 600, 턴당 [icon:YIELD_GOLD] 금 3입니다. [icon:YIELD_FOOD] 식량 +4, [icon:YIELD_PRODUCTION] 생산력 +6. 천년 홍수를 포함한 모든 홍수를 막습니다.[/LIST]</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_PLACEMENT_TITLE" Language="ko_KR"><Text>배치</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_PLACEMENT_PARA_1" Language="ko_KR"><Text>댐은 생산 대기열에서 건설하거나 [icon:YIELD_GOLD] 금으로 구매할 수 있으며, 도시와 마을 모두에서 정착지가 건물을 배치할 수 있는 강 타일이라면 어디든 지을 수 있습니다. 갓 세운 정착지는 도심부에 인접한 강 타일만 선택할 수 있으며, 성장할수록 선택할 수 있는 타일이 늘어납니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_PLACEMENT_PARA_2" Language="ko_KR"><Text>어느 강에든 댐을 지을 수 있으며, 두 강에 걸친 정착지는 두 강 모두에 댐을 지을 수 있습니다. 댐의 수를 억제하는 것은 비용입니다. 정착지에 이미 있는 같은 시대의 댐 하나마다 그곳에 짓는 다음 댐의 비용에 기본 비용의 약 4분의 1이 추가되며(고대 댐, 중세 댐, 근대 댐 각각 [icon:YIELD_PRODUCTION] 생산력 +40, +70, +150), 모든 댐에는 [icon:YIELD_GOLD] 금 유지비가 듭니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_AI_TITLE" Language="ko_KR"><Text>다른 문명</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_AI_PARA_1" Language="ko_KR"><Text>컴퓨터가 조종하는 플레이어도 같은 규칙과 같은 비용으로 댐을 건설하며, 다른 건물과 똑같이 평가합니다. 싱글 플레이와 멀티플레이도 제방과 말라붙은 범람원을 제외하면 같은 규칙을 따릅니다('제방' 참고).</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_TITLE" Language="ko_KR"><Text>홍수 방어</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_CONTENT_TITLE" Language="ko_KR"><Text>홍수 규모</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_CONTENT_PARA_1" Language="ko_KR"><Text>홍수에는 보통 수준의 홍수, 심각한 홍수, 천년 홍수의 세 가지 규모가 있습니다. 댐이 막는 홍수는 보호받는 정착지의 시설, 건물, 특수지구를 약탈하지 않습니다. 댐이 막을 수 있는 것보다 큰 홍수는 평소처럼 피해를 줍니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_CONTENT_PARA_2" Language="ko_KR"><Text>댐은 홍수 자체를 막지는 않습니다. 댐이 있는 강에서도 홍수는 여전히 발생하고, 알림이 표시되며, 침적토를 남겨 강 타일 1~3개의 [icon:YIELD_FOOD] 식량 또는 [icon:YIELD_PRODUCTION] 생산력을 높입니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_WHO_TITLE" Language="ko_KR"><Text>보호 대상</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_WHO_PARA_1" Language="ko_KR"><Text>댐이 있는 정착지는 항상 보호됩니다. 싱글 플레이에서는 다른 플레이어의 정착지를 포함해, 댐이 있는 강의 타일을 소유한 다른 모든 정착지도 제방을 통해 보호됩니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_WHO_PARA_2" Language="ko_KR"><Text>보호는 강 하나가 아니라 정착지 전체에 적용됩니다. 댐이 있는 강과 다른 강에 모두 걸친 정착지는 두 강 모두에서 보호됩니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_SHARE_TITLE" Language="ko_KR"><Text>막은 피해</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_SHARE_PARA_1" Language="ko_KR"><Text>규모가 큰 홍수일수록 드물게 발생하며, 도달한 타일 중 약탈하는 비율이 높습니다(침수된 타일의 20%, 40%, 60%). 이 두 가지를 모두 고려하면, '재해 빈도'가 '가벼움'(기본값), '중간', '재앙'일 때 각 댐이 막는 홍수 피해의 비율은 다음과 같습니다.[BLIST][LI][B]고대 댐:[/B] 약 17%, 29%, 36%.[LI][B]중세 댐:[/B] 약 50%, 57%, 73%.[LI][B]근대 댐:[/B] 전부.[/LIST]</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_OVERTOP_TITLE" Language="ko_KR"><Text>월류한 댐</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_OVERTOP_PARA_1" Language="ko_KR"><Text>댐이 막을 수 있는 것보다 큰 홍수가 댐 타일에 도달하면 댐 자체를 약탈합니다. 고대 댐은 심각한 홍수나 천년 홍수에, 중세 댐은 천년 홍수에 약탈당합니다. 근대 댐은 모든 홍수를 막으므로 물이 넘치는 일이 없습니다. 약탈당한 댐은 수리될 때까지 생산량도 보호도 제공하지 않으며, 싱글 플레이에서는 그 강을 따라 있는 제방이 그다음으로 좋은 댐 수준으로 돌아갑니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_TITLE" Language="ko_KR"><Text>말라붙은 범람원</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_PARA_1" Language="ko_KR"><Text>싱글 플레이와 핫시트 게임에서는 댐이 완성되면 해당 강의 모든 [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]범람원[/TIP]이 강 전체에 걸쳐, 타일 소유자와 관계없이 제거됩니다. 해당 타일들은 범람원 자체의 생산량(약 [icon:YIELD_FOOD] 식량 1)을 영구히 잃으며, 댐이 파괴되어도 범람원은 돌아오지 않습니다. 범람원이 없는 강에서는 아무것도 잃지 않습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_PARA_2" Language="ko_KR"><Text>말라붙어도 홍수는 멈추지 않습니다. 홍수는 이전처럼 발생하며 여전히 침적토를 남깁니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_TITLE" Language="ko_KR"><Text>제방</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_TITLE" Language="ko_KR"><Text>기본</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_PARA_1" Language="ko_KR"><Text>제방은 댐의 보호를 같은 강의 다른 정착지로 전달합니다. 댐이 있는 강의 타일을 소유한 모든 정착지의 도심부에 배치되며, 그 강에서 완성된 가장 좋은 댐과 같은 홍수를 막습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_PARA_2" Language="ko_KR"><Text>제방은 건설하거나 구매할 수 없습니다. 건물 슬롯을 차지하지 않으며 인구 배치도 필요하지 않습니다. 강에서 가장 좋은 댐 이상의 댐을 이미 보유한 정착지에는 제방이 없습니다. 댐이 있는 두 강에 걸친 정착지는 더 좋은 댐의 제방을 받습니다.</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CHANGES_TITLE" Language="ko_KR"><Text>제방이 바뀌는 경우</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CHANGES_PARA_1" Language="ko_KR"><Text>[BLIST][LI]댐이 있는 강에 건설되었거나 국경이 확장되어 그 강에 닿은 정착지는 다음 턴이 시작될 때 제방을 받습니다.[LI]강에 더 새로운 댐이 완성되면 그 강의 제방도 그에 맞게 강화됩니다.[LI]댐이 약탈당하거나 파괴되면 1턴 후 그 강의 제방은 그다음으로 좋은 댐 수준으로 돌아가며, 그런 댐이 없으면 제거됩니다.[LI]강의 마지막 타일을 잃은 정착지는 1턴 후 제방을 잃습니다.[/LIST]</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_MULTIPLAYER_TITLE" Language="ko_KR"><Text>멀티플레이</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_MULTIPLAYER_PARA_1" Language="ko_KR"><Text>제방 배치와 범람원 고갈은 싱글 플레이와 핫시트 게임에서만 일어납니다. 온라인 또는 LAN 게임에서는 각 댐이 자신이 있는 정착지만 보호하며, 강의 범람원도 그대로 유지됩니다. 그 밖의 댐 규칙은 모두 같습니다.</Text></Replace>
+    </LocalizedText>
+</Database>

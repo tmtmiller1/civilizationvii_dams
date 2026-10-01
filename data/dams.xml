@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   The three Dam buildings and a Levee for each. RiverPlacement="RIVER" is the placement rule the base Bridge and
-  Gristmill use; ui/dams.js adds the one-Dam-per-river rule. Flood protection is the Khmer Baray's effect (flood
-  pillage immunity, per settlement, data/dams-effects.xml), graded by age: a settlement holding a Dam has it from here,
-  and ui/dams.js puts the Levee of the best Dam on its rivers in every other settlement along them. A Levee takes no
-  slot and no citizen and is never offered in production: its trait belongs to no civilization.
+  Gristmill use: a Dam can go on any river tile the settlement could build on. Every rule a player meets is here, so
+  the engine enforces it for the game's AI and in a network game alike. The limit on Dams is their price: each Dam a
+  settlement already has adds a quarter of the base cost to the next one there (PREVIOUS_COPIES_CITY, the Ancient
+  Walls' model; Param1 is a flat amount of Production, watched e1c4: 25 took a 275 Dam to 300), and each pays Gold
+  upkeep. PREVIOUS_COPIES, the empire-wide model Settlers use, does nothing for a building (e1c3: 1100 gold twice).
+  Yields are set against the base Gristmill, Sawmill and Factory, a little below them for the flood protection.
+  Flood protection is the Khmer Baray's effect (flood pillage immunity, per settlement, data/dams-effects.xml), graded
+  by age. A settlement holding a Dam has it from here; in single player ui/dams.js also puts the Levee of the best Dam
+  on its rivers in every other settlement along them. A Levee takes no slot and no citizen and is never offered in
+  production: its trait belongs to no civilization.
 -->
 <Database>
     <Types>
@@ -20,9 +26,9 @@
         <Row TraitType="TRAIT_DAMS_LEVEE" InternalOnly="true"/>
     </Traits>
     <Constructibles>
-        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" Name="LOC_BUILDING_DAM_ANTIQUITY_NAME" Description="LOC_BUILDING_DAM_ANTIQUITY_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_ANTIQUITY_TOOLTIP" ConstructibleClass="BUILDING" RiverPlacement="RIVER" Cost="250" Population="1" Age="AGE_ANTIQUITY"/>
-        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" Name="LOC_BUILDING_DAM_EXPLORATION_NAME" Description="LOC_BUILDING_DAM_EXPLORATION_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_EXPLORATION_TOOLTIP" ConstructibleClass="BUILDING" RiverPlacement="RIVER" Cost="450" Population="1" Age="AGE_EXPLORATION"/>
-        <Row ConstructibleType="BUILDING_DAM_MODERN" Name="LOC_BUILDING_DAM_MODERN_NAME" Description="LOC_BUILDING_DAM_MODERN_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_MODERN_TOOLTIP" ConstructibleClass="BUILDING" RiverPlacement="RIVER" Cost="750" Population="1" Age="AGE_MODERN"/>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" Name="LOC_BUILDING_DAM_ANTIQUITY_NAME" Description="LOC_BUILDING_DAM_ANTIQUITY_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_ANTIQUITY_TOOLTIP" ConstructibleClass="BUILDING" RiverPlacement="RIVER" Cost="150" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES_CITY" CostProgressionParam1="40" Population="1" Age="AGE_ANTIQUITY"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" Name="LOC_BUILDING_DAM_EXPLORATION_NAME" Description="LOC_BUILDING_DAM_EXPLORATION_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_EXPLORATION_TOOLTIP" ConstructibleClass="BUILDING" RiverPlacement="RIVER" Cost="275" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES_CITY" CostProgressionParam1="70" Population="1" Age="AGE_EXPLORATION"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" Name="LOC_BUILDING_DAM_MODERN_NAME" Description="LOC_BUILDING_DAM_MODERN_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_MODERN_TOOLTIP" ConstructibleClass="BUILDING" RiverPlacement="RIVER" Cost="600" CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES_CITY" CostProgressionParam1="150" Population="1" Age="AGE_MODERN"/>
         <Row ConstructibleType="BUILDING_DAM_LEVEE" Name="LOC_BUILDING_DAM_LEVEE_NAME" Description="LOC_BUILDING_DAM_LEVEE_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_LEVEE_DESCRIPTION" ConstructibleClass="BUILDING" Cost="1" Population="0" ExistingDistrictOnly="true"/>
         <Row ConstructibleType="BUILDING_DAM_LEVEE_EXPLORATION" Name="LOC_BUILDING_DAM_LEVEE_NAME" Description="LOC_BUILDING_DAM_LEVEE_EXPLORATION_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_LEVEE_EXPLORATION_DESCRIPTION" ConstructibleClass="BUILDING" Cost="1" Population="0" ExistingDistrictOnly="true"/>
         <Row ConstructibleType="BUILDING_DAM_LEVEE_MODERN" Name="LOC_BUILDING_DAM_LEVEE_NAME" Description="LOC_BUILDING_DAM_LEVEE_MODERN_DESCRIPTION" Tooltip="LOC_BUILDING_DAM_LEVEE_MODERN_DESCRIPTION" ConstructibleClass="BUILDING" Cost="1" Population="0" ExistingDistrictOnly="true"/>
@@ -53,12 +59,17 @@
     </Constructible_ValidDistricts>
     <Constructible_YieldChanges>
         <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="2"/>
-        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="1"/>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2"/>
         <Row ConstructibleType="BUILDING_DAM_EXPLORATION" YieldType="YIELD_FOOD" YieldChange="3"/>
-        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" YieldType="YIELD_PRODUCTION" YieldChange="2"/>
-        <Row ConstructibleType="BUILDING_DAM_MODERN" YieldType="YIELD_FOOD" YieldChange="3"/>
-        <Row ConstructibleType="BUILDING_DAM_MODERN" YieldType="YIELD_PRODUCTION" YieldChange="4"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" YieldType="YIELD_PRODUCTION" YieldChange="3"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" YieldType="YIELD_FOOD" YieldChange="4"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" YieldType="YIELD_PRODUCTION" YieldChange="6"/>
     </Constructible_YieldChanges>
+    <Constructible_Maintenances>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" YieldType="YIELD_GOLD" Amount="1"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" YieldType="YIELD_GOLD" Amount="2"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" YieldType="YIELD_GOLD" Amount="3"/>
+    </Constructible_Maintenances>
     <!-- The Levee is placed by the script, never built: keep it out of the Civilopedia's buildings, where a player would
          go looking for how to make one. -->
     <CivilopediaPageExcludes>

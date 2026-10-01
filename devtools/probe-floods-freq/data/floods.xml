@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- E2 (DEPLOY freqfloods): every flood severity 300 times per age, and nothing else. Unlike probe-floods, the share of
+     flooded constructibles a flood pillages is left at the game's own values, so whether a Dam is pillaged is decided by
+     the Dams' own Constructible_PillageRandomEvents rows and flood immunity, not by this probe. -->
+<Database>
+    <RandomEventFrequencies>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_MODERATE"/><Set OccurrencesPerAge="300"/></Update>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_MAJOR"/><Set OccurrencesPerAge="300"/></Update>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_1000_YEAR"/><Set OccurrencesPerAge="300"/></Update>
+    </RandomEventFrequencies>
+</Database>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Replace Tag="LOC_DAMS_MOD_NAME" Language="ja_JP"><Text>ダム</Text></Replace>
+        <Replace Tag="LOC_FEATURE_DAMS_SITE_NAME" Language="ja_JP"><Text>ダム建設地</Text></Replace>
+        <Replace Tag="LOC_FEATURE_DAMS_SITE_TOOLTIP" Language="ja_JP"><Text>旧バージョンの「ダム」が残した目印です。下にある土地と同じ産出量をもたらし、ゲームの読み込み時に取り除かれます。</Text></Replace>
+        <Replace Tag="LOC_DAMS_MOD_DESCRIPTION" Language="ja_JP"><Text>各時代にダムという建造物を追加します。それぞれ灌漑、機械、電気で解除されます。航行可能かどうかを問わず、河川のあるタイルならどこにでも建設できます。ダムは食料と生産力をもたらし、完成すると、その居住地の施設、建造物、区域が水害によって略奪状態にならなくなります。古代のダムは中規模な水害を、中世のダムは大規模な水害も、近代のダムはすべての水害を防ぎます。シングルプレイヤーでは、ダムのある河川沿いの他の居住地も堤防を通じて同じ保護を受け、ダムの背後では河川の氾濫原が干上がり、その食料は永久に失われます。居住地にすでにあるダムが多いほど、そこで次に建てるダムのコストが上がります。</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_ANTIQUITY_NAME" Language="ja_JP"><Text>古代のダム</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_EXPLORATION_NAME" Language="ja_JP"><Text>中世のダム</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_MODERN_NAME" Language="ja_JP"><Text>近代のダム</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_ANTIQUITY_DESCRIPTION" Language="ja_JP"><Text>自らが建つ河川をせき止めます。航行可能かどうかを問わず、河川のあるタイルに配置する必要があります。完成すると、この[TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]居住地[/TIP]と、シングルプレイヤーではこの河川沿いの他のすべての居住地で、中規模な水害によって施設、建造物、区域が略奪状態にならなくなります。大規模な水害と千年に一度の水害は引き続き被害をもたらし、ダムに達した場合はダムを略奪状態にします。水害は引き続き発生し、通知され、沈泥を残します。シングルプレイヤーでは、ダムの背後の流域が干上がります。この河川は[TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]氾濫原[/TIP]と、それがもたらす [icon:YIELD_FOOD] 食料を失います。この居住地にすでにある古代のダム1つにつき、ここで次に建てる古代のダムのコストが [icon:YIELD_PRODUCTION] 生産力40増加します。</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_ANTIQUITY_TOOLTIP" Language="ja_JP"><Text>中規模な水害でこの居住地が略奪状態にならなくなります。それより大きな水害がダムに達すると、ダムが略奪状態になります。シングルプレイヤーでは、この河川沿いの他の居住地も保護され、河川は氾濫原を失います。</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_EXPLORATION_DESCRIPTION" Language="ja_JP"><Text>自らが建つ河川をせき止めます。航行可能かどうかを問わず、河川のあるタイルに配置する必要があります。完成すると、この[TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]居住地[/TIP]と、シングルプレイヤーではこの河川沿いの他のすべての居住地で、中規模および大規模な水害によって施設、建造物、区域が略奪状態にならなくなります。千年に一度の水害は引き続き被害をもたらし、ダムに達した場合はダムを略奪状態にします。水害は引き続き発生し、通知され、沈泥を残します。シングルプレイヤーでは、ダムの背後の流域が干上がります。この河川は[TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]氾濫原[/TIP]と、それがもたらす [icon:YIELD_FOOD] 食料を失います。この居住地にすでにある中世のダム1つにつき、ここで次に建てる中世のダムのコストが [icon:YIELD_PRODUCTION] 生産力70増加します。</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_EXPLORATION_TOOLTIP" Language="ja_JP"><Text>中規模および大規模な水害でこの居住地が略奪状態にならなくなります。千年に一度の水害がダムに達すると、ダムが略奪状態になります。シングルプレイヤーでは、この河川沿いの他の居住地も保護され、河川は氾濫原を失います。</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_MODERN_DESCRIPTION" Language="ja_JP"><Text>自らが建つ河川をせき止めます。航行可能かどうかを問わず、河川のあるタイルに配置する必要があります。完成すると、この[TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]居住地[/TIP]と、シングルプレイヤーではこの河川沿いの他のすべての居住地で、千年に一度の水害を含むあらゆる規模の水害によって施設、建造物、区域が略奪状態にならなくなります。水害は引き続き発生し、通知され、沈泥を残します。シングルプレイヤーでは、ダムの背後の流域が干上がります。この河川は[TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]氾濫原[/TIP]と、それがもたらす [icon:YIELD_FOOD] 食料を失います。この居住地にすでにある近代のダム1つにつき、ここで次に建てる近代のダムのコストが [icon:YIELD_PRODUCTION] 生産力150増加します。</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_MODERN_TOOLTIP" Language="ja_JP"><Text>どの水害でもこの居住地は略奪状態になりません。シングルプレイヤーでは、この河川沿いの他の居住地も保護され、河川は氾濫原を失います。</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_LEVEE_NAME" Language="ja_JP"><Text>堤防</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_LEVEE_DESCRIPTION" Language="ja_JP"><Text>この居住地の河川にある古代のダムによって築かれます。この[TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]居住地[/TIP]の施設、建造物、区域は、中規模な水害によって略奪状態になりません。</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_LEVEE_EXPLORATION_DESCRIPTION" Language="ja_JP"><Text>この居住地の河川にある中世のダムによって築かれます。この[TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]居住地[/TIP]の施設、建造物、区域は、中規模および大規模な水害によって略奪状態になりません。</Text></Replace>
+        <Replace Tag="LOC_BUILDING_DAM_LEVEE_MODERN_DESCRIPTION" Language="ja_JP"><Text>この居住地の河川にある近代のダムによって築かれます。この[TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]居住地[/TIP]の施設、建造物、区域は、あらゆる規模の水害によって略奪状態になりません。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_DAMS_TITLE" Language="ja_JP"><Text>ダム</Text></Replace>
+        <Replace Tag="LOC_PEDIA_DAMS_TERM_DAM" Language="ja_JP"><Text>ダム</Text></Replace>
+        <Replace Tag="LOC_PEDIA_DAMS_TERM_FLOOD" Language="ja_JP"><Text>水害</Text></Replace>
+        <Replace Tag="LOC_PEDIA_DAMS_TERM_FLOODPLAIN" Language="ja_JP"><Text>氾濫原</Text></Replace>
+        <Replace Tag="LOC_PEDIA_DAMS_TERM_LEVEE" Language="ja_JP"><Text>堤防</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_TITLE" Language="ja_JP"><Text>ダム</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_CONTENT_TITLE" Language="ja_JP"><Text>基本</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_CONTENT_PARA_1" Language="ja_JP"><Text>ダムは河川のあるタイル、つまり航行可能な河川か、小規模河川のある陸上タイルに配置する建造物です。どこに建っていても [icon:YIELD_FOOD] 食料と [icon:YIELD_PRODUCTION] 生産力をもたらし、完成すると、その[TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]居住地[/TIP]の施設、建造物、区域が水害によって略奪状態にならなくなります。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_CONTENT_PARA_2" Language="ja_JP"><Text>時代ごとに独自のダムがあり、後のものほど大きな水害を防ぎます。ダムはどの河川でも産出量をもたらすため、水害が起きない河川に建てる価値もあります。水害が起きる河川では、居住地を守る役割も果たします。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_AGES_TITLE" Language="ja_JP"><Text>時代別のダム</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_AGES_PARA_1" Language="ja_JP"><Text>[BLIST][LI][B]古代のダム[/B] (古代): 灌漑で解除されます。コストは [icon:YIELD_PRODUCTION] 生産力150と、ターンごとに [icon:YIELD_GOLD] ゴールド1です。[icon:YIELD_FOOD] 食料+2、[icon:YIELD_PRODUCTION] 生産力+2。中規模な水害を防ぎます。[LI][B]中世のダム[/B] (探検の時代): 機械で解除されます。コストは [icon:YIELD_PRODUCTION] 生産力275と、ターンごとに [icon:YIELD_GOLD] ゴールド2です。[icon:YIELD_FOOD] 食料+3、[icon:YIELD_PRODUCTION] 生産力+3。中規模および大規模な水害を防ぎます。[LI][B]近代のダム[/B] (近代): 電気で解除されます。コストは [icon:YIELD_PRODUCTION] 生産力600と、ターンごとに [icon:YIELD_GOLD] ゴールド3です。[icon:YIELD_FOOD] 食料+4、[icon:YIELD_PRODUCTION] 生産力+6。千年に一度の水害を含むすべての水害を防ぎます。[/LIST]</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_PLACEMENT_TITLE" Language="ja_JP"><Text>配置</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_PLACEMENT_PARA_1" Language="ja_JP"><Text>ダムは生産キューから建設するか、[icon:YIELD_GOLD] ゴールドで購入します。都市でも町でも、居住地が建造物を配置できる河川のあるタイルならどこにでも建てられます。設立して間もない居住地では都心に隣接する河川のタイルしか選べませんが、成長するにつれて選べるタイルが増えます。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_PLACEMENT_PARA_2" Language="ja_JP"><Text>どの河川にもダムを建てることができ、2つの河川に面した居住地は両方にダムを建てられます。数を抑えるのは価格です。居住地にすでにある同じ時代のダム1つにつき、そこで次に建てるダムのコストに基本コストの約4分の1が加算されます (古代のダム、中世のダム、近代のダムでそれぞれ [icon:YIELD_PRODUCTION] 生産力+40、+70、+150)。また、すべてのダムに [icon:YIELD_GOLD] ゴールドの維持費がかかります。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_AI_TITLE" Language="ja_JP"><Text>他の文明</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_AI_PARA_1" Language="ja_JP"><Text>コンピューターが操作するプレイヤーも同じルール、同じ価格でダムを建設し、他の建造物と同じように評価します。シングルプレイヤーとマルチプレイヤーのルールも、堤防と干上がった氾濫原を除いて同じです (「堤防」を参照)。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_TITLE" Language="ja_JP"><Text>水害からの保護</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_CONTENT_TITLE" Language="ja_JP"><Text>水害の規模</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_CONTENT_PARA_1" Language="ja_JP"><Text>水害には、中規模な水害、大規模な水害、千年に一度の水害の3つの規模があります。ダムが防ぐ水害は、保護された居住地の施設、建造物、区域を略奪状態にしません。ダムが防げる規模を超える水害は、通常どおり被害をもたらします。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_CONTENT_PARA_2" Language="ja_JP"><Text>ダムは水害そのものを止めるわけではありません。ダムのある河川でも水害は発生し、通知され、沈泥を残して、河川のタイル1～3つの [icon:YIELD_FOOD] 食料か [icon:YIELD_PRODUCTION] 生産力を高めます。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_WHO_TITLE" Language="ja_JP"><Text>保護の対象</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_WHO_PARA_1" Language="ja_JP"><Text>ダムのある居住地は常に保護されます。シングルプレイヤーでは、他のプレイヤーのものを含め、ダムのある河川のタイルを所有する他のすべての居住地も、堤防を通じて保護されます。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_WHO_PARA_2" Language="ja_JP"><Text>保護は1つの河川ではなく、居住地全体に適用されます。ダムのある河川と別の河川の両方に面した居住地は、どちらの河川でも保護されます。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_SHARE_TITLE" Language="ja_JP"><Text>防げる被害</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_SHARE_PARA_1" Language="ja_JP"><Text>規模の大きい水害ほど発生頻度は低く、到達したタイルのうち略奪状態にする割合が高くなります (水没したタイルの20%、40%、60%)。その両方を考慮すると、「自然災害の頻度」が「軽度」(デフォルト)、「中程度」、「壊滅的」の場合に各ダムが防ぐ水害被害の割合は次のとおりです。[BLIST][LI][B]古代のダム:[/B] 約17%、29%、36%。[LI][B]中世のダム:[/B] 約50%、57%、73%。[LI][B]近代のダム:[/B] すべて。[/LIST]</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_OVERTOP_TITLE" Language="ja_JP"><Text>ダムの越流</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_OVERTOP_PARA_1" Language="ja_JP"><Text>ダムが防げる規模を超える水害は、ダムのタイルに達するとダム自体を略奪状態にします。古代のダムは大規模な水害と千年に一度の水害で、中世のダムは千年に一度の水害でそうなります。近代のダムはすべての水害を防ぎ、越流することはありません。略奪状態のダムは、修復されるまで産出量も保護ももたらしません。シングルプレイヤーでは、その河川沿いの堤防は次に優れたダムの水準に戻ります。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_TITLE" Language="ja_JP"><Text>干上がった氾濫原</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_PARA_1" Language="ja_JP"><Text>シングルプレイヤーとホットシートのゲームでは、ダムが完成すると、その河川のすべての[TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]氾濫原[/TIP]が、河川全体にわたって、タイルの所有者に関係なく取り除かれます。それらのタイルは氾濫原自体の産出量 (約 [icon:YIELD_FOOD] 食料1) を永久に失い、ダムが破壊されても氾濫原は戻りません。氾濫原のない河川では何も失われません。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_PARA_2" Language="ja_JP"><Text>干上がっても水害は止まりません。水害はこれまでどおり発生し、沈泥を残します。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_TITLE" Language="ja_JP"><Text>堤防</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_TITLE" Language="ja_JP"><Text>基本</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_PARA_1" Language="ja_JP"><Text>堤防は、ダムの保護をその河川沿いの他の居住地にもたらします。ダムのある河川のタイルを所有するすべての居住地の都心に配置され、その河川で完成している最も優れたダムと同じ水害を防ぎます。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_PARA_2" Language="ja_JP"><Text>堤防は建設も購入もできません。建造物のスロットを使わず、人口の配置も必要としません。河川で最も優れたダムと同等以上のダムをすでに持つ居住地には、堤防は配置されません。ダムのある2つの河川に面した居住地には、より優れたダムの堤防が配置されます。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CHANGES_TITLE" Language="ja_JP"><Text>堤防が変化するとき</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CHANGES_PARA_1" Language="ja_JP"><Text>[BLIST][LI]ダムのある河川に設立された居住地や、国境が広がってその河川に達した居住地は、次のターンの開始時に堤防を得ます。[LI]河川により新しいダムが完成すると、その河川の堤防もそれに合わせて強化されます。[LI]ダムが略奪状態になるか破壊されると、1ターン後に、その河川沿いの堤防は次に優れたダムの水準に戻るか、該当するダムがなければ取り除かれます。[LI]河川の最後のタイルを失った居住地は、1ターン後に堤防を失います。[/LIST]</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_MULTIPLAYER_TITLE" Language="ja_JP"><Text>マルチプレイヤー</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_MULTIPLAYER_PARA_1" Language="ja_JP"><Text>堤防の配置と氾濫原の干上がりが起きるのは、シングルプレイヤーとホットシートのゲームだけです。オンラインやLANのゲームでは、各ダムはそのダムがある居住地のみを保護し、河川の氾濫原も残ります。それ以外のダムの仕様はすべて同じです。</Text></Replace>
+    </LocalizedText>
+</Database>

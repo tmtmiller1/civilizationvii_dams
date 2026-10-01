@@ -8,7 +8,9 @@
     "lint": "npx --yes eslint \"ui/**/*.js\" --no-error-on-unmatched-pattern",
     "check": "node --check ui/dams.js",
     "icons": "python3 icons/src/build-icon.py",
-    "verify": "npm run lint && npm run check",
-    "check:all": "zsh scripts/check.sh"
+    "verify": "npm run lint && npm run check && npm run pedia && npm run i18n",
+    "check:all": "zsh scripts/check.sh",
+    "pedia": "node ./tests/pedia-pages.test.mjs",
+    "i18n": "node ./tests/i18n.test.mjs"
   }
 }

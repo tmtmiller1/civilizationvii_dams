@@ -9,10 +9,10 @@
             <Text>Dam Site</Text>
         </Row>
         <Row Tag="LOC_FEATURE_DAMS_SITE_TOOLTIP">
-            <Text>A river tile where a Dam can be built. Yields as the land beneath it.</Text>
+            <Text>A marker left by an older version of Dams. Yields as the land beneath it, and is lifted when the game loads.</Text>
         </Row>
         <Row Tag="LOC_DAMS_MOD_DESCRIPTION">
-            <Text>Adds a Dam building to each age. Build it on a river tile, navigable or not; once it is finished, floods on that river stop pillaging the improvements, buildings and districts of the settlements along it: an Ancient Dam holds back moderate floods, a Medieval Dam major ones as well, and a Modern Dam every flood. The cost is the valley: the Dam holds the water back and the floodplains dry out, so the land along the river gives up that Food for good. A river takes one Dam of each age, so an old Dam can be joined by a newer one. Unlocked by Irrigation, Machinery and Electricity.</Text>
+            <Text>Adds a Dam building to each age, unlocked by Irrigation, Machinery and Electricity. Build it on any river tile, navigable or not. It yields Food and Production, and once it is finished, floods stop pillaging the improvements, buildings and districts of its settlement: an Ancient Dam holds back moderate floods, a Medieval Dam major ones as well, and a Modern Dam every flood. In single player the other settlements on the dammed river share that protection through a Levee, and the river's floodplains dry out behind the Dam, giving up their Food for good. Each Dam a settlement already has makes the next one there cost more.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_DAM_ANTIQUITY_NAME">
             <Text>Ancient Dam</Text>
@@ -24,22 +24,22 @@
             <Text>Modern Dam</Text>
         </Row>
         <Row Tag="LOC_BUILDING_DAM_ANTIQUITY_DESCRIPTION">
-            <Text>Holds back the river it stands on. Must be placed on a river tile, navigable or not. A river takes one Dam of each age. When it is finished, moderate floods on this river no longer pillage Improvements, Buildings or Districts in any [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] along it. Major and 1000-year floods still do damage. Floods still come and are still reported. The valley dries out behind it: this river loses its [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplains[/TIP] and the [icon:YIELD_FOOD] Food they carry.</Text>
+            <Text>Holds back the river it stands on. Must be placed on a river tile, navigable or not. When it is finished, moderate floods no longer pillage Improvements, Buildings or Districts in this [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP], and in single player in every other Settlement along this river. Major and 1000-year floods still do damage, and one that reaches the Dam pillages it. Floods still come, are still reported and still leave their silt. In single player the valley dries out behind it: this river loses its [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplains[/TIP] and the [icon:YIELD_FOOD] Food they carry. Each Ancient Dam this Settlement already has adds 40 [icon:YIELD_PRODUCTION] Production to the cost of the next one here.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_DAM_ANTIQUITY_TOOLTIP">
-            <Text>Settlements along this river are not pillaged by moderate floods. The river loses its Floodplains. One of each age per river.</Text>
+            <Text>Moderate floods no longer pillage this Settlement; a bigger flood that reaches the Dam pillages it. In single player the other Settlements on this river are protected too, and the river loses its Floodplains.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_DAM_EXPLORATION_DESCRIPTION">
-            <Text>Holds back the river it stands on. Must be placed on a river tile, navigable or not. A river takes one Dam of each age. When it is finished, moderate and major floods on this river no longer pillage Improvements, Buildings or Districts in any [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] along it. A 1000-year flood still does damage. Floods still come and are still reported. The valley dries out behind it: this river loses its [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplains[/TIP] and the [icon:YIELD_FOOD] Food they carry.</Text>
+            <Text>Holds back the river it stands on. Must be placed on a river tile, navigable or not. When it is finished, moderate and major floods no longer pillage Improvements, Buildings or Districts in this [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP], and in single player in every other Settlement along this river. A 1000-year flood still does damage, and pillages the Dam if it reaches it. Floods still come, are still reported and still leave their silt. In single player the valley dries out behind it: this river loses its [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplains[/TIP] and the [icon:YIELD_FOOD] Food they carry. Each Medieval Dam this Settlement already has adds 70 [icon:YIELD_PRODUCTION] Production to the cost of the next one here.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_DAM_EXPLORATION_TOOLTIP">
-            <Text>Settlements along this river are not pillaged by moderate or major floods. The river loses its Floodplains. One of each age per river.</Text>
+            <Text>Moderate and major floods no longer pillage this Settlement; a 1000-year flood that reaches the Dam pillages it. In single player the other Settlements on this river are protected too, and the river loses its Floodplains.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_DAM_MODERN_DESCRIPTION">
-            <Text>Holds back the river it stands on. Must be placed on a river tile, navigable or not. A river takes one Dam of each age. When it is finished, floods of every size, the 1000-year flood included, on this river no longer pillage Improvements, Buildings or Districts in any [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] along it. Floods still come and are still reported. The valley dries out behind it: this river loses its [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplains[/TIP] and the [icon:YIELD_FOOD] Food they carry.</Text>
+            <Text>Holds back the river it stands on. Must be placed on a river tile, navigable or not. When it is finished, floods of every size, the 1000-year flood included, no longer pillage Improvements, Buildings or Districts in this [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP], and in single player in every other Settlement along this river. Floods still come, are still reported and still leave their silt. In single player the valley dries out behind it: this river loses its [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplains[/TIP] and the [icon:YIELD_FOOD] Food they carry. Each Modern Dam this Settlement already has adds 150 [icon:YIELD_PRODUCTION] Production to the cost of the next one here.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_DAM_MODERN_TOOLTIP">
-            <Text>Settlements along this river are not pillaged by any flood. The river loses its Floodplains. One of each age per river.</Text>
+            <Text>No flood pillages this Settlement. In single player the other Settlements on this river are protected too, and the river loses its Floodplains.</Text>
         </Row>
         <Row Tag="LOC_BUILDING_DAM_LEVEE_NAME">
             <Text>Levee</Text>
@@ -53,11 +53,126 @@
         <Row Tag="LOC_BUILDING_DAM_LEVEE_MODERN_DESCRIPTION">
             <Text>Raised by a Modern Dam on this settlement's river. Improvements, Buildings and Districts in this [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP] are not pillaged by floods of any size.</Text>
         </Row>
-        <Row Tag="LOC_DAM_NOT_RIVER">
-            <Text>A Dam must be built on a river tile.</Text>
+
+        <!-- Civilopedia: the Dams group in Game Concepts (data/dams-civilopedia.xml). -->
+        <Row Tag="LOC_PEDIA_DAMS_TITLE">
+            <Text>Dams</Text>
         </Row>
-        <Row Tag="LOC_DAM_RIVER_TAKEN">
-            <Text>This river already has a Dam from this age.</Text>
+        <Row Tag="LOC_PEDIA_DAMS_TERM_DAM">
+            <Text>Dam</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_DAMS_TERM_FLOOD">
+            <Text>Flood</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_DAMS_TERM_FLOODPLAIN">
+            <Text>Floodplain</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_DAMS_TERM_LEVEE">
+            <Text>Levee</Text>
+        </Row>
+
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_TITLE">
+            <Text>Dams</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_CONTENT_TITLE">
+            <Text>Basics</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_CONTENT_PARA_1">
+            <Text>A Dam is a building placed on a river tile: a Navigable River, or a land tile with a Minor River. It yields [icon:YIELD_FOOD] Food and [icon:YIELD_PRODUCTION] Production wherever it stands, and once it is finished, floods no longer pillage the Improvements, Buildings and Districts of its [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlement[/TIP].</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_CONTENT_PARA_2">
+            <Text>Each age has its own Dam, and each holds back larger floods than the one before. A Dam pays its yields on any river, so it is worth building on a river that never floods; on one that does, it also guards the Settlement.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_AGES_TITLE">
+            <Text>Dams by Age</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_AGES_PARA_1">
+            <Text>[BLIST][LI][B]Ancient Dam[/B] (Antiquity): unlocked by Irrigation. Costs 150 [icon:YIELD_PRODUCTION] Production and 1 [icon:YIELD_GOLD] Gold a turn. +2 [icon:YIELD_FOOD] Food, +2 [icon:YIELD_PRODUCTION] Production. Holds back moderate floods.[LI][B]Medieval Dam[/B] (Exploration): unlocked by Machinery. Costs 275 [icon:YIELD_PRODUCTION] Production and 2 [icon:YIELD_GOLD] Gold a turn. +3 [icon:YIELD_FOOD] Food, +3 [icon:YIELD_PRODUCTION] Production. Holds back moderate and major floods.[LI][B]Modern Dam[/B] (Modern): unlocked by Electricity. Costs 600 [icon:YIELD_PRODUCTION] Production and 3 [icon:YIELD_GOLD] Gold a turn. +4 [icon:YIELD_FOOD] Food, +6 [icon:YIELD_PRODUCTION] Production. Holds back every flood, the 1000-year flood included.[/LIST]</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_PLACEMENT_TITLE">
+            <Text>Placement</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_PLACEMENT_PARA_1">
+            <Text>A Dam is built from the production list or bought with [icon:YIELD_GOLD] Gold, in a City or a Town, on any river tile where the Settlement could place a building. A young Settlement is offered only the river tiles beside its City Center, and more as it grows.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_PLACEMENT_PARA_2">
+            <Text>Any river can take a Dam, and a Settlement on two rivers can dam both. What holds the number down is the price: each Dam of an age a Settlement already has adds about a quarter of the base cost to the next one there (+40, +70 and +150 [icon:YIELD_PRODUCTION] Production for the Ancient, Medieval and Modern Dam), and every Dam pays its [icon:YIELD_GOLD] Gold upkeep.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_AI_TITLE">
+            <Text>Other Civilizations</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_OVERVIEW_CHAPTER_AI_PARA_1">
+            <Text>Computer-controlled players build Dams by the same rules and at the same price, and weigh them as they weigh any other building. Single player and multiplayer games use the same rules too, except for Levees and dried Floodplains (see Levees).</Text>
+        </Row>
+
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_TITLE">
+            <Text>Flood Protection</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_CONTENT_TITLE">
+            <Text>Flood Sizes</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_CONTENT_PARA_1">
+            <Text>Floods come in three sizes: moderate, major and 1000-year. A flood a Dam holds back does not pillage Improvements, Buildings or Districts in a protected Settlement. A larger flood than the Dam can hold does damage as usual.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_CONTENT_PARA_2">
+            <Text>A Dam does not stop the flood itself. Floods on a dammed river still happen, are still reported, and still leave silt behind, raising the [icon:YIELD_FOOD] Food or [icon:YIELD_PRODUCTION] Production of one to three of the river's tiles.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_WHO_TITLE">
+            <Text>Who Is Protected</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_WHO_PARA_1">
+            <Text>The Settlement holding the Dam, always. In single player also every other Settlement that owns a tile of the dammed river, including those of other players, through a Levee.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_WHO_PARA_2">
+            <Text>Protection belongs to the whole Settlement, not to one river. A Settlement on the dammed river and on a second river is protected on both.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_SHARE_TITLE">
+            <Text>Damage Prevented</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_SHARE_PARA_1">
+            <Text>Larger floods are rarer and pillage more of the tiles they reach (20%, 40% and 60% of flooded tiles). Weighed by both, the share of flood damage each Dam prevents at each Disaster Frequency, Light (the default), Moderate and Catastrophic, is:[BLIST][LI][B]Ancient Dam:[/B] about 17%, 29%, 36%.[LI][B]Medieval Dam:[/B] about 50%, 57%, 73%.[LI][B]Modern Dam:[/B] all of it.[/LIST]</Text>
+        </Row>
+
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_OVERTOP_TITLE">
+            <Text>Overtopped Dams</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_OVERTOP_PARA_1">
+            <Text>A flood bigger than a Dam can hold pillages the Dam itself if it reaches the Dam's tile: a major or 1000-year flood an Ancient Dam, a 1000-year flood a Medieval Dam. The Modern Dam holds every flood and is never overtopped. A pillaged Dam gives no yields and no protection until it is repaired, and in single player the Levees along its river fall back to the next best Dam.</Text>
+        </Row>
+
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_TITLE">
+            <Text>Dried Floodplains</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_PARA_1">
+            <Text>In single player and hotseat games, when a Dam is finished every [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplain[/TIP] on its river is removed, along the whole river and whoever owns the tile. Each of those tiles loses the Floodplain's own yield, about 1 [icon:YIELD_FOOD] Food, for good, and the Floodplains do not return if the Dam is razed. A river with no Floodplains costs nothing.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_PARA_2">
+            <Text>Drying does not stop the floods: they come as before and still leave their silt.</Text>
+        </Row>
+
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_TITLE">
+            <Text>Levees</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_TITLE">
+            <Text>Basics</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_PARA_1">
+            <Text>A Levee carries a Dam's protection to the other Settlements on its river. It is placed in the City Center of every Settlement that owns a tile of a dammed river, and holds back the same floods as the best finished Dam on that river.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_PARA_2">
+            <Text>A Levee cannot be built or bought. It takes no building slot and needs no citizen. A Settlement already holding a Dam at least as good as the river's best has no Levee. A Settlement on two dammed rivers gets the Levee of the better Dam.</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CHANGES_TITLE">
+            <Text>When Levees Change</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CHANGES_PARA_1">
+            <Text>[BLIST][LI]A Settlement founded on a dammed river, or whose borders grow to reach one, gets its Levee at the start of the next turn.[LI]When a newer Dam is finished on the river, its Levees are raised to match.[LI]When a Dam is pillaged or razed, the Levees along its river fall back to the next best Dam, or are removed if there is none, a turn later.[LI]A Settlement that loses its last tile of the river loses its Levee a turn later.[/LIST]</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_MULTIPLAYER_TITLE">
+            <Text>Multiplayer</Text>
+        </Row>
+        <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_MULTIPLAYER_PARA_1">
+            <Text>Levees are placed, and Floodplains dried, in single player and hotseat games only. In an online or LAN game each Dam protects the Settlement that holds it and the river keeps its Floodplains; everything else about Dams is the same.</Text>
         </Row>
     </EnglishText>
 </Database>

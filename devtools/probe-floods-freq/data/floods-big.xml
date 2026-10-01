@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- E2b (DEPLOY freqbigfloods): no moderate floods; major and 1000-year floods 300 times per age; the game's own pillage
+     shares, so a Dam is pillaged only by its own overtopping rows. -->
+<Database>
+    <RandomEventFrequencies>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_MODERATE"/><Set OccurrencesPerAge="0"/></Update>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_MAJOR"/><Set OccurrencesPerAge="300"/></Update>
+        <Update><Where RandomEventType="RANDOM_EVENT_FLOOD_1000_YEAR"/><Set OccurrencesPerAge="300"/></Update>
+    </RandomEventFrequencies>
+</Database>

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Dam sites. Each Dam requires the site marker on its tile, so the engine offers it, to the game's own AI as to the
-  player, only on a tile ui/dams-sites.js has marked: for an AI, one tile of each river where a Dam guards something
-  (the game's AI then decides for itself whether and when to build it there); for the player, the tile of each order.
-  The game's AI obeys only the data, and the data cannot say "a river that floods, with no Dam as good on it". The
-  marker has no feature class, gives way to other buildings (Removable) and yields exactly what the land beneath it
-  yields (data/dams-sites.sql); watched with the Canals marker, runs m1-m7, 2026-09-29.
+  The dam-site marker of 1.3.0, kept only so a save made with 1.3.0 still loads: its markers stay on the map until
+  ui/dams-sites.js lifts them and puts back what each replaced. Nothing requires the marker any more; a Dam goes on
+  any river tile. It has no feature class and yields exactly what the land beneath it yields (data/dams-sites.sql).
 -->
 <Database>
     <Types>
@@ -26,9 +23,4 @@
         <Row BiomeType="BIOME_TROPICAL" FeatureType="FEATURE_DAMS_SITE"/>
         <Row BiomeType="BIOME_TUNDRA" FeatureType="FEATURE_DAMS_SITE"/>
     </Feature_ValidBiomes>
-    <Constructible_RequiredFeatures>
-        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" FeatureType="FEATURE_DAMS_SITE"/>
-        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" FeatureType="FEATURE_DAMS_SITE"/>
-        <Row ConstructibleType="BUILDING_DAM_MODERN" FeatureType="FEATURE_DAMS_SITE"/>
-    </Constructible_RequiredFeatures>
 </Database>

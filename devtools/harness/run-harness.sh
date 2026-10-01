@@ -41,7 +41,8 @@ GDIR="$MODS/dam-grant-probe"
 ADIR="$MODS/dam-short-age-probe"
 CDIR="$MODS/dam-compact-cities"
 CREPO="$(cd "$HERE/../../../../other_peoples_mods/3781288701" 2>/dev/null && pwd)"
-MOD="$(cd "$HERE/../.." && pwd)"
+MOD="${MODSRC:-$(cd "$HERE/../.." && pwd)}"   # MODSRC= another copy of the mod, e.g. an older release
+QDIR="$MODS/dam-floodfreq-probe"
 BAK="$S/dam-harness-backup/auto-$LABEL"
 say() { echo "[$(date +%H:%M:%S)] $*"; }
 
@@ -53,7 +54,7 @@ pgrep -x CivilizationVII >/dev/null && { say "Civ VII is ALREADY RUNNING - anoth
 BUSY=$(find "$MODS" -maxdepth 1 -type d -iname "*harness*" ! -name dam-harness -mmin -15 2>/dev/null)
 [ -n "$BUSY" ] && { say "another session's harness is fresh ($(basename "$BUSY")) - a run is in progress. Stop here."; exit 1; }
 STASH="$S/dam-harness-backup/foreign-$LABEL"
-FOREIGN=$(ls "$MODS" 2>/dev/null | grep -iE "probe|harness" | grep -vE "^(dam-harness|dam-flood-probe|dam-grant-probe)$")
+FOREIGN=$(ls "$MODS" 2>/dev/null | grep -iE "probe|harness" | grep -vE "^(dam-harness|dam-flood-probe|dam-floodfreq-probe|dam-grant-probe)$")
 restore_foreign() {
   [ -d "$STASH" ] || return 0
   for d in "$STASH"/*(N); do
@@ -93,11 +94,14 @@ trap 'restore_opts; restore_emig; restore_foreign' EXIT INT TERM
 rm -rf "$BAK"; mkdir -p "$BAK"; cp -p "$AUTO"/*.Civ7Save "$BAK"/ 2>/dev/null
 say "autosaves backed up: $(ls "$BAK" 2>/dev/null | wc -l | tr -d ' ')"
 
-rm -rf "$HDIR" "$FDIR" "$MDIR" "$GDIR" "$ADIR" "$CDIR"; mkdir -p "$HDIR/ui"
+rm -rf "$HDIR" "$FDIR" "$MDIR" "$GDIR" "$ADIR" "$CDIR" "$QDIR"; mkdir -p "$HDIR/ui"
 for part in ${(s:+:)DEPLOY}; do
   case "$part" in
     none) ;;
     floods) mkdir -p "$FDIR"; cp -R "$HERE/../probe-floods/." "$FDIR/"; say "deployed: dam-flood-probe (floods 300x per age, levee marker)" ;;
+    freqfloods) mkdir -p "$QDIR"; cp -R "$HERE/../probe-floods-freq/." "$QDIR/"; rm -f "$QDIR/data/floods-big.xml" "$QDIR/data/floods-mixed.xml"; say "deployed: dam-floodfreq-probe (floods 300x per age, the game's own pillage shares)" ;;
+    freqmixfloods) mkdir -p "$QDIR"; cp -R "$HERE/../probe-floods-freq/." "$QDIR/"; mv "$QDIR/data/floods-mixed.xml" "$QDIR/data/floods.xml"; rm -f "$QDIR/data/floods-big.xml"; say "deployed: dam-floodfreq-probe (major 300, moderate 30, no 1000-year)" ;;
+    freqbigfloods) mkdir -p "$QDIR"; cp -R "$HERE/../probe-floods-freq/." "$QDIR/"; mv "$QDIR/data/floods-big.xml" "$QDIR/data/floods.xml"; rm -f "$QDIR/data/floods-mixed.xml"; say "deployed: dam-floodfreq-probe (major and 1000-year floods only, the game's own pillage shares)" ;;
     bigfloods) mkdir -p "$FDIR"; cp -R "$HERE/../probe-floods/." "$FDIR/"; cp "$HERE/../probe-floods-big/floods.xml" "$FDIR/data/floods.xml"; say "deployed: dam-flood-probe with major and 1000-year floods only" ;;
     mod) mkdir -p "$MDIR"; cp "$MOD/dams.modinfo" "$MDIR/"; for d in data text ui icons; do [ -d "$MOD/$d" ] && cp -R "$MOD/$d" "$MDIR/"; done; rm -rf "$MDIR/icons/src"; say "deployed: the mod from tower_mods/dams" ;;
     emig)
@@ -117,7 +121,9 @@ for part in ${(s:+:)DEPLOY}; do
   esac
 done
 cp "$HERE/dam-harness.modinfo" "$HDIR/"
-if [ -n "${SAVE:-}" ]; then
+if [ "${LAN:-0}" = "1" ]; then
+  sed -e "s/__AGE__/${START_AGE:-}/" -e "s/__SEED__/${SEED:-}/" "$HERE/damh-shell-lan.js" > "$HDIR/ui/damh-shell.js"
+elif [ -n "${SAVE:-}" ]; then
   [ -f "$S/Saves/Single/$SAVE" ] || { say "missing save $S/Saves/Single/$SAVE"; exit 1; }
   sed -e "s/AugustusExp66.Civ7Save/$SAVE/" "$HERE/damh-shell-load.js" > "$HDIR/ui/damh-shell.js"
 else
@@ -179,8 +185,8 @@ if [ "$result" = crashed ]; then
 fi
 
 pkill -TERM CivilizationVII; sleep 8; pgrep -x CivilizationVII >/dev/null && { sleep 10; pkill -KILL CivilizationVII; }
-rm -rf "$HDIR" "$FDIR" "$MDIR" "$GDIR" "$ADIR" "$CDIR"
-sqlite3 "$DB" "delete from Mods where ModId in ('dam-harness','dam-flood-probe','tower-dams','dam-grant-probe','dam-short-age-probe'$([ -n "${CDEPLOYED:-}" ] && echo ",'compact-cities'"))" 2>/dev/null
+rm -rf "$HDIR" "$FDIR" "$MDIR" "$GDIR" "$ADIR" "$CDIR" "$QDIR"
+sqlite3 "$DB" "delete from Mods where ModId in ('dam-harness','dam-flood-probe','dam-floodfreq-probe','tower-dams','dam-grant-probe','dam-short-age-probe'$([ -n "${CDEPLOYED:-}" ] && echo ",'compact-cities'"))" 2>/dev/null
 [ "${KEEP_SAVES:-0}" = "1" ] || rm -f "$S/Saves/Single/DAM-"*.Civ7Save 2>/dev/null
 say "cleaned up: $(ls "$MODS" | grep -icE 'dam-harness|dam-flood-probe|tower-dams|dam-grant-probe|dam-short-age-probe|dam-compact-cities' | tr -d ' ') of our folders left in Mods/"
 

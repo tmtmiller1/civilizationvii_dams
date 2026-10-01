@@ -15,4 +15,19 @@
         <Row EventClass="CLASS_DAMS_FLOOD_MAJOR"/>
         <Row EventClass="CLASS_DAMS_FLOOD_1000_YEAR"/>
     </EventClasses>
+    <!-- Overtopping: a flood bigger than a Dam holds back pillages the Dam itself whenever it reaches the Dam's tile, as
+         every flood pillages the base Ancient Bridge; the floods it holds back never do. Here, after the classes
+         above exist (the table has a foreign key onto them), and before data/dams-floods.sql copies each CLASS_FLOOD
+         row to the two new classes; that copy is INSERT OR IGNORE, so these values stand. -->
+    <Constructible_PillageRandomEvents>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" EventClass="CLASS_FLOOD" PercentChance="0"/>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" EventClass="CLASS_DAMS_FLOOD_MAJOR" PercentChance="100"/>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" EventClass="CLASS_DAMS_FLOOD_1000_YEAR" PercentChance="100"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" EventClass="CLASS_FLOOD" PercentChance="0"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" EventClass="CLASS_DAMS_FLOOD_MAJOR" PercentChance="0"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" EventClass="CLASS_DAMS_FLOOD_1000_YEAR" PercentChance="100"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" EventClass="CLASS_FLOOD" PercentChance="0"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" EventClass="CLASS_DAMS_FLOOD_MAJOR" PercentChance="0"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" EventClass="CLASS_DAMS_FLOOD_1000_YEAR" PercentChance="0"/>
+    </Constructible_PillageRandomEvents>
 </Database>

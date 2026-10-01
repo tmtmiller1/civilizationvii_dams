@@ -1,40 +1,42 @@
 [h1]Dams[/h1]
-[b]Version 1.2.0, for Civilization VII 1.5.0[/b]
-Dams adds a buildable Dam to Civilization VII. Build one on a river tile, navigable or minor, and floods on that river stop pillaging the settlements along it. Each age's Dam holds back bigger floods than the last. In exchange, the river's floodplains are removed.
+[b]Version 2.0.0, for Civilization VII 1.5.0[/b]
+Dams adds a buildable Dam to Civilization VII. Build one on any river tile, navigable or minor. It yields Food and Production, and floods stop pillaging its settlement. Each age's Dam holds back bigger floods than the last. Single player and multiplayer play by the same rules.
 [h2]The Mod Includes[/h2]
 [list]
-[*]Three Dams, one per age: the Ancient Dam (Irrigation, 250 production, +2 Food and +1 Production), the Medieval Dam (Machinery, 450 production, +3 Food and +2 Production) and the Modern Dam (Electricity, 750 production, +3 Food and +4 Production).
-[*]Protection that grows with the age. The Ancient Dam holds back moderate floods, the Medieval Dam moderate and major floods, and the Modern Dam every flood, including the 1000-year flood. At the default Disaster Intensity (Light) that works out to about 17 %, 50 % and 100 % of the flood damage, and more for the older Dams at higher intensities.
-[*]Placement on any river tile the settlement can build on: a navigable river, or a land tile with a minor river. A young settlement is offered only the river tiles next to its city center, as for any building. Towns can buy it with gold.
-[*]One Dam per age on each river. A Dam from an earlier age doesn't block a newer one.
-[*]Flood protection for every settlement that owns a tile of the dammed river, including other players' settlements. The settlement with the Dam is protected by the Dam itself. The others get a Levee, a hidden building that takes no slot and matches the best Dam on the river. A settlement founded on the river later is covered from the next turn.
+[*]Three Dams, one per age: the Ancient Dam (Irrigation, 150 production, 1 Gold upkeep, +2 Food and +2 Production), the Medieval Dam (Machinery, 275 production, 2 Gold upkeep, +3 Food and +3 Production) and the Modern Dam (Electricity, 600 production, 3 Gold upkeep, +4 Food and +6 Production).
+[*]Protection that grows with the age. The Ancient Dam holds back moderate floods, the Medieval Dam moderate and major floods, and the Modern Dam every flood, including the 1000-year flood. At the default Disaster Frequency (Light) that works out to about 17 %, 50 % and 100 % of the flood damage, and more for the older Dams at higher frequencies.
+[*]Placement on any river tile the settlement can build on: a navigable river, or a land tile with a minor river. A settlement on two rivers can dam both. A young settlement is offered only the river tiles next to its city center, as for any building. Towns can buy it with gold.
+[*]A rising price: each Dam of an age a settlement already has adds about a quarter of the base cost to the next one there (+40, +70 or +150 production). The AI pays the same and weighs a Dam like any other building.
+[*]In single player and hotseat, protection for every other settlement that owns a tile of the dammed river, including other players' settlements, through a Levee: a hidden building that takes no slot and matches the best Dam on the river.
 [*]A 3D model for each age, drawn across the river, and a build icon for each.
 [/list]
 [h2]Trade-off[/h2]
-When a Dam is finished, the river's floodplains are removed from the map. Each of those tiles loses about 1 Food, permanently.
+In single player and hotseat, when a Dam is finished the river's floodplains are removed from the map. Each of those tiles loses about 1 Food, permanently. A river with no floodplains costs nothing. In an online or LAN game the river keeps them.
 [h2]Limits[/h2]
 [list]
 [*]Floods still happen, and each one still adds a permanent +1 Food or Production to one to three river tiles. The Dam prevents the damage, not the flood.
-[*]Floods bigger than a Dam holds back do damage as usual. Every Dam removes all of the river's floodplains, so an Ancient Dam costs as much as a Modern one.
+[*]Floods bigger than a Dam holds back do damage as usual, and one that reaches the Dam's tile pillages the Dam: a major or 1000-year flood an Ancient Dam, a 1000-year flood a Medieval Dam. A pillaged Dam protects nothing until it is repaired.
 [*]Protection applies to the whole settlement, so a settlement on two rivers is protected on both.
 [*]Units on a flooded tile still take damage.
+[*]In an online or LAN game there are no Levees and no drying: each Dam protects its own settlement.
 [/list]
 [h2]Compatibility[/h2]
 [list]
 [*]Adds new buildings and doesn't replace base-game files. The one base-game change: major and 1000-year floods get flood types of their own. Other flood protection (the Khmer Baray, the Water Puppet Theater, other mods' flood immunity) is widened to match and still covers every flood.
 [*]Works with compact-city mods that keep buildings next to the city center: those mods leave Dams and Levees alone.
-[*]Saves load with the mod on or off.
+[*]Saves load with the mod on or off. A save from version 1.3.0 loads with its dam-site markers lifted.
 [*]Start a new game with the mod enabled. In a game already in progress, a Dam whose tech was researched before the mod was added isn't available.
-[*]Single player. In multiplayer, a Dam protects only the settlement that holds it.
-[*]Dams plus a mod that turns floods off: the Dam still dries the floodplains but protects against nothing.
+[*]Dams plus a mod that turns floods off: the Dam still yields (and in single player still dries the floodplains), but protects against nothing.
 [/list]
 [h2]Languages[/h2]
-English only for now. Ask in the comments if you'd like a translation.
+English, German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese, Russian, and Simplified and Traditional Chinese, using the game's own words for its terms. The translations are machine-made; corrections are welcome in the comments.
 [h2]Source and documentation[/h2]
 [list]
 [*][b]What's new:[/b] [url=https://github.com/tmtmiller1/civilizationvii_dams/releases/latest]the latest release notes and a download[/url]
 [*][b]Full documentation:[/b] [url=https://github.com/tmtmiller1/civilizationvii_dams/blob/main/README.md]how the mod works[/url]
 [/list]
+[h2]For modders[/h2]
+This mod is developed with [url=https://github.com/tmtmiller1/civilizationvii_tower-bench]Tower Bench[/url], a free, open-source test bench for Civilization VII mods. It connects to a running game from your browser or the command line: inspect and change the map with every write verified and undoable, diff the world between two turns, prove your deployed code is what the game runs, find which mod causes a crash, and see which copy of each mod is actually loaded.
 [h2]Credits[/h2]
 [list]
 [*][b]Tower[/b], for design and Civilization VII implementation.

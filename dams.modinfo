@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   Dams - a Civilization VII mod.
-  Three Dam buildings (Antiquity, Exploration, Modern), built through the ordinary production screen on a river tile,
-  navigable or minor. A finished Dam keeps floods on its river from pillaging the settlements along it: moderate
-  floods from Antiquity, major ones too from Exploration, every flood from the Modern age. Data: the buildings, the
-  flood classes, their tech unlocks and the build icon. Script: the one-Dam-per-river rule, the Levees, persistence
-  and the drawn dam.
+  Three Dam buildings (Antiquity, Exploration, Modern), built through the ordinary production screen on any river
+  tile, navigable or minor. A finished Dam yields Food and Production and keeps floods from pillaging its settlement:
+  moderate floods from Antiquity, major ones too from Exploration, every flood from the Modern age. Data: the
+  buildings, their price, the flood classes, the tech unlocks and the build icon; every rule a player meets is here,
+  so it holds for the game's AI and in a network game alike. Script: the Levees (single player only), the drawn dam,
+  and lifting the dam-site markers of a 1.3.0 save.
   AffectsSavedGames=0: the data adds types, and the only base rows it changes are the flood classes (major and
   1000-year floods get classes of their own, data/dams-floods.sql), which a save does not record.
 -->
@@ -16,7 +17,7 @@
         <Authors>Tower</Authors>
         <Package>Dams</Package>
         <PackageSortIndex>100</PackageSortIndex>
-        <Version>1.3.0</Version>
+        <Version>2.0.0</Version>
         <AffectsSavedGames>0</AffectsSavedGames>
     </Properties>
     <Dependencies>
@@ -31,7 +32,20 @@
     <ActionGroups>
         <ActionGroup id="dams-shell" scope="shell" criteria="always">
             <Actions>
-                <UpdateText><Item>text/en_us/DamsText.xml</Item></UpdateText>
+                <UpdateText>
+                    <Item>text/en_us/DamsText.xml</Item>
+                    <Item locale="de_DE">text/de_de/DamsText.xml</Item>
+                    <Item locale="es_ES">text/es_es/DamsText.xml</Item>
+                    <Item locale="fr_FR">text/fr_fr/DamsText.xml</Item>
+                    <Item locale="it_IT">text/it_it/DamsText.xml</Item>
+                    <Item locale="ja_JP">text/ja_jp/DamsText.xml</Item>
+                    <Item locale="ko_KR">text/ko_kr/DamsText.xml</Item>
+                    <Item locale="pl_PL">text/pl_pl/DamsText.xml</Item>
+                    <Item locale="pt_BR">text/pt_br/DamsText.xml</Item>
+                    <Item locale="ru_RU">text/ru_ru/DamsText.xml</Item>
+                    <Item locale="zh_Hans_CN">text/zh_cn/DamsText.xml</Item>
+                    <Item locale="zh_Hant_HK">text/zh_hk/DamsText.xml</Item>
+                </UpdateText>
                 <ImportFiles><Item>icons/dam_ancient.png</Item><Item>icons/dam_ancient_128.png</Item><Item>icons/dam_ancient_64.png</Item><Item>icons/dam_medieval.png</Item><Item>icons/dam_medieval_128.png</Item><Item>icons/dam_medieval_64.png</Item><Item>icons/dam_modern.png</Item><Item>icons/dam_modern_128.png</Item><Item>icons/dam_modern_64.png</Item></ImportFiles>
                 <UpdateIcons><Item>data/dams-icons.xml</Item></UpdateIcons>
             </Actions>
@@ -39,8 +53,21 @@
         <ActionGroup id="dams-game" scope="game" criteria="always">
             <Properties><LoadOrder>150</LoadOrder></Properties>
             <Actions>
-                <UpdateDatabase><Item>data/dams.xml</Item><Item>data/dams-floods.xml</Item><Item>data/dams-effects.xml</Item><Item>data/dams-floods.sql</Item><Item>data/dams-placement.sql</Item><Item>data/dams-sites.xml</Item><Item>data/dams-sites.sql</Item><Item>data/dams-ai.xml</Item></UpdateDatabase>
-                <UpdateText><Item>text/en_us/DamsText.xml</Item></UpdateText>
+                <UpdateDatabase><Item>data/dams.xml</Item><Item>data/dams-floods.xml</Item><Item>data/dams-effects.xml</Item><Item>data/dams-floods.sql</Item><Item>data/dams-placement.sql</Item><Item>data/dams-sites.xml</Item><Item>data/dams-sites.sql</Item><Item>data/dams-civilopedia.xml</Item></UpdateDatabase>
+                <UpdateText>
+                    <Item>text/en_us/DamsText.xml</Item>
+                    <Item locale="de_DE">text/de_de/DamsText.xml</Item>
+                    <Item locale="es_ES">text/es_es/DamsText.xml</Item>
+                    <Item locale="fr_FR">text/fr_fr/DamsText.xml</Item>
+                    <Item locale="it_IT">text/it_it/DamsText.xml</Item>
+                    <Item locale="ja_JP">text/ja_jp/DamsText.xml</Item>
+                    <Item locale="ko_KR">text/ko_kr/DamsText.xml</Item>
+                    <Item locale="pl_PL">text/pl_pl/DamsText.xml</Item>
+                    <Item locale="pt_BR">text/pt_br/DamsText.xml</Item>
+                    <Item locale="ru_RU">text/ru_ru/DamsText.xml</Item>
+                    <Item locale="zh_Hans_CN">text/zh_cn/DamsText.xml</Item>
+                    <Item locale="zh_Hant_HK">text/zh_hk/DamsText.xml</Item>
+                </UpdateText>
                 <ImportFiles><Item>icons/dam_ancient.png</Item><Item>icons/dam_ancient_128.png</Item><Item>icons/dam_ancient_64.png</Item><Item>icons/dam_medieval.png</Item><Item>icons/dam_medieval_128.png</Item><Item>icons/dam_medieval_64.png</Item><Item>icons/dam_modern.png</Item><Item>icons/dam_modern_128.png</Item><Item>icons/dam_modern_64.png</Item></ImportFiles>
                 <UpdateIcons><Item>data/dams-icons.xml</Item></UpdateIcons>
                 <UIScripts><Item>ui/dams.js</Item><Item>ui/dams-sites.js</Item></UIScripts>
