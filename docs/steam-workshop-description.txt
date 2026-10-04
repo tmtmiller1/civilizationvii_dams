@@ -1,5 +1,5 @@
 [h1]Dams[/h1]
-[b]Version 2.0.0, for Civilization VII 1.5.0[/b]
+[b]Version 2.0.1, for Civilization VII 1.5.0[/b]
 Dams adds a buildable Dam to Civilization VII. Build one on any river tile, navigable or minor. It yields Food and Production, and floods stop pillaging its settlement. Each age's Dam holds back bigger floods than the last. Single player and multiplayer play by the same rules.
 [h2]The Mod Includes[/h2]
 [list]

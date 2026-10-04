@@ -1,48 +1,61 @@
 #!/usr/bin/env python3
-"""Build the three per-age build icons at 256, 128 and 64 px, each rendered inside the base game's gold ring.
+"""Build the three per-age build icons at 256, 128 and 64 px: the age's dam art inside a gold ring.
 
-The ring is lifted from the shipped buildicon_modbridge texture (decoded with tools/civ7_blp_inspect.py) so the
-Dam matches the rest of the build menu. Pixels at radius >= RING_IN come from the base icon; inside it, the SVG
-art; a one-pixel band blends the two. Needs rsvg-convert and Pillow.
+Both parts are drawn here from the mod's own vector art: dam-<age>.svg for the scene, and ring.svg (written by this
+script) for the frame, a gold band in the style of the game's build icons. No game file is read. The art is kept
+inside radius RING_IN and the ring is laid over it. Needs rsvg-convert and Pillow.
 
     python3 icons/src/build-icon.py            # from the mod root
 
-Writes icons/dam_<age>.png plus _128 and _64, for age in ancient, medieval, modern.
+Writes icons/src/ring.svg and icons/dam_<age>.png plus _128 and _64, for age in ancient, medieval, modern.
 """
-import math
 import os
 import subprocess
-import sys
 import tempfile
 
-from PIL import Image
+from PIL import Image, ImageChops, ImageDraw
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MOD = os.path.dirname(os.path.dirname(HERE))
-TOOLS = os.path.normpath(os.path.join(MOD, "..", "..", "tools"))
-INSTALL = os.path.expanduser(
-    "~/Library/Application Support/Steam/steamapps/common/Sid Meier's Civilization VII/"
-    "CivilizationVII.app/Contents/Resources/DLC/boot-shell/Platforms/Mac/BLPs/SHARED_DATA"
-)
-RING_TEXTURE = "TEXTURE_buildicon_modbridge"
-RING_IN = 113.5  # measured: the ring's dark inner edge starts at r = 114 on the 256 px icon
 SIZE = 256
-
-
+C = SIZE / 2
+RING_IN = 114  # the art's disc; the ring covers 114 to 127
 AGES = ("ancient", "medieval", "modern")
 
+# Dark backing, gold band, a thin dark line where the band meets the art, and a pale outer rim.
+RING_SVG = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{SIZE}" height="{SIZE}" viewBox="0 0 {SIZE} {SIZE}">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbe7a6"/><stop offset="0.35" stop-color="#d9a94b"/>
+      <stop offset="0.7" stop-color="#9c6d22"/><stop offset="1" stop-color="#e8c26a"/>
+    </linearGradient>
+  </defs>
+  <circle cx="{C}" cy="{C}" r="120.5" fill="none" stroke="#3a2608" stroke-width="13"/>
+  <circle cx="{C}" cy="{C}" r="120.5" fill="none" stroke="url(#gold)" stroke-width="9.5"/>
+  <circle cx="{C}" cy="{C}" r="115" fill="none" stroke="#2b1a05" stroke-width="1.6" opacity="0.8"/>
+  <circle cx="{C}" cy="{C}" r="125.6" fill="none" stroke="#fff3c4" stroke-width="0.9" opacity="0.65"/>
+</svg>
+"""
 
-def compose(ring, art, out):
-    """Art inside, ring outside, one pixel of blend between them."""
-    result = Image.new("RGBA", (SIZE, SIZE))
-    rp, ap, op = ring.load(), art.load(), result.load()
-    c = (SIZE - 1) / 2
-    for y in range(SIZE):
-        for x in range(SIZE):
-            r = math.hypot(x - c, y - c)
-            t = min(1.0, max(0.0, r - (RING_IN - 0.5)))  # 0 = art, 1 = ring
-            a, b = ap[x, y], rp[x, y]
-            op[x, y] = tuple(round(a[i] * (1 - t) + b[i] * t) for i in range(4))
+
+def render(svg, out):
+    subprocess.run(["rsvg-convert", "-w", str(SIZE), "-h", str(SIZE), svg, "-o", out], check=True)
+    return Image.open(out).convert("RGBA")
+
+
+def disc_mask():
+    """An antialiased disc of radius RING_IN, drawn at 4x and reduced."""
+    big = Image.new("L", (SIZE * 4, SIZE * 4), 0)
+    r = RING_IN * 4
+    ImageDraw.Draw(big).ellipse((C * 4 - r, C * 4 - r, C * 4 + r, C * 4 + r), fill=255)
+    return big.resize((SIZE, SIZE), Image.LANCZOS)
+
+
+def compose(ring, art, mask, out):
+    """The art inside the disc, the ring over it."""
+    inside = art.copy()
+    inside.putalpha(ImageChops.multiply(art.getchannel("A"), mask))
+    result = Image.alpha_composite(inside, ring)
     result.save(out)
     print(f"wrote {out}")
     for size in (128, 64):
@@ -52,22 +65,15 @@ def compose(ring, art, out):
 
 
 def main():
+    ring_svg = os.path.join(HERE, "ring.svg")
+    with open(ring_svg, "w", encoding="utf-8") as f:
+        f.write(RING_SVG)
+    mask = disc_mask()
     with tempfile.TemporaryDirectory() as tmp:
-        ring_png = os.path.join(tmp, "ring.png")
-        subprocess.run(
-            [sys.executable, os.path.join(TOOLS, "civ7_blp_inspect.py"), os.path.join(INSTALL, RING_TEXTURE),
-             "--decode", ring_png],
-            check=True, stdout=subprocess.DEVNULL,
-        )
-        ring = Image.open(ring_png).convert("RGBA")
+        ring = render(ring_svg, os.path.join(tmp, "ring.png"))
         for age in AGES:
-            art_png = os.path.join(tmp, f"{age}.png")
-            subprocess.run(
-                ["rsvg-convert", "-w", str(SIZE), "-h", str(SIZE), os.path.join(HERE, f"dam-{age}.svg"),
-                 "-o", art_png],
-                check=True,
-            )
-            compose(ring, Image.open(art_png).convert("RGBA"), os.path.join(MOD, "icons", f"dam_{age}.png"))
+            art = render(os.path.join(HERE, f"dam-{age}.svg"), os.path.join(tmp, f"{age}.png"))
+            compose(ring, art, mask, os.path.join(MOD, "icons", f"dam_{age}.png"))
 
 
 if __name__ == "__main__":

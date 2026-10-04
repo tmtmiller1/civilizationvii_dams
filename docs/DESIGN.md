@@ -180,8 +180,8 @@ not spammed by the AI.
   interface: see the engine-closed entry on captures for the recipe and the zoom values. A Dam placed through the
   production screen lands wherever the settlement happens to own river, which on a young capital is the urban core,
   so the gallery probe chooses an open tile and buys it instead.
-- **Build-menu icon.** `icons/dam.png` (256 x 256), drawn in `icons/src/dam-icon.svg` and set inside the base game's
-  gold ring by `icons/src/build-icon.py`; imported by the modinfo (`ImportFiles`) and bound by `data/dams-icons.xml`
+- **Build-menu icon.** `icons/dam.png` (256 x 256), drawn in `icons/src/dam-icon.svg` and set inside a gold ring
+  that `icons/src/build-icon.py` draws itself; imported by the modinfo (`ImportFiles`) and bound by `data/dams-icons.xml`
   (`UpdateIcons`). `UI.getIconURL("BUILDING_DAM_ANTIQUITY")` returns `fs://game/tower-dams/icons/dam.png` (`d4`).
 
 ## The silt cannot be taken away

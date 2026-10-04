@@ -3,6 +3,11 @@
 All notable changes to Dams are documented here. This project follows semantic versioning. The probes and harness
 runs live in `devtools/`, outside the shipped files.
 
+## [2.0.1] - 2026-10-04
+
+- Build icons: each age's Dam now sits in a fuller gold ring, drawn to match the icons of the other Tower mods. No
+  gameplay change; saves from 2.0.0 load as before.
+
 ## [2.0.0] - 2026-10-01
 
 - Single player and multiplayer play by the same rules, all of them in the game's data. In 1.3.0 a Dam needed a

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Medieval dam, inner art only. build-icon.py renders this and sets it inside the base game's gold ring (taken from
-     buildicon_modbridge) so it sits with the shipped buildicon_* set. -->
+<!-- Medieval dam, inner art only. build-icon.py renders this and sets it inside the gold ring it draws
+     (icons/src/ring.svg), in the style of the game's build icons. -->
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
 <defs>
     <clipPath id="disc"><circle cx="128" cy="128" r="114"/></clipPath>

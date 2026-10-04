@@ -147,4 +147,4 @@ pillaged, and the Medieval Dam's tech in a game that reaches Machinery.
 
 ## Credits
 
-By Tower. The build icon uses the ring of the base game's bridge icon.
+By Tower.

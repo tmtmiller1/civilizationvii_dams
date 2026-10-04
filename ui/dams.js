@@ -26,7 +26,7 @@
 const TAG = "[Dams]";
 const G = globalThis;
 const KEY = "__dams";
-const VERSION = "2.0.0";
+const VERSION = "2.0.1";
 const DAM_TYPES = ["BUILDING_DAM_ANTIQUITY", "BUILDING_DAM_EXPLORATION", "BUILDING_DAM_MODERN"];
 /** The Levee each Dam raises, by the Dam's tier (its index in DAM_TYPES plus one). A higher tier holds more floods. */
 const LEVEES = [null, "BUILDING_DAM_LEVEE", "BUILDING_DAM_LEVEE_EXPLORATION", "BUILDING_DAM_LEVEE_MODERN"];

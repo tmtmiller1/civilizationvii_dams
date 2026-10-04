@@ -3,6 +3,10 @@ Generated from CHANGELOG.md by scripts/steam-changelog.mjs; release.sh uploads t
 To fix an old Workshop entry, paste the text under its ==== line into that entry's Edit box on the change-notes page.
 A block edited by hand is kept as-is. Delete a block to regenerate it from CHANGELOG.md.
 
+==== 2.0.1 | 2026-10-04 | src 995b54c79668 | gen 8d05ad22815e ====
+[b]Version 2.0.1 · 4 October 2026[/b]
+• Build icons: each age's Dam now sits in a fuller gold ring, drawn to match the icons of the other Tower mods. No gameplay change; saves from 2.0.0 load as before.
+
 ==== 2.0.0 | 2026-10-01 | src 639fc4139c6a | gen f516bdbf6e5e ====
 [b]Version 2.0.0 · 1 October 2026[/b]
 • Single player and multiplayer play by the same rules, all of them in the game's data. In 1.3.0 a Dam needed a dam-site marker that the mod never placed in a network game; a Dam now needs no marker.
