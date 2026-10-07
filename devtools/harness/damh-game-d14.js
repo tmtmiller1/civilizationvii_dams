@@ -1,5 +1,5 @@
 // damh-game-d14.js - D14. Does a flood raise a tile's Food at all, and does the floodplain feature matter?
-// d13 disproved the claim d8 suggested: a river whose floodplains the mod had dried gained the SAME +5 Food over the
+// d13 disproved the claim d8 suggested: a river whose floodplains the mod had dried gained the same +5 Food over the
 // same 8 floods as that river did undammed in d10 (same seed, same turns) - the drying only cost the floodplain's own
 // Food up front. So the slow rise measured over 24 turns is probably not the flood at all. This measures one flood at
 // a time: every floodplain tile's Food is read at the start of each turn and again seconds after the flood lands, so

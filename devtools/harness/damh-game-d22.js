@@ -1,6 +1,6 @@
 // damh-game-d22.js - D22, the save half of the reload test. Places a Dam on a river the capital owns, lets the mod's
 // sweep draw it, raise Levees and dry the floodplains, records all of it, then saves as DAM-d22. D23 loads that save
-// and checks it all came back - including that the first sweep after a load does NOT strip the Levees (unprotect
+// and checks it all came back - including that the first sweep after a load does not strip the Levees (unprotect
 // waits for two turns before removing one).
 //   START_AGE=AGE_EXPLORATION SEED=9001 KEEP_SAVES=1 zsh run-harness.sh damh-game-d22.js d22 900 mod+grant
 // Was: damh-game-gallery.js - the release captures, one run per age (the age comes from the game, so the same script

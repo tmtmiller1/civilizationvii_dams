@@ -1,8 +1,8 @@
 # Dams: design
 
-Status: 2.0.0 built and watched in single player (2026-10-01, runs `e1` to `e5b`): every rule a player meets moved
+Status: 2.0.0 built and tested in single player (2026-10-01, runs `e1` to `e5b`): every rule a player meets moved
 into data, so single player and a network game play alike; see "2.0.0: data only" below. A network game is open
-(`e6`). 1.3.0 watched in Exploration games (runs `v1` to `v1c`); 1.2.0 watched (runs `d26` to `d29`): protection
+(`e6`). 1.3.0 tested in Exploration games (runs `v1` to `v1c`); 1.2.0 tested (runs `d26` to `d29`): protection
 graded by age, Levees by tier, save and reload, Compact Cities, the age transition.
 Sibling of `tower_mods/canals`: a Dam is a building made through the ordinary production screen, placed on a river
 tile (navigable or minor), that protects the settlements along that river from its floods.
@@ -17,7 +17,7 @@ tile (navigable or minor), that protects the settlements along that river from i
   Floods still come and still leave their fertility.
 - Its own model on the map and its own icon in the build menu.
 
-## What the engine allows (watched 2026-09-28 on 1.5.0 unless marked)
+## What the engine allows (runs of 2026-09-28 on 1.5.0 unless marked)
 
 The request was a Dam that stops floods on its river and the tiles beside it. Three findings reshaped that, and the
 shape they left is the one the mod keeps: **a Dam spares the settlements along its river from flood damage while the
@@ -52,8 +52,8 @@ Modern all three. Everything else that names `CLASS_FLOOD` (the three base immun
 bridge pillage rows, and any other mod's immunity, through two triggers) is widened so the split changes nothing but
 the Dams. Weighting each flood by `RandomEventFrequencies` and its `CONSTRUCTIBLE_DAMAGED` share (20/40/60 %), the
 damage a Dam prevents is about 17/50/100 % at Light (the default), 29/57/100 % at Moderate and 36/73/100 % at Heavy.
-Each settlement's Levee matches the best Dam on its rivers (`leveePlan` in `ui/dams.js`). Watched in `d26`, `d26b`,
-`d27`, `d27b`. The rejected alternative was a per-turn chance to hold (a hidden shield switched on by a roll): it only
+Each settlement's Levee matches the best Dam on its rivers (`leveePlan` in `ui/dams.js`). Runs `d26`, `d26b`, `d27`
+and `d27b`. The rejected alternative was a per-turn chance to hold (a hidden shield switched on by a roll): it only
 needed known verbs, but a Dam that randomly fails reads as a bug.
 
 Units are not covered. The engine has a unit-side immunity (`EFFECT_UNITS_IMMUNE_TO_RANDOM_EVENTS`) but no
@@ -110,7 +110,7 @@ harness collects it as `<label>-Game_RandomEvents.csv`.
   unlock files (a node exists only in its own age's database).
 - The limit is the price: `CostProgressionModel="COST_PROGRESSION_PREVIOUS_COPIES_CITY"` (the Ancient Walls' model)
   with `CostProgressionParam1` a flat 40 / 70 / 150 Production per Dam already in the settlement, plus Gold upkeep
-  (`Constructible_Maintenances`). Watched 2026-10-01: `Constructible_BuildingCostProgressions` only feeds
+  (`Constructible_Maintenances`). Runs of 2026-10-01: `Constructible_BuildingCostProgressions` only feeds
   `PREVIOUS_BUILDINGS_CITY` and did nothing on its own (`e1`, `e1b`); the empire-wide `PREVIOUS_COPIES` (Settlers'
   model) leaves a building's price alone (`e1c3`: two Medieval Dams bought at 1,100 Gold each); `PREVIOUS_COPIES_CITY`
   at 25 took the second to 300 (`e1c4`), so Param1 is flat Production, and at 70 to 345 (`e1c5`). The cost read
@@ -128,65 +128,65 @@ reading the code; not run). The user asked for single player and multiplayer to 
 crash-free as possible, with Dams buildable on any river tile, worth it for yields and for protection, balanced, and
 not spammed by the AI.
 
-- **Every rule in data.** The site requirement, the +3,000 AI bias (`dams-ai.xml`) and the one-per-river wrapper are
+- Every rule is in data. The site requirement, the +3,000 AI bias (`dams-ai.xml`) and the one-per-river wrapper are
   gone. A rule only the script enforces binds neither the AI (its builds do not pass through `canStart`) nor anyone
   in a network game the script cannot write in.
-- **Why not one per river.** The data cannot say "on the same river as". One per settlement (`MultiplePerCity`
+- Not one per river, because the data cannot say "on the same river as". One per settlement (`MultiplePerCity`
   false) can be said, but the user wanted a settlement on two rivers to dam both.
-- **Per settlement, not per player.** No cost model counts a building across the empire (`e1c3`), so the price rises
-  within a settlement only; the Gold upkeep is what weighs on an empire full of Dams.
-- **Why the AI will not spam.** At the game's default weighting and the 1.2.0 price the AI weighed the Dam 573 times
+- Per settlement, not per player: no cost model counts a building across the empire (`e1c3`), so the price rises
+  within a settlement only. The Gold upkeep is what weighs on an empire full of Dams.
+- The AI should not spam Dams. At the game's default weighting and the 1.2.0 price the AI weighed the Dam 573 times
   in 60 turns of `u1` and built none. The new Dam is cheaper for its yield, so it should build some; the rising cost
-  bounds how many. How often it does is to be watched.
-- **Yields against base buildings.** Gristmill 175 for +4 Food, Sawmill 175 for +3 Production, Factory 780 for +12
-  Production with 4 Gold and 4 Happiness upkeep, each with adjacencies. Dams: 150 / 275 / 600 for +2+2 / +3+3 / +4+6,
-  1 / 2 / 3 Gold, no adjacencies; a little under for the protection, and no longer the 1.2.0 price of 250 / 450 / 750
-  for +2+1 / +3+2 / +3+4, which a Dam on a river that never floods did not repay.
-- **Overtopping** (the user's request was "a pillaged Dam causes a flood"; a script cannot start one, so the reverse):
+  bounds how many. How often it does is still to be seen.
+- Yields are set against the base buildings: Gristmill 175 for +4 Food, Sawmill 175 for +3 Production, Factory 780
+  for +12 Production with 4 Gold and 4 Happiness upkeep, each with adjacencies. Dams: 150 / 275 / 600 for +2+2 / +3+3
+  / +4+6, 1 / 2 / 3 Gold, no adjacencies; a little under for the protection, and no longer the 1.2.0 price of 250 /
+  450 / 750 for +2+1 / +3+2 / +3+4, which a Dam on a river that never floods did not repay.
+- Overtopping (the user asked for "a pillaged Dam causes a flood"; a script cannot start one, so the reverse):
   `Constructible_PillageRandomEvents` is the chance a flood class pillages a building (base: Ancient Bridge 100,
   Modern Bridge 0), not an event a pillage sets off. Each Dam is 100 for the classes it cannot hold and 0 for the
   rest (`data/dams-floods.xml`). A flood reaches only original floodplain tiles, so a Dam elsewhere is never
   overtopped. The Levee plan skips a Dam whose instance reads `damaged`.
-- **Single player keeps the script's extras** (the user's call): the Levees and the drying of the dammed river's
+- Single player keeps the script's extras (the user's call): the Levees and the drying of the dammed river's
   floodplains, both local writes and so skipped in a network game. Everything else is the same in both modes.
-- **Old saves.** `FEATURE_DAMS_SITE` stays defined so a 1.3.0 save loads; `ui/dams-sites.js` now only lifts its
+- Old saves: `FEATURE_DAMS_SITE` stays defined so a 1.3.0 save loads, and `ui/dams-sites.js` now only lifts its
   markers and puts back what each replaced (`Dams_Sites_v1`), outside a network game.
 
 ## Visuals
 
-- **3D.** A new building type cannot get a model through `VisualRemaps` (engine-closed.md), so `ui/dams.js` draws the
-  Dam with `WorldUI` model groups across its river, one look per age in the manner of Canals: rocks, then masonry,
-  then concrete (`DAM_LOOKS`).
-  - **Ancient: a rough weir.** Seventeen `Ant1_Euro_Fortification_RockPile*` at 0.7-0.8 in two staggered rows,
+- A new building type cannot get a model through `VisualRemaps` (engine-closed.md), so `ui/dams.js` draws the Dam
+  with `WorldUI` model groups across its river, one look per age in the manner of Canals: rocks, then masonry, then
+  concrete (`DAM_LOOKS`).
+  - Ancient, a rough weir. Seventeen `Ant1_Euro_Fortification_RockPile*` at 0.7-0.8 in two staggered rows,
     packed 0.07 apart so they overlap into one berm, over a river-rock decal, with foam below. The low pieces are
     seated with `PlacementMode.WATER` on navigable water: `TERRAIN` puts them on the riverbed and they drown out of
     sight (`d24-ant2`). A scatter of piles read as the river's own rocks, and a single row of small piles read as
     sparse; it has to be a filled-in line (`d24-ant4`, `d24-ant6`).
-  - **Across the flow, bank to bank.** `wallAngle` lays every look along the hex axis that has land at both ends,
+  - Across the flow, bank to bank. `wallAngle` lays every look along the hex axis that has land at both ends,
     preferring the one with the most water on its flanks. `flowAngle`, the average bearing of the tile's river
     neighbors, is only the fallback: at a fork or a river mouth it averages two branches and comes out near 90
     degrees off, which laid the ancient weir along the channel (`d24-ant5`: old 60, new 0). On a straight channel
     the two agree up to a half turn (`d24-EXPLORATION-w`, `d24-MODERN-w`: old 120, new 300).
-  - **Medieval: a stone ford.** `IMPROVEMENT_HAN_GREAT_WALL_RIVER_STRAIGHT` at 0.45, the Great Wall where it fords a
+  - Medieval, a stone ford. `IMPROVEMENT_HAN_GREAT_WALL_RIVER_STRAIGHT` at 0.45, the Great Wall where it fords a
     river: stairs down each bank and a gated arch across the flow (`d18`, `d24-exp`).
-  - **Modern: a concrete barrage.** Two `GEN_MOD_Harbor_Pier_HB` end to end at 0.55 with cranes along the crest,
+  - Modern, a concrete barrage. Two `GEN_MOD_Harbor_Pier_HB` end to end at 0.55 with cranes along the crest,
     `VFX_WaterFall_Loop_AutoHeight_Medium` pouring through the spillway and heavy foam below (`d24-mod`).
-  - **They grow with the age.** Scale numbers mean nothing across meshes of different native size; the ordering was
+  - They grow with the age. Scale numbers mean nothing across meshes of different native size; the ordering was
     set from all three drawn in one frame (`d21d`). Effects must go through `addVFXAtPlot`, not `addModelAtPlot`.
-  - **Rejected, with what they look like:** the dockyard gatehouse (a compact building, lost among rooftops),
+  - Rejected, with what they look like: the dockyard gatehouse (a compact building, lost among rooftops),
     terrace farms and Machu Picchu cliff tops (large terraced settlements), the Highland Power Station set (bare
     rock), the factory (a smokestack that dwarfs the river).
-- **Capturing.** The HUD, the map overlays and the active lens all have to come off, or the picture is of the
+- Capturing. The HUD, the map overlays and the active lens all have to come off, or the picture is of the
   interface: see the engine-closed entry on captures for the recipe and the zoom values. A Dam placed through the
   production screen lands wherever the settlement happens to own river, which on a young capital is the urban core,
   so the gallery probe chooses an open tile and buys it instead.
-- **Build-menu icon.** `icons/dam.png` (256 x 256), drawn in `icons/src/dam-icon.svg` and set inside a gold ring
+- Build-menu icon. `icons/dam.png` (256 x 256), drawn in `icons/src/dam-icon.svg` and set inside a gold ring
   that `icons/src/build-icon.py` draws itself; imported by the modinfo (`ImportFiles`) and bound by `data/dams-icons.xml`
   (`UpdateIcons`). `UI.getIconURL("BUILDING_DAM_ANTIQUITY")` returns `fs://game/tower-dams/icons/dam.png` (`d4`).
 
 ## The silt cannot be taken away
 
-Asked for 2026-09-28, after the protection was watched: a dammed river should **stop enriching its tiles**, as the
+Asked for 2026-09-28, after the protection runs: a dammed river should **stop enriching its tiles**, as the
 price of the safety. That cannot be built, and the mod no longer claims it.
 
 What a flood actually does, read seconds after it lands (`d14`): it permanently raises the Food or Production of one
@@ -194,7 +194,7 @@ to three tiles of the river it hits, by 1 each. It does this just as readily on 
 been removed (11 of 15 floods moved tiles on dried rivers against 5 of 5 on floodplain ones), so **the floodplain is
 not what carries the enrichment** and clearing it costs only the floodplain's own yield.
 
-The false trail, recorded so nobody walks it again: `d8` cleared one river's floodplains and its single flood added
+The false trail: `d8` cleared one river's floodplains and its single flood added
 nothing, while an untouched river gained across four floods. That looked like the answer, and it was one flood. `d13`
 ran the same seed and the same river as the undammed `d10`, and both rose by exactly +5 Food over the same 8 floods;
 the drying only cost 2 Food up front. Tile yields drift over 24 turns for reasons that have nothing to do with floods,
@@ -213,16 +213,16 @@ see on the map. It is a design choice rather than a mechanism: it does not stop 
 
 Handled, after a pass through the mod from the player's side:
 
-- **Upgrading.** Each age has its own Dam type, so a river dammed in Antiquity can take a Medieval Dam later.
-- **Levees follow their reason.** A settlement that no longer owns a tile of a dammed river (its Dam razed, its
+- Each age has its own Dam type, so a river dammed in Antiquity can take a Medieval Dam later.
+- Levees follow their reason. A settlement that no longer owns a tile of a dammed river (its Dam razed, its
   river tiles traded or lost) has its Levee removed. Only once it has been orphaned on two different turns: the first
   sweep after a load can run before the map's buildings read back, and would otherwise strip every Levee (`d23`).
-- **No double entries.** The settlement holding a Dam is covered by the Dam and gets no Levee, so its building list
+- No double entries: the settlement holding a Dam is covered by the Dam and gets no Levee, so its building list
   does not show both.
-- **Bought Dams appear at once.** A purchase lands complete with no completion event, so the mod also listens for a
+- Bought Dams appear at once. A purchase lands complete with no completion event, so the mod also listens for a
   Dam added to or removed from the map.
-- **The Levee stays out of the Civilopedia's buildings**, where a player would go looking for how to build one.
-- **Floods still show.** The Dam's text says floods still come and are still reported, and simply do no damage, so a
+- The Levee stays out of the Civilopedia's buildings, where a player would go looking for how to build one.
+- Floods still show. The Dam's text says floods still come and are still reported, and do no damage, so a
   flood notice beside a new Dam does not read as the mod failing.
 
 Not covered:
@@ -234,7 +234,7 @@ Not covered:
   61 rivers read `isFloodable`, which engine-closed.md finds does not predict floods (what does: whether the river had
   floodplain tiles at map creation). No AI bias keeps it off a building (Canals `w1`, `w1b`), and the data cannot say
   "a river that floods". So each Dam requires a dam-site marker (`data/dams-sites.xml`,
-  `Constructible_RequiredFeatures`, the mechanism watched in Canals `m1`-`m8`), and the script marks, for each AI, the
+  `Constructible_RequiredFeatures`, the mechanism from Canals `m1`-`m8`), and the script marks, for each AI, the
   candidate tiles of each river that floods, has no Dam as good, and runs past at least two of its own built-on tiles
   a flood would pillage (a marker standing in for a floodplain still counts, or it would lift itself: `v1`). The
   player's lists are widened to every candidate river tile and the order marks its tile. The AI's value of the Dam is
@@ -242,10 +242,10 @@ Not covered:
   on its marked site (6,13, a flooding river) on turn 10, finished it by turn 24, the sweep drew it and dried the
   river; the AI weighed a Dam nowhere else; the player's production and purchase Dams landed and were drawn. Sites
   come from the map: `canStart` gives an AI's settlements no plots (`u2`).
-- A network game is unwatched.
+- A network game has not been run.
 - A Dam goes where the game lets the settlement put a building. A young settlement is offered only the river tiles
   beside its centre (`d28e`, with the mod's wrapper off), so "any river tile" means any the settlement could build on.
-- 2.0.0 still unwatched (2026-10-01): a Dam offered and built in a network game (`e6`-`e6c`); Levees falling back when
+- Not yet run on 2.0.0 (2026-10-01): a Dam offered and built in a network game (`e6`-`e6c`); Levees falling back when
   a Dam on a shared river is pillaged (the planner skips a Dam whose instance reads `damaged`, read only in code);
-  Machinery opening the Medieval Dam in play (the row is in the Exploration database; Irrigation was watched end to
+  Machinery opening the Medieval Dam in play (the row is in the Exploration database; Irrigation was run end to
   end in `e1b`). The AI never chose a Dam in `e4`: whether to nudge it is a design call.

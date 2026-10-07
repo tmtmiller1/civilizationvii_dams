@@ -82,7 +82,7 @@ function readState(key) {
   }, null);
 }
 
-// ---- Observation. Emigration's reach rule, mirrored (emigration-events.js struckPlots).
+// Observation. Emigration's reach rule, mirrored (emigration-events.js struckPlots).
 function isFloodClass(cls) { return String(cls || "").split("_").includes("FLOOD"); }
 function riverPlotsAt(loc) {
   const at = idxOf(loc);
@@ -194,7 +194,7 @@ async function runPhase(label, turns) {
   phase = "between";
 }
 
-// ---- Verdicts from the observations of one phase.
+// Verdicts from the observations of one phase.
 function classify(ph) {
   const st = phaseStats(ph), pk = peak[ph] || new Map();
   const spared = [], damaged = [], excluded = [];

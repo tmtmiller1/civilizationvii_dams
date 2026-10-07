@@ -7,7 +7,7 @@
 A Civilization VII mod. Build a Dam on any river, navigable or not. It yields Food and Production, and once it is
 finished, floods stop pillaging its settlement; each age's Dam holds back bigger floods than the last. In single
 player the other settlements on the dammed river share the protection, and the price includes the valley: the river's
-floodplains dry out, and the land beside it gives up their Food for good.
+floodplains dry out, and the land beside it gives up its Food for good.
 
 The Dam is an ordinary building in the production list, and a town buys it with gold like any other building. Each
 age has its own Dam, unlocked by one of that age's techs. Single player and multiplayer play by the same rules.
@@ -100,42 +100,42 @@ deposits, and [docs/DESIGN.md](docs/DESIGN.md) records the runs behind that. A D
 
 ## How it works
 
-- **Placement and price.** All in the game's data: the game's own river rule, the one the Bridge and the Gristmill
+- Placement and price are all in the game's data: the game's own river rule, the one the Bridge and the Gristmill
   use, and the per-settlement rising cost the base game gives the Ancient Walls. The engine enforces both, for every
   player and in every kind of game.
-- **Protection.** The Khmer Baray's flood immunity, given to any settlement holding a Dam or a Levee. The game files
+- Protection is the Khmer Baray's flood immunity, given to any settlement holding a Dam or a Levee. The game files
   all three floods under one flood class, and the immunity is chosen by class, so the mod gives major and 1000-year
   floods classes of their own and each age's Dam names the ones it holds back. In single player, at load, at the start
   of each of the player's turns and whenever a Dam is finished, the mod reads every Dam off the map and places the
   right Levee in each settlement on its river (a pillaged Dam counts for nothing), and takes the floodplain features
   off a dammed river.
-- **Overtopping.** The game's own rule for which floods pillage which buildings, the one that has every flood
+- Overtopping uses the game's own rule for which floods pillage which buildings, the one that has every flood
   pillage the Ancient Bridge, set per Dam for the floods it cannot hold.
-- **Look.** Each finished Dam is drawn across its river from the game's own models, one look per age: a rough weir
-  of heaped boulders, a stone ford with a gated arch, a concrete barrage with a spillway. They grow with the age.
+- Each finished Dam is drawn across its river from the game's own models, one look per age: a rough weir of heaped
+  boulders, a stone ford with a gated arch, a concrete barrage with a spillway. They grow with the age.
 
 The design notes and the runs behind each step are in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Status
 
-Watched in game on Civilization VII 1.5.0, up to 1.3.0: placement on navigable and minor rivers, a real build and its
-completion, the protection of each age against each size of flood (a settlement with no Levee pillaged by every flood,
-the Ancient Levee holding moderate floods only, the Medieval Levee moderate and major, the Modern Levee all three),
-the Levees rising to a newer Dam and falling back when it is razed, the dried floodplains, each age's look, the icons,
-a save reloaded with the mod on, a Dam carried across the Exploration to Modern transition, and Compact Cities with
-its ring lock on.
+Tested in game on Civilization VII 1.5.0, through 1.3.0: placement on navigable and minor rivers, a build and its
+completion, each age's protection against each size of flood (a settlement with no Levee pillaged by every flood, the
+Ancient Levee holding moderate floods only, the Medieval Levee moderate and major, the Modern Levee all three), the
+Levees rising to a newer Dam and falling back when it is razed, the dried floodplains, each age's look, the icons, a
+save reloaded with the mod on, a Dam carried across the Exploration to Modern transition, and Compact Cities with its
+ring lock on.
 
-Watched in 2.0.0 (1 October 2026): the Ancient Dam locked until Irrigation and open once it is researched; a real
-order on a river tile with no marker; two Dams on one river in one settlement; the rising cost per settlement (a
-second Medieval Dam 275 to 345, Modern 600, 750, 900); each age's yields and upkeep (+2/+2/-1 and +4/+6/-3, read in
-the city); drying in single player; overtopping exactly as described (an Ancient Dam pillaged by major and 1000-year
-floods, a Medieval Dam holding majors and pillaged by a 1000-year flood, a Modern Dam holding everything); a
-settlement with a pillaged Dam pillaged by a flood its Dam would hold; a 1.3.0 save loading with its three markers
-lifted and the floodplain under one put back; the game's AI over 60 turns weighing the Dam about as it weighs a
-Gristmill and building none; and a LAN game reading as a network game, with the mod on its network path.
+Tested in 2.0.0 (1 October 2026): the Ancient Dam locked until Irrigation and open once it is researched; an order on
+a river tile with no marker; two Dams on one river in one settlement; the rising cost per settlement (a second
+Medieval Dam 275 to 345, Modern 600, 750, 900); each age's yields and upkeep (+2/+2/-1 and +4/+6/-3, read in the
+city); drying in single player; overtopping as described (an Ancient Dam pillaged by major and 1000-year floods, a
+Medieval Dam holding majors and pillaged by a 1000-year flood, a Modern Dam holding everything); a settlement with a
+pillaged Dam pillaged by a flood its Dam would hold; a 1.3.0 save loading with its three markers lifted and the
+floodplain under one put back; the game's AI over 60 turns weighing the Dam about as it weighs a Gristmill and
+building none; and a LAN game reading as a network game, with the mod on its network path.
 
-Not yet watched in 2.0.0: a Dam offered and built in a network game (the hosted LAN game started once and offered
-no tile, and the lobby did not start again in two more tries), Levees falling back when a Dam on a shared river is
+Not yet tested in 2.0.0: a Dam offered and built in a network game (the hosted LAN game started once and offered no
+tile, and the lobby did not start again in two more tries), Levees falling back when a Dam on a shared river is
 pillaged, and the Medieval Dam's tech in a game that reaches Machinery.
 
 ## Installation

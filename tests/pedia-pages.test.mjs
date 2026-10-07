@@ -2,7 +2,7 @@
 //
 // Civilopedia page-resolution gate: every page the mod adds must actually have text to draw.
 //
-// The pedia resolves a chaptered page's body WITHOUT any database row: for each chapter of the page's layout it
+// The pedia resolves a chaptered page's body without any database row: for each chapter of the page's layout it
 // looks for that chapter's paragraphs by key convention and stops at the first gap (base-standard
 // ui/civilopedia/model-civilopedia.js, getChapterBody → findChapterTextKey):
 //
@@ -11,7 +11,7 @@
 //
 // where <prefix> is tried as LOC_PEDIA_<section>_PAGE_<page>, then LOC_PEDIA_<section>_PAGE, then
 // LOC_PEDIA_PAGE_<page>, then LOC_PEDIA_PAGE. A chapter with no text is skipped silently and a page whose
-// chapters are all empty renders as a title with nothing under it — no error, no log line, nothing to notice
+// chapters are all empty renders as a title with nothing under it: no error, no log line, nothing to notice
 // short of opening the page in game. The same is true of a mistyped page Name. So this gate walks the shipped
 // data exactly as the engine does and fails on a page that would come up blank, a paragraph sequence with a hole
 // in it (PARA_1 and PARA_3 silently drops PARA_3), a layout or page group that is referenced but never defined,
@@ -20,7 +20,7 @@
 // It also checks the search terms (every Term key has text and names a real page) and that each page and group
 // title fits the sidebar, which truncates long names with an ellipsis.
 //
-// It does NOT prove the engine draws them; only opening the Civilopedia in game does that. It proves the mod's
+// It does not show the engine draws them; only opening the Civilopedia in game does that. It covers the mod's
 // side of the contract. Ported from Universal Auto Explore.
 //
 // Run as a plain node script (no engine loader needed): `node ./tests/pedia-pages.test.mjs` (also run by npm run verify).

@@ -4,7 +4,7 @@
 // AI, and the tile of each order the player gave. From 2.0.0 a Dam goes on any river tile and nothing requires the
 // marker, so all this file does is lift the markers a 1.3.0 save still carries. Each one goes, and the feature it
 // replaced (woods, wetland, floodplain; recorded under SITES_KEY) comes back. A marker under a finished Dam had
-// already been settled with nothing to restore, so its tile is simply left bare. Saves without the key do nothing.
+// already been settled with nothing to restore, so its tile is left bare. Saves without the key do nothing.
 // Not in a network game: a feature write is local to this machine, and 1.3.0 never placed markers there anyway.
 "use strict";
 

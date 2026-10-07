@@ -4,7 +4,7 @@
   Gristmill use: a Dam can go on any river tile the settlement could build on. Every rule a player meets is here, so
   the engine enforces it for the game's AI and in a network game alike. The limit on Dams is their price: each Dam a
   settlement already has adds a quarter of the base cost to the next one there (PREVIOUS_COPIES_CITY, the Ancient
-  Walls' model; Param1 is a flat amount of Production, watched e1c4: 25 took a 275 Dam to 300), and each pays Gold
+  Walls' model; Param1 is a flat amount of Production, e1c4: 25 took a 275 Dam to 300), and each pays Gold
   upkeep. PREVIOUS_COPIES, the empire-wide model Settlers use, does nothing for a building (e1c3: 1100 gold twice).
   Yields are set against the base Gristmill, Sawmill and Factory, a little below them for the flood protection.
   Flood protection is the Khmer Baray's effect (flood pillage immunity, per settlement, data/dams-effects.xml), graded

@@ -1,26 +1,13 @@
 // dams.js - Dams, a Civilization VII mod. Game scope.
 //
-// What it does:
-//   1. Placement is data only (data/dams.xml): the engine's river rule (RiverPlacement="RIVER"), with a price that
-//      rises with each Dam a player has. The script adds no rule of its own, so the game's AI, the player and a
-//      network game all meet the same one.
-//   2. Protection. A script cannot stop a flood or change which tiles it covers (engine-closed.md: applyEvent starts
-//      nothing, clearing a floodplain does not stop its river flooding). What the engine can do is keep a flood from
-//      pillaging, per settlement (EFFECT_CITY_ADJUST_AVOID_RANDOM_EVENT, the Khmer Baray's effect), by flood class.
-//      The data splits the floods into three classes by severity, so the protection is graded by age: an Ancient Dam
-//      holds back moderate floods, a Medieval Dam major ones too, a Modern Dam every flood. A settlement holding a Dam
-//      has its Dam's protection from data. Every settlement that owns a tile of a dammed river and holds no Dam as good
-//      as the best one on its rivers gets that Dam's Levee (no slot, never offered in production) in its center.
-//      In single player the Dam's price includes the valley: the floodplain features come off the dammed river, and
-//      those tiles lose the floodplain's own yield. Floods still come and still leave their silt; no mod can stop that
-//      (d13-d15).
-//   3. Safety net. On load and at the start of every local turn, the map is read again: every finished Dam, every
-//      settlement on its river, a Levee wherever one is missing. So a Dam bought with gold (no completion event), an
-//      AI's Dam, a new settlement or a tile bought later is caught within a turn.
-//   4. Look. Each finished Dam is drawn from shipped meshes across its river (WorldUI model groups), one look per age.
-//   Multiplayer: CREATE_ELEMENT and WorldBuilder writes are local calls, so in a network game no Levees are placed and
-//   no floodplains dried; a Dam still protects the settlement that holds it, from data. Everything else (placement,
-//   price, yields, the look) is the same there.
+// Placement and price are data only (data/dams.xml), so the AI, the player and a network game meet the same rule.
+// Protection is the engine's per-settlement flood immunity (the Khmer Baray's effect), graded by age through the
+// flood classes in data/dams-floods.xml; a settlement holding a Dam has it from data. This script does the rest, and
+// only in single player, since CREATE_ELEMENT and WorldBuilder writes are local: it places a Levee in every other
+// settlement on a dammed river, dries the river's floodplains, and draws each finished Dam across its river. On load
+// and at the start of every local turn it reads the map again, so a bought Dam (no completion event), an AI's Dam, a
+// new settlement or a tile bought later is caught within a turn. A script cannot stop a flood or take back its silt
+// (engine-closed.md, d13-d15).
 "use strict";
 
 const TAG = "[Dams]";
@@ -28,7 +15,7 @@ const G = globalThis;
 const KEY = "__dams";
 const VERSION = "2.0.1";
 const DAM_TYPES = ["BUILDING_DAM_ANTIQUITY", "BUILDING_DAM_EXPLORATION", "BUILDING_DAM_MODERN"];
-/** The Levee each Dam raises, by the Dam's tier (its index in DAM_TYPES plus one). A higher tier holds more floods. */
+// the Levee each Dam raises, by tier (index in DAM_TYPES plus one)
 const LEVEES = [null, "BUILDING_DAM_LEVEE", "BUILDING_DAM_LEVEE_EXPLORATION", "BUILDING_DAM_LEVEE_MODERN"];
 const SETTLE_MS = 1500;
 const RING = [
@@ -44,10 +31,9 @@ const state = {
   riverOf: new Map(), riverPlots: new Map(), damIndexes: new Set(), overlays: new Map(),
   dams: null, damsAt: 0, orphans: new Map(),
 };
-/** How long a read of the map's Dams may be reused. */
 const DAMS_TTL_MS = 2000;
 
-// --- map reads -----------------------------------------------------------------------------------
+// map reads
 
 function idx(loc) { return GameplayMap.getIndexFromXY(loc.x, loc.y); }
 function locOf(i) { const l = GameplayMap.getLocationFromIndex(i); return { x: l.x, y: l.y }; }
@@ -119,9 +105,9 @@ function damsOnMap() {
 }
 function forget() { state.dams = null; }
 
-// --- protection ----------------------------------------------------------------------------------
+// protection
 
-/** Settlements that own at least one tile of the river, as { owner, id, key, center }. */
+// settlements that own at least one tile of the river
 function citiesOnRiver(river) {
   const seen = new Map();
   for (const p of state.riverPlots.get(river) || []) {
@@ -138,7 +124,6 @@ function citiesOnRiver(river) {
 
 function tierOf(type) { return DAM_TYPES.indexOf(String(type)) + 1; }
 function isLevee(type) { return LEVEES.includes(type); }
-/** Raises map[key] to at least tier. */
 function raise(map, key, tier) { map.set(key, Math.max(map.get(key) || 0, tier)); }
 
 /**
@@ -218,7 +203,6 @@ function destroyAll(constructibles) {
   return constructibles.length;
 }
 
-/** Every settlement on the map, as { key, center }. */
 function allCities() {
   const out = [];
   for (const p of safe(() => Players.getAlive(), []) || []) {
@@ -254,25 +238,22 @@ function dry(dams) {
   return dried;
 }
 
-// --- look ----------------------------------------------------------------------------------------
+// look
 
 /**
  * Pieces per age as [asset, along the wall, downstream, scale, angle offset, placement]. The wall runs across
  * the river: angle 0 of a piece is the wall's direction. A piece marked "surface" sits on the water line when the
  * Dam stands on water. PlacementMode.TERRAIN seats it on the riverbed, where the tall medieval span and modern piers
  * still reach up through the water but low rocks and stakes drown out of sight (d24-ant2).
- * One look per age, in the manner of the Canals mod: rocks, then masonry, then
- * concrete. Chosen from the d18, d19 and d20 captures, where candidates were drawn one to a tile of open navigable
- * water. The dams grow with the age, a rough weir to a masonry wall to a concrete barrage, and the scales are set by
- * what renders rather than by matching numbers: the three meshes differ a lot in native size (d21 draws all three
- * in one frame to compare).
+ * One look per age, as in Canals: rocks, then masonry, then concrete, chosen from the d18-d20 captures. The scales
+ * are set by what renders, not by matching numbers: the three meshes differ a lot in native size (d21 draws all
+ * three in one frame).
  */
 const DAM_LOOKS = {
   // A rough weir: two staggered rows of boulders packed into one berm across the flow, white water below.
   // The fortification rock piles lie low in the water (d20); the sandbar rocks stand up like menhirs at any scale that
-  // fits a hex, and river-rock decals alone read as ordinary riverbed. It has to be a line, not a scatter: at 0.26 the
-  // piles were single pebbles lost among the river's own rocks (d24-ant), and one row of seven still read as sparse
-  // (d24-ant4). Low and rough, so still the smallest of the three beside the medieval ford and the modern barrage.
+  // fits a hex, and river-rock decals alone read as riverbed. It has to be a filled line: at 0.26 the piles were
+  // pebbles lost among the river's own rocks (d24-ant), and one row of seven still read as sparse (d24-ant4).
   AGE_ANTIQUITY: [
     ["Decal_Major_River_Rocks_A", 0, 0, 1, 0],
     ["Decal_Major_River_Rocks_C", 0, -0.04, 1, 60],
@@ -316,7 +297,7 @@ const DAM_LOOKS = {
   ],
 };
 
-/** Screen angle of a ring direction: 0 points east and turns counter-clockwise on screen. */
+// screen angle of a ring direction: 0 points east, counter-clockwise on screen
 function armAngle(k) { return (360 - 60 * k) % 360; }
 
 /**
@@ -336,7 +317,7 @@ function flowAngle(loc, river) {
   return (Math.atan2(Math.sin(a) + Math.sin(b), Math.cos(a) + Math.cos(b)) * 180 / Math.PI + 360) % 360;
 }
 
-/** Land that a Dam can be built against: not sea, lake or navigable river. */
+// land a Dam can be built against: not sea, lake or navigable river
 function isBank(loc) {
   return !!loc && !safe(() => GameplayMap.isWater(loc.x, loc.y) || GameplayMap.isNavigableRiver(loc.x, loc.y), true);
 }
@@ -408,7 +389,7 @@ function clearDam(plot) {
   state.overlays.delete(plot);
 }
 
-// --- the sweep -----------------------------------------------------------------------------------
+// the sweep
 
 function sweep() {
   if (!state.enabled) return;
@@ -449,7 +430,7 @@ function onConstructibleMoved(data) {
   setTimeout(sweep, SETTLE_MS);
 }
 
-// --- install -------------------------------------------------------------------------------------
+// install
 
 function install() {
   for (const t of DAM_TYPES) {

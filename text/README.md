@@ -10,7 +10,7 @@ lines to `dams.modinfo` (the shell and the game `UpdateText`).
 
 | File | Contents |
 | --- | --- |
-| `en_us/DamsText.xml` | The source of truth (55 tags). |
+| `en_us/DamsText.xml` | The English source (55 tags). |
 | `<lang>/DamsText.xml` | The same tags in one language: `de_de`, `es_es`, `fr_fr`, `it_it`, `ja_jp`, `ko_kr`, `pl_pl`, `pt_br`, `ru_ru`, `zh_cn` (Simplified, `zh_Hans_CN`) and `zh_hk` (Traditional, `zh_Hant_HK`). |
 
 The eleven languages ship as machine translations (2026-10-01) that use the game's own words for its terms

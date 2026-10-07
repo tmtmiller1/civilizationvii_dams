@@ -1,5 +1,5 @@
 // damh-game-d6.js - D6. D4 again where it fell short: an Exploration start (seed 9001 gives Roma a navigable
-// estuary), the production panel captured BEFORE the Dam is built (after it, the river is taken and the row goes),
+// estuary), the production panel captured before the Dam is built (after it, the river is taken and the row goes),
 // and the candidate meshes drawn at a smaller scale on the capital's own visible river tiles, camera close.
 //   S0  defs and icon URL; found the local capital
 //   S1  where the production screen offers BUILDING_DAM_ANTIQUITY (RiverPlacement=RIVER): plots classified by river
