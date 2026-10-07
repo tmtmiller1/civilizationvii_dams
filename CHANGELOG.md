@@ -3,6 +3,19 @@
 All notable changes to Dams are documented here. This project follows semantic versioning. The probes and harness
 runs live in `devtools/`, outside the shipped files.
 
+## [2.0.2] - 2026-10-07
+
+- Settings kept after a restart. Civilization VII reads back only the first entry in its mod storage, whichever one
+  a mod asks for, so options set in one session could come back as another mod's data or not at all, and a mod
+  saving its options could copy that data under its own name. Dams now carries the Tower Settings Keeper file, which
+  keeps every mod's settings inside the one entry the game reads correctly and repairs a store another mod has
+  already put out of order, without deleting anything. Dams saves nothing there itself. It carries the file so that
+  the settings of the other mods you play with stay readable, even if you never install the keeper.
+- The file runs before any other script and changes nothing else in the mod. If several mods carry it, or the
+  standalone Tower Settings Keeper is installed too, one copy runs and the newest build wins. Nothing to set up:
+  existing settings carry over. Tower Settings Keeper:
+  [GitHub](https://github.com/tmtmiller1/civilizationvii_tower-settings-keeper), [Steam](https://steamcommunity.com/sharedfiles/filedetails/?id=3815023570).
+
 ## [2.0.1] - 2026-10-04
 
 - Build icons: each age's Dam now sits in a fuller gold ring, drawn to match the icons of the other Tower mods. No
