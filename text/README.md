@@ -13,7 +13,7 @@ lines to `dams.modinfo` (the shell and the game `UpdateText`).
 | `en_us/DamsText.xml` | The English source (55 tags). |
 | `<lang>/DamsText.xml` | The same tags in one language: `de_de`, `es_es`, `fr_fr`, `it_it`, `ja_jp`, `ko_kr`, `pl_pl`, `pt_br`, `ru_ru`, `zh_cn` (Simplified, `zh_Hans_CN`) and `zh_hk` (Traditional, `zh_Hant_HK`). |
 
-The eleven languages ship as machine translations (2026-10-01) that use the game's own words for its terms
+The eleven languages ship as translations (2026-10-01) that use the game's own words for its terms
 (Settlement, Floodplains, the three flood events, pillage, Improvements, Buildings, Districts, the techs and ages),
 taken from the game's l10n files. To correct one, edit its `<Text>`; to change the English, edit the English and update
 every language.

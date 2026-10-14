@@ -29,7 +29,7 @@ In single player and hotseat, when a Dam is finished the river's floodplains are
 [*]Dams plus a mod that turns floods off: the Dam still yields (and in single player still dries the floodplains), but protects against nothing.
 [/list]
 [h2]Languages[/h2]
-English, German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese, Russian, and Simplified and Traditional Chinese, using the game's own words for its terms. The translations are machine-made; corrections are welcome in the comments.
+English, German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese, Russian, and Simplified and Traditional Chinese, using the game's own words for its terms. Corrections to the translations are welcome in the comments.
 [h2]Source and documentation[/h2]
 [list]
 [*][b]What's new:[/b] [url=https://github.com/tmtmiller1/civilizationvii_dams/releases/latest]the latest release notes and a download[/url]

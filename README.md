@@ -95,8 +95,8 @@ deposits, and [docs/DESIGN.md](docs/DESIGN.md) records the runs behind that. A D
 - Dams plus a mod that turns floods off: the Dam still yields, but protects against nothing (and in single player
   still dries the floodplains).
 - Translated into German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese, Russian, and
-  Simplified and Traditional Chinese, with the game's own words for its terms. The translations are machine-made;
-  corrections are welcome.
+  Simplified and Traditional Chinese, with the game's own words for its terms. Corrections to
+  the translations are welcome.
 
 ## How it works
 
