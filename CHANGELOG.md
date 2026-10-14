@@ -3,6 +3,11 @@
 All notable changes to Dams are documented here. This project follows semantic versioning. The probes and harness
 runs live in `devtools/`, outside the shipped files.
 
+## [2.0.3] - 2026-10-14
+
+- The license now says that Civilization VII and its art and data belong to Firaxis and 2K. The mod itself plays
+  exactly as in 2.0.2.
+
 ## [2.0.2] - 2026-10-07
 
 - Settings kept after a restart. Civilization VII reads back only the first entry in its mod storage, whichever one
