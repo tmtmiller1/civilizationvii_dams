@@ -431,4 +431,6 @@ Not covered:
 - Not yet run on 2.0.0 (2026-10-01): a Dam offered and built in a network game (`e6`-`e6c`); Levees falling back when
   a Dam on a shared river is pillaged (the planner skips a Dam whose instance reads `damaged`, read only in code);
   Machinery opening the Medieval Dam in play (the row is in the Exploration database; Irrigation was run end to
-  end in `e1b`). The AI never chose a Dam in `e4`: whether to nudge it is a design call.
+  end in `e1b`). Read in play 2026-10-15 (overnight L7, Exploration seed 9001, usual set, the installed copy):
+  `ProgressionTreeNodeUnlocks` has Machinery -> `BUILDING_DAM_EXPLORATION` at depth 1, and with Machinery researched
+  the BUILD `canStart` for it in Roma read Success with one site; the drawn production list wasn't looked at. The AI never chose a Dam in `e4`: whether to nudge it is a design call.
