@@ -44,14 +44,14 @@
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_SHARE_TITLE" Language="zh_Hant_HK"><Text>避免的損傷</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_SHARE_PARA_1" Language="zh_Hant_HK"><Text>規模越大的洪災越罕見，但會掠奪其波及範圍內更多的格位（分別為受淹格位的20%、40%與60%）。綜合這兩項因素，在災難頻率為輕微（預設）、中等與天災時，各水壩可避免的洪災損傷比例為：[BLIST][LI][B]古代水壩：[/B]約17%、29%、36%。[LI][B]中世紀水壩：[/B]約50%、57%、73%。[LI][B]現代水壩：[/B]全部。[/LIST]</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_OVERTOP_TITLE" Language="zh_Hant_HK"><Text>漫頂的水壩</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_OVERTOP_PARA_1" Language="zh_Hant_HK"><Text>超出水壩抵禦能力的洪災若波及水壩所在格位，就會掠奪水壩本身：古代水壩會遭大型洪災或千年洪災掠奪，中世紀水壩會遭千年洪災掠奪。現代水壩可抵禦所有洪災，永遠不會漫頂。遭掠奪的水壩在修復前不提供收益，也不提供保護；在單人遊戲中，其河流沿岸的堤防會退回到次佳水壩的水準。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_OVERTOP_PARA_1" Language="zh_Hant_HK"><Text>超出水壩抵禦能力的洪災若波及水壩所在格位，就會掠奪水壩本身：古代水壩會遭大型洪災或千年洪災掠奪，中世紀水壩會遭千年洪災掠奪。現代水壩可抵禦所有洪災，永遠不會漫頂。遭掠奪的水壩在修復前會失去收益和保護；在單人遊戲中，其河流沿岸的堤防會退回到次佳水壩的水準。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_TITLE" Language="zh_Hant_HK"><Text>乾涸的氾濫平原</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_PARA_1" Language="zh_Hant_HK"><Text>在單人遊戲與熱座遊戲中，水壩建成時，其河流上的所有[TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]氾濫平原[/TIP]都會被移除，範圍涵蓋整條河流，無論格位歸誰所有。這些格位會永久失去氾濫平原本身的收益（約1[icon:YIELD_FOOD]食物），即使水壩被夷為平地，氾濫平原也不會恢復。沒有氾濫平原的河流不會因此有任何損失。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_PARA_1" Language="zh_Hant_HK"><Text>在單人遊戲與熱座遊戲中，水壩建成時，其河流上的所有[TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]氾濫平原[/TIP]都會被移除，範圍涵蓋整條河流，無論格位歸誰所有。這些格位會永久失去氾濫平原本身的收益（約1[icon:YIELD_FOOD]食物），即使水壩被夷為平地，氾濫平原也不會恢復。在沒有氾濫平原的河流上，水壩的代價只有生產力和金幣。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_PARA_2" Language="zh_Hant_HK"><Text>乾涸並不會阻止洪災：洪災照常發生，也仍會留下淤泥。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_TITLE" Language="zh_Hant_HK"><Text>堤防</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_TITLE" Language="zh_Hant_HK"><Text>基礎</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_PARA_1" Language="zh_Hant_HK"><Text>堤防會將水壩的保護延伸至同一條河流上的其他聚落。擁有築壩河流格位的每個聚落，其市中心都會放置一座堤防，可抵禦的洪災與該河流上已建成的最佳水壩相同。</Text></Replace>
-        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_PARA_2" Language="zh_Hant_HK"><Text>堤防無法建造或購買。它不佔用建築槽位，也不需要人口。已擁有不低於該河流最佳水壩之水壩的聚落不會有堤防。位於兩條築壩河流上的聚落會獲得較佳水壩的堤防。</Text></Replace>
+        <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_PARA_2" Language="zh_Hant_HK"><Text>堤防由遊戲自動設置，無法建造或購買。它在常規建築槽位之外額外設於市中心，無需人口即可運作。已擁有不低於該河流最佳水壩之水壩的聚落依靠自己的水壩。位於兩條築壩河流上的聚落會獲得較佳水壩的堤防。</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CHANGES_TITLE" Language="zh_Hant_HK"><Text>堤防何時變化</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CHANGES_PARA_1" Language="zh_Hant_HK"><Text>[BLIST][LI]在築壩河流上建立的聚落，或邊界擴張至築壩河流的聚落，會在下一回合開始時獲得堤防。[LI]河流上建成較新的水壩時，其沿岸的堤防會隨之提升。[LI]水壩遭掠奪或被夷為平地時，其河流沿岸的堤防會在一回合後退回到次佳水壩的水準；若沒有其他水壩，則會被移除。[LI]失去最後一個該河流格位的聚落，會在一回合後失去其堤防。[/LIST]</Text></Replace>
         <Replace Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_MULTIPLAYER_TITLE" Language="zh_Hant_HK"><Text>多人模式</Text></Replace>

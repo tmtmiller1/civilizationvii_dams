@@ -30,9 +30,9 @@ and a player needs to recognise the kind of mod, not one title.
 | Kind of mod | Result | Status |
 | --- | --- | --- |
 | Gives every building a placement adjacency (ring or compact-city mods) | Dams keep their own placement, Levees placed | Watched |
-| Turns floods off | The Dam still yields but protects against nothing, and in single player still dries the floodplains | Read from code |
+| Turns floods off | The Dam still yields, and in single player still dries the floodplains, but its protection never comes into play | Read from code |
 | Makes floods more damaging | The Dam matters more; protection holds | Watched at 100 % damage |
-| Emigration | Refugees leave a protected settlement after a flood, until Emigration's next release | Watched by Emigration's harness |
+| Emigration | Works together from Emigration 3.2.0: only a settlement the flood pillaged sends refugees. With 3.1.2 and earlier a protected settlement sent them too | Watched by Emigration's harness |
 | Build Wonders Over Antiquated Buildings | A Wonder can replace an earlier-age Dam, ending its protection | Read from code |
 | Gives bonuses for floodplains (civilization, belief and tradition mods) | In single player those bonuses are lost on a dammed river | Read from code |
 | Gives flood immunity of its own | Still covers every flood; stacks harmlessly | Base sources watched; other mods tested on the database |
@@ -89,19 +89,20 @@ does not stop is the flood itself: the tiles still flood and still gain the floo
 
 ### 4. Emigration
 
-Status: confirmed in game and fixed on the Emigration side, not yet released. Emigration's own harness ran the same
-seeded game with Dams 1.2.0 twice (2026-09-29): with Emigration 3.1.2 a flood that reached a dammed settlement sent 4
-population points out of it; with the fix, none.
+Status: confirmed in game and fixed on the Emigration side, released in Emigration 3.2.0 (2026-09-29). Emigration's
+own harness ran the same seeded game with Dams 1.2.0 twice (2026-09-29): with Emigration 3.1.2 a flood that reached a
+dammed settlement sent 4 population points out of it; with the fix, none.
 
-Tower's Emigration mod turns disasters into distress that pushes citizens out of the struck settlement. Its size is
-the larger of two numbers: the event type's damage percentage from the `RandomEventYields` and
-`RandomEventDamages` tables, and the share of the settlement's tiles the event actually pillaged. A settlement a Dam
-or Levee protects has nothing pillaged, but the first number comes from the flood type, not the settlement, and a
-confirmed strike is also floored to a minimum. So a flood that did no damage to a dammed settlement still raises its
-distress, and refugees leave.
+Tower's Emigration mod turns disasters into distress that pushes citizens out of the struck settlement. Up to 3.1.2 its
+size was the larger of two numbers: the event type's damage percentage from the `RandomEventYields` and
+`RandomEventDamages` tables, and the share of the settlement's tiles the event actually pillaged. A Dam or Levee stops
+the flood pillaging the settlement's tiles, but the first number came from the flood type, not the settlement, and a
+confirmed strike was also floored to a minimum. So a dammed settlement's distress still rose after a flood that left it
+undamaged, and refugees left.
 
-What the player sees, until Emigration's next release: an Emigration disaster notice and refugees from a settlement
-that lost nothing.
+What the player sees with Emigration 3.1.2 or earlier: an Emigration disaster notice and refugees from a settlement the
+flood didn't damage. From 3.2.0 a settlement sends refugees only when the disaster newly pillaged tiles it owns, so a
+dammed settlement stays put.
 
 ### 5. Build Wonders Over Antiquated Buildings
 
@@ -196,9 +197,9 @@ matches the name `CLASS_FLOOD` sees only moderate floods:
 
 - One narrative mod in the corpus fires a gossip line when a flood kills a unit, keyed on `CLASS_FLOOD`. It stays
   silent for major and 1000-year floods. Nothing else changes.
-- Tower's Emigration weighs a disaster's distress by its class. Emigration 3.1.2 and earlier do not know the new
-  classes and give major and 1000-year floods the default weight (4 instead of a flood's 8), so they push fewer
-  refugees out than before. Emigration's next release treats any class whose name contains `FLOOD` as a flood.
+- Tower's Emigration weighs a disaster's distress by its class. Emigration 3.1.2 and earlier give the new classes the
+  default weight (4 instead of a flood's 8), so major and 1000-year floods push fewer refugees out than before. From
+  3.2.0 Emigration weighs any class that carries `FLOOD` as a whole word as a flood, so both get a flood's weight.
 - UI mods that look up `CLASS_FLOOD` for the floodplain lens and its tooltip are unaffected: the lens marks floodplain
   tiles, not events, and the new classes carry the same tooltip and icon.
 

@@ -137,14 +137,14 @@
             <Text>Overtopped Dams</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_OVERTOP_PARA_1">
-            <Text>A flood bigger than a Dam can hold pillages the Dam itself if it reaches the Dam's tile: a major or 1000-year flood an Ancient Dam, a 1000-year flood a Medieval Dam. The Modern Dam holds every flood and is never overtopped. A pillaged Dam gives no yields and no protection until it is repaired, and in single player the Levees along its river fall back to the next best Dam.</Text>
+            <Text>A flood bigger than a Dam can hold pillages the Dam itself if it reaches the Dam's tile: a major or 1000-year flood an Ancient Dam, a 1000-year flood a Medieval Dam. The Modern Dam holds every flood and is never overtopped. A pillaged Dam loses its yields and its protection until it is repaired, and in single player the Levees along its river fall back to the next best Dam.</Text>
         </Row>
 
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_TITLE">
             <Text>Dried Floodplains</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_PARA_1">
-            <Text>In single player and hotseat games, when a Dam is finished every [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplain[/TIP] on its river is removed, along the whole river and whoever owns the tile. Each of those tiles loses the Floodplain's own yield, about 1 [icon:YIELD_FOOD] Food, for good, and the Floodplains do not return if the Dam is razed. A river with no Floodplains costs nothing.</Text>
+            <Text>In single player and hotseat games, when a Dam is finished every [TIP:LOC_PEDIA_CONCEPTS_FLOODPLAINS_TOOLTIP]Floodplain[/TIP] on its river is removed, along the whole river and whoever owns the tile. Each of those tiles loses the Floodplain's own yield, about 1 [icon:YIELD_FOOD] Food, for good, and the Floodplains do not return if the Dam is razed. On a river without Floodplains, the only cost is the Dam's Production and Gold.</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_PROTECTION_CHAPTER_DRY_PARA_2">
             <Text>Drying does not stop the floods: they come as before and still leave their silt.</Text>
@@ -160,7 +160,7 @@
             <Text>A Levee carries a Dam's protection to the other Settlements on its river. It is placed in the City Center of every Settlement that owns a tile of a dammed river, and holds back the same floods as the best finished Dam on that river.</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CONTENT_PARA_2">
-            <Text>A Levee cannot be built or bought. It takes no building slot and needs no citizen. A Settlement already holding a Dam at least as good as the river's best has no Levee. A Settlement on two dammed rivers gets the Levee of the better Dam.</Text>
+            <Text>The game places Levees itself; a Levee is never built or bought. It stands in the City Center as an extra, outside the usual building slots, and works without a citizen. A Settlement already holding a Dam at least as good as the river's best relies on its own Dam instead. A Settlement on two dammed rivers gets the Levee of the better Dam.</Text>
         </Row>
         <Row Tag="LOC_PEDIA_CONCEPTS_PAGE_DAMS_LEVEES_CHAPTER_CHANGES_TITLE">
             <Text>When Levees Change</Text>

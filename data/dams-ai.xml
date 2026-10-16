@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  How much the game's own AI values a Dam. TRAIT_LEADER_MAJOR_CIV is held by LEADER_DEFAULT, which every major leader
+  inherits from, so this one list reaches every AI civilization and no independent or city-state. Value V multiplies the
+  AI's score of the Dam by 1 + V/100 (engine-closed.md, AI data). Unraised, the AI weighed the Medieval Dam 582 times in
+  60 turns (e4) at about what it gives a Gristmill or a Harbor and didn't build one. At 200 its e4 scores, tripled, sit
+  among the ordinary buildings the AI does build there (Stonecutter, Observatory, Kiln, Wharf, Sawmill, Tavern) and below
+  the Temples, Bazaars and Guildhalls it builds first. The price that rises within a settlement and the Gold upkeep
+  apply as before. The game reads AI lists when a game is created, so a game in progress keeps its old weighting.
+  docs/DESIGN.md, "The AI and Dams".
+  AiLists and AiFavoredItems have foreign keys only on ListType and the difficulties, so these rows load for a player
+  missing any DLC (tests/ai-data.test.mjs).
+-->
+<Database>
+    <AiListTypes>
+        <Row ListType="Dams Priority"/>
+    </AiListTypes>
+    <AiLists>
+        <Row ListType="Dams Priority" LeaderType="TRAIT_LEADER_MAJOR_CIV" System="ConstructibleBiases"/>
+    </AiLists>
+    <AiFavoredItems>
+        <Row ListType="Dams Priority" Item="BUILDING_DAM_ANTIQUITY" Value="200"/>
+        <Row ListType="Dams Priority" Item="BUILDING_DAM_EXPLORATION" Value="200"/>
+        <Row ListType="Dams Priority" Item="BUILDING_DAM_MODERN" Value="200"/>
+    </AiFavoredItems>
+</Database>

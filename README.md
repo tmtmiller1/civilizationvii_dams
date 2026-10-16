@@ -62,23 +62,23 @@ prevents works out as follows:
 | Modern | moderate, major, 1000-year | all of it |
 
 A flood bigger than a Dam can hold pillages the Dam itself if it reaches the Dam's tile: a major or 1000-year flood
-overtops an Ancient Dam, a 1000-year flood a Medieval Dam. The Modern Dam is never overtopped. A pillaged Dam gives
-no yields and no protection until it is repaired.
+overtops an Ancient Dam, a 1000-year flood a Medieval Dam. The Modern Dam is never overtopped. A pillaged Dam loses
+its yields and its protection until it's repaired.
 
 In single player and hotseat, every other settlement that owns a tile of the dammed river, another player's included,
-gets a **Levee** in its city center, which carries the same protection as the best Dam on its river; the Levee takes
-no building slot, needs no citizen, and never appears in a production list. A settlement founded on the river later,
-or one whose borders reach it later, gets its Levee at the start of the next turn. When a newer Dam is finished, the
-Levees along the river are raised to match; when it is razed, they fall back to the next best Dam a turn later. In an
-online or LAN game each Dam protects its own settlement only.
+gets a **Levee** in its city center, which carries the same protection as the best Dam on its river. The Levee arrives
+on its own, outside the production list, and it doesn't take a building slot or need a citizen. A settlement founded
+on the river later, or one whose borders reach it later, gets its Levee at the start of the next turn. When a newer
+Dam is finished, the Levees along the river are raised to match; when it is razed, they fall back to the next best Dam
+a turn later. In an online or LAN game each Dam protects its own settlement only.
 
 ## What a Dam costs
 
-Production, a cost that rises with each Dam of the age already in the settlement, and Gold upkeep, everywhere. In
-single player and hotseat also the valley: when the Dam finishes, the river's floodplains come off the map, whoever owns them. Those
-tiles lose the floodplain's own Food, about 1 each, so a river with six floodplain tiles costs about six Food a turn,
-permanently, and the floodplains do not return if the Dam is razed. A river with no floodplains costs nothing. In an
-online or LAN game the river keeps its floodplains.
+Production, a cost that rises with each Dam of the age already in the settlement, and Gold upkeep, everywhere. In single
+player and hotseat also the valley: when the Dam finishes, the river's floodplains come off the map, whoever owns them.
+Those tiles lose the floodplain's own Food, about 1 each, so a river with six floodplain tiles costs about six Food a
+turn, permanently, and the floodplains do not return if the Dam is razed. On a river without floodplains, you only pay
+the Production and Gold. In an online or LAN game the river keeps its floodplains.
 
 Floods still happen on a dammed river, and they still leave silt behind: each flood permanently raises the Food or
 Production of one to three of the river's tiles. The engine has no way to stop a flood or to take back what it
@@ -86,14 +86,15 @@ deposits, and [docs/DESIGN.md](docs/DESIGN.md) records the runs behind that. A D
 
 ## Compatibility
 
-- Adds three Dam buildings, three Levees and their tech unlocks. Replaces no base-game files. The one base-game
-  change: major and 1000-year floods get flood classes of their own, so a Dam can hold back one size and not another.
-  Everything else that protects against floods (the Khmer Baray, the Water Puppet Theater, the Ho'okupu tradition, and
-  other mods' flood immunity) is widened to match, so it still covers all three.
+- Adds three Dam buildings, three Levees and their tech unlocks through the game's database, so the base-game files
+  stay as they are. The one change to base-game data: major and 1000-year floods get flood classes of their own, so a
+  Dam can hold back one size and not another. Everything else that protects against floods (the Khmer Baray, the
+  Water Puppet Theater, the Ho'okupu tradition, and other mods' flood immunity) is widened to match, so it still covers
+  all three.
 - A save loads with the mod on or off. A save from 1.3.0 still carries dam-site markers; they are lifted when it loads,
   and the woods, wetland or floodplain each one stood in for comes back.
-- Dams plus a mod that turns floods off: the Dam still yields, but protects against nothing (and in single player
-  still dries the floodplains).
+- Dams plus a mod that turns floods off: the Dam still yields, and in single player still dries the floodplains, but
+  its protection never comes into play.
 - Translated into German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese, Russian, and
   Simplified and Traditional Chinese, with the game's own words for its terms. Corrections to
   the translations are welcome.

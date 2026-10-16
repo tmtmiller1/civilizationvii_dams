@@ -7,11 +7,11 @@ Dams adds a buildable Dam to Civilization VII. Build one on any river tile, navi
 [*]Protection that grows with the age. The Ancient Dam holds back moderate floods, the Medieval Dam moderate and major floods, and the Modern Dam every flood, including the 1000-year flood. At the default Disaster Frequency (Light) that works out to about 17 %, 50 % and 100 % of the flood damage, and more for the older Dams at higher frequencies.
 [*]Placement on any river tile the settlement can build on: a navigable river, or a land tile with a minor river. A settlement on two rivers can dam both. A young settlement is offered only the river tiles next to its city center, as for any building. Towns can buy it with gold.
 [*]A rising price: each Dam of an age a settlement already has adds about a quarter of the base cost to the next one there (+40, +70 or +150 production). The AI pays the same and weighs a Dam like any other building.
-[*]In single player and hotseat, protection for every other settlement that owns a tile of the dammed river, including other players' settlements, through a Levee: a hidden building that takes no slot and matches the best Dam on the river.
+[*]In single player and hotseat, protection for every other settlement that owns a tile of the dammed river, including other players' settlements, through a Levee: a hidden building that sits outside the building slots and matches the best Dam on the river.
 [*]A 3D model for each age, drawn across the river, and a build icon for each.
 [/list]
 [h2]Trade-off[/h2]
-In single player and hotseat, when a Dam is finished the river's floodplains are removed from the map. Each of those tiles loses about 1 Food, permanently. A river with no floodplains costs nothing. In an online or LAN game the river keeps them.
+In single player and hotseat, when a Dam is finished the river's floodplains are removed from the map. Each of those tiles loses about 1 Food, permanently. On a river without floodplains, you only pay the Production and Gold. In an online or LAN game the river keeps them.
 [h2]Limits[/h2]
 [list]
 [*]Floods still happen, and each one still adds a permanent +1 Food or Production to one to three river tiles. The Dam prevents the damage, not the flood.
@@ -26,7 +26,7 @@ In single player and hotseat, when a Dam is finished the river's floodplains are
 [*]Works with compact-city mods that keep buildings next to the city center: those mods leave Dams and Levees alone.
 [*]Saves load with the mod on or off. A save from version 1.3.0 loads with its dam-site markers lifted.
 [*]Start a new game with the mod enabled. In a game already in progress, a Dam whose tech was researched before the mod was added isn't available.
-[*]Dams plus a mod that turns floods off: the Dam still yields (and in single player still dries the floodplains), but protects against nothing.
+[*]Dams plus a mod that turns floods off: the Dam still yields (and in single player still dries the floodplains), but its protection never comes into play.
 [/list]
 [h2]Languages[/h2]
 English, German, Spanish, French, Italian, Japanese, Korean, Polish, Brazilian Portuguese, Russian, and Simplified and Traditional Chinese, using the game's own words for its terms. Corrections to the translations are welcome in the comments.

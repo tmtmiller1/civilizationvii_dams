@@ -3,6 +3,12 @@
 All notable changes to Dams are documented here. This project follows semantic versioning. The probes and harness
 runs live in `devtools/`, outside the shipped files.
 
+## [Unreleased]
+
+- AI civilizations now build Dams in new games. The game's AI rates a Dam about as highly as the everyday buildings
+  it already builds, so it picks one where nothing better is on offer, and it pays the same rising price and Gold
+  upkeep you do. Independents and city-states weigh a Dam as before. Games already under way keep the old weighting.
+
 ## [2.0.3] - 2026-10-14
 
 - The license now says that Civilization VII and its art and data belong to Firaxis and 2K. The mod itself plays
