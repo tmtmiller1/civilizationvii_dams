@@ -8,6 +8,9 @@ runs live in `devtools/`, outside the shipped files.
 - AI civilizations now build Dams in new games. The game's AI rates a Dam about as highly as the everyday buildings
   it already builds, so it picks one where nothing better is on offer, and it pays the same rising price and Gold
   upkeep you do. Independents and city-states weigh a Dam as before. Games already under way keep the old weighting.
+- Carries Civilopedia History Corrections. With Civilopedia Expanded: Independents on, six East Asian history pages
+  in the Civilopedia (Goguryeo, the Oirat, two Ryukyu pages, Nanzhao and Balhae) give each side where historians in
+  different countries disagree, and a few factual errors are fixed. With it off, the game's pages stay as they are.
 
 ## [2.0.3] - 2026-10-14
 
