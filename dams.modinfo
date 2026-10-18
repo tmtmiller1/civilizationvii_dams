@@ -4,8 +4,8 @@
   Three Dam buildings (Antiquity, Exploration, Modern), built through the ordinary production screen on any river
   tile, navigable or minor. A finished Dam yields Food and Production and keeps floods from pillaging its settlement:
   moderate floods from Antiquity, major ones too from Exploration, every flood from the Modern age. Data: the
-  buildings, their price, the flood classes, the tech unlocks, the build icon and the AI's value of a Dam
-  (data/dams-ai.xml); every rule a player meets is here, so it holds for the game's AI and in a network game alike. Script: the Levees (single player only), the drawn dam,
+  buildings, their price, the flood classes, the tech unlocks and the build icon; every rule a player meets is here,
+  so it holds for the game's AI and in a network game alike. Script: the Levees (single player only), the drawn dam,
   and lifting the dam-site markers of a 1.3.0 save.
   AffectsSavedGames=0: the data adds types, and the only base rows it changes are the flood classes (major and
   1000-year floods get classes of their own, data/dams-floods.sql), which a save does not record.
@@ -78,7 +78,7 @@
         <ActionGroup id="dams-game" scope="game" criteria="always">
             <Properties><LoadOrder>150</LoadOrder></Properties>
             <Actions>
-                <UpdateDatabase><Item>data/dams.xml</Item><Item>data/dams-floods.xml</Item><Item>data/dams-effects.xml</Item><Item>data/dams-floods.sql</Item><Item>data/dams-placement.sql</Item><Item>data/dams-sites.xml</Item><Item>data/dams-sites.sql</Item><Item>data/dams-civilopedia.xml</Item><Item>data/dams-ai.xml</Item></UpdateDatabase>
+                <UpdateDatabase><Item>data/dams.xml</Item><Item>data/dams-floods.xml</Item><Item>data/dams-effects.xml</Item><Item>data/dams-floods.sql</Item><Item>data/dams-placement.sql</Item><Item>data/dams-sites.xml</Item><Item>data/dams-sites.sql</Item><Item>data/dams-civilopedia.xml</Item></UpdateDatabase>
                 <UpdateText>
                     <Item>text/en_us/DamsText.xml</Item>
                     <Item locale="de_DE">text/de_de/DamsText.xml</Item>
