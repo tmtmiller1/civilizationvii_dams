@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Throwaway: visual remaps that give each Dam an existing river building's art, so the engine lays the Dam into a
+     district tile with its own half-block layouts. Dev only; which ages draw is what the probe asks. -->
+<Mod id="dam-remap-probe" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>Dam Remap Probe (dev)</Name>
+        <Description>Dev only: VisualRemaps from the Dam buildings to shipped river buildings.</Description>
+        <Authors>Tower</Authors>
+        <Package>DamRemapProbe</Package>
+        <PackageSortIndex>9996</PackageSortIndex>
+        <Version>0.0.1</Version>
+        <AffectsSavedGames>0</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME" />
+        <Mod id="tower-dams" title="LOC_DAMS_MOD_NAME" />
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="dam-remap-shell" scope="shell" criteria="always">
+            <Properties><LoadOrder>9000</LoadOrder></Properties>
+            <Actions>
+                <UpdateVisualRemaps><Item>data/dam-remaps.xml</Item></UpdateVisualRemaps>
+            </Actions>
+        </ActionGroup>
+        <ActionGroup id="dam-remap-game" scope="game" criteria="always">
+            <Properties><LoadOrder>9000</LoadOrder></Properties>
+            <Actions>
+                <UpdateVisualRemaps><Item>data/dam-remaps.xml</Item></UpdateVisualRemaps>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>

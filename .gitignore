@@ -9,3 +9,4 @@ devtools/harness/*.txt
 .DS_Store
 devtools/harness/*.done
 devtools/harness/*.ips
+__pycache__/

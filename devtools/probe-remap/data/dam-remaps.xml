@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Kind BUILDING, From = our type, To = the donor whose art it borrows (the base game's Palace -> Palace Founder row
+     and the contested-probe runs settled the direction and the Kind). Donors are river buildings of the same age. -->
+<Database>
+    <VisualRemaps>
+        <Row><ID>REMAP_DAM_ANTIQUITY</ID><DisplayName>LOC_REMAP_DAM_ANTIQUITY</DisplayName><Kind>BUILDING</Kind><From>BUILDING_DAM_ANTIQUITY</From><To>BUILDING_BATH</To></Row>
+        <Row><ID>REMAP_DAM_EXPLORATION</ID><DisplayName>LOC_REMAP_DAM_EXPLORATION</DisplayName><Kind>BUILDING</Kind><From>BUILDING_DAM_EXPLORATION</From><To>BUILDING_GRISTMILL</To></Row>
+        <Row><ID>REMAP_DAM_MODERN</ID><DisplayName>LOC_REMAP_DAM_MODERN</DisplayName><Kind>BUILDING</Kind><From>BUILDING_DAM_MODERN</From><To>BUILDING_MODERN_BRIDGE</To></Row>
+    </VisualRemaps>
+</Database>
