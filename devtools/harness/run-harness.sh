@@ -38,6 +38,7 @@ HDIR="$MODS/dam-harness"
 FDIR="$MODS/dam-flood-probe"
 MDIR="$MODS/tower-dams"
 GDIR="$MODS/dam-grant-probe"
+SDIR="$MODS/dam-slot-probe"
 RDIR="$MODS/dam-remap-probe"
 ADIR="$MODS/dam-short-age-probe"
 CDIR="$MODS/dam-compact-cities"
@@ -55,7 +56,7 @@ pgrep -x CivilizationVII >/dev/null && { say "Civ VII is ALREADY RUNNING - anoth
 BUSY=$(find "$MODS" -maxdepth 1 -type d -iname "*harness*" ! -name dam-harness -mmin -15 2>/dev/null)
 [ -n "$BUSY" ] && { say "another session's harness is fresh ($(basename "$BUSY")) - a run is in progress. Stop here."; exit 1; }
 STASH="$S/dam-harness-backup/foreign-$LABEL"
-FOREIGN=$(ls "$MODS" 2>/dev/null | grep -iE "probe|harness" | grep -vE "^(dam-harness|dam-flood-probe|dam-floodfreq-probe|dam-grant-probe)$")
+FOREIGN=$(ls "$MODS" 2>/dev/null | grep -iE "probe|harness" | grep -vE "^(dam-harness|dam-flood-probe|dam-floodfreq-probe|dam-grant-probe|dam-slot-probe)$")
 restore_foreign() {
   [ -d "$STASH" ] || return 0
   for d in "$STASH"/*(N); do
@@ -90,12 +91,26 @@ if [ "${AI_VERBOSE:-0}" = "1" ] && [ -f "$OPTS" ]; then
   else sed -i '' 's/^;AIVerboseLogging 0/AIVerboseLogging 1/' "$OPTS"; fi
   say "AIVerboseLogging on (AppOptions.txt backed up)"
 fi
-trap 'restore_opts; restore_emig; restore_foreign' EXIT INT TERM
+# With "mod" deployed, the player's Workshop copy of Dams (same ModId) is switched off for the run so the repo copy is
+# the one that loads, and its flag (0, 1 or NULL) is put back afterwards.
+WS_FLAGS=""
+restore_workshop() {
+  [ -n "$WS_FLAGS" ] || return 0
+  echo "$WS_FLAGS" | while IFS='|' read -r rid flag; do
+    [ -n "$rid" ] && sqlite3 "$DB" "update Mods set Disabled=$flag where ModRowId=$rid"
+  done
+  say "Workshop Dams flag restored: $WS_FLAGS"; WS_FLAGS=""
+}
+case "+$DEPLOY+" in *+mod+*)
+  WS_FLAGS=$(sqlite3 "$DB" "select ModRowId, quote(Disabled) from Mods join ScannedFiles using(ScannedFileRowId) where ModId='tower-dams' and Path like '%workshop%'")
+  [ -n "$WS_FLAGS" ] && sqlite3 "$DB" "update Mods set Disabled=1 where ModId='tower-dams' and ScannedFileRowId in (select ScannedFileRowId from ScannedFiles where Path like '%workshop%')" && say "Workshop Dams switched off for the run (was $WS_FLAGS)" ;;
+esac
+trap 'restore_opts; restore_emig; restore_foreign; restore_workshop' EXIT INT TERM
 
 rm -rf "$BAK"; mkdir -p "$BAK"; cp -p "$AUTO"/*.Civ7Save "$BAK"/ 2>/dev/null
 say "autosaves backed up: $(ls "$BAK" 2>/dev/null | wc -l | tr -d ' ')"
 
-rm -rf "$HDIR" "$FDIR" "$MDIR" "$GDIR" "$RDIR" "$ADIR" "$CDIR" "$QDIR"; mkdir -p "$HDIR/ui"
+rm -rf "$HDIR" "$FDIR" "$MDIR" "$GDIR" "$SDIR" "$RDIR" "$ADIR" "$CDIR" "$QDIR"; mkdir -p "$HDIR/ui"
 for part in ${(s:+:)DEPLOY}; do
   case "$part" in
     none) ;;
@@ -112,6 +127,7 @@ for part in ${(s:+:)DEPLOY}; do
       mkdir -p "$EDIR"; cp "$EREPO/emigration.modinfo" "$EDIR/"
       for d in ui text data images; do cp -R "$EREPO/$d" "$EDIR/"; done
       say "deployed: emigration from the repo ($(grep -o '<Version>[^<]*' "$EDIR/emigration.modinfo")), player's copy kept at $EBAK" ;;
+    slotgrant) mkdir -p "$SDIR"; cp -R "$HERE/../probe-grant-slots/." "$SDIR/"; say "deployed: dam-slot-probe (Ancient Dam and six base buildings unlocked at turn 1)" ;;
     grant) mkdir -p "$GDIR"; cp -R "$HERE/../probe-grant/." "$GDIR/"; say "deployed: dam-grant-probe (Dams unlocked at turn 1)" ;;
     remap) mkdir -p "$RDIR"; cp -R "$HERE/../probe-remap/." "$RDIR/"; say "deployed: dam-remap-probe (Dam art borrowed from river buildings)" ;;
     shortage) mkdir -p "$ADIR"; cp -R "$HERE/../probe-short-age/." "$ADIR/"; say "deployed: dam-short-age-probe (Exploration ends at 12 points)" ;;
@@ -187,10 +203,13 @@ if [ "$result" = crashed ]; then
 fi
 
 pkill -TERM CivilizationVII; sleep 8; pgrep -x CivilizationVII >/dev/null && { sleep 10; pkill -KILL CivilizationVII; }
-rm -rf "$HDIR" "$FDIR" "$MDIR" "$GDIR" "$RDIR" "$ADIR" "$CDIR" "$QDIR"
-sqlite3 "$DB" "delete from Mods where ModId in ('dam-harness','dam-flood-probe','dam-floodfreq-probe','tower-dams','dam-grant-probe','dam-remap-probe','dam-short-age-probe'$([ -n "${CDEPLOYED:-}" ] && echo ",'compact-cities'"))" 2>/dev/null
+rm -rf "$HDIR" "$FDIR" "$MDIR" "$GDIR" "$SDIR" "$RDIR" "$ADIR" "$CDIR" "$QDIR"
+sqlite3 "$DB" "delete from Mods where ModId in ('dam-harness','dam-flood-probe','dam-floodfreq-probe','dam-grant-probe','dam-slot-probe','dam-remap-probe','dam-short-age-probe'$([ -n "${CDEPLOYED:-}" ] && echo ",'compact-cities'"))" 2>/dev/null
+# Only the copy this run put in Mods/: a Workshop row for tower-dams is the player's and stays.
+sqlite3 "$DB" "delete from Mods where ModId='tower-dams' and ScannedFileRowId in (select ScannedFileRowId from ScannedFiles where Path like '%/Civilization VII/Mods/tower-dams/%')" 2>/dev/null
+restore_workshop
 [ "${KEEP_SAVES:-0}" = "1" ] || rm -f "$S/Saves/Single/DAM-"*.Civ7Save 2>/dev/null
-say "cleaned up: $(ls "$MODS" | grep -icE 'dam-harness|dam-flood-probe|tower-dams|dam-grant-probe|dam-remap-probe|dam-short-age-probe|dam-compact-cities' | tr -d ' ') of our folders left in Mods/"
+say "cleaned up: $(ls "$MODS" | grep -icE 'dam-harness|dam-flood-probe|tower-dams|dam-grant-probe|dam-slot-probe|dam-remap-probe|dam-short-age-probe|dam-compact-cities' | tr -d ' ') of our folders left in Mods/"
 
 if [ "$(ls "$AUTO"/*.Civ7Save 2>/dev/null | xargs -n1 basename | sort)" != "$(ls "$BAK" 2>/dev/null | sort)" ]; then
   say "autosaves changed during the run; putting the player's back"

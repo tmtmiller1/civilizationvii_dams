@@ -3,6 +3,12 @@
 All notable changes to Dams are documented here. This project follows semantic versioning. The probes and harness
 runs live in `devtools/`, outside the shipped files.
 
+## [2.1.0] - 2026-10-31
+
+- The building slots shown under each district when you place a building now show the Dam. A Dam always took one of
+  the tile's two slots and makes a quarter with another building of its age, but its slot looked empty. The game can
+  only draw its own icons there, so the Dam's slot shows the Bridge icon of the same age.
+
 ## [2.0.4] - 2026-10-17
 
 - License: from this version the mod is under the Tower Mod License 1.0, in LICENSE. You can still play it, read the

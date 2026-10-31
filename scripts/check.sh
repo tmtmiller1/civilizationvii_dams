@@ -8,7 +8,7 @@ items = re.findall(r'<Item>([^<]+)</Item>', open('dams.modinfo').read())
 missing = [i for i in items if not os.path.exists(i)]
 tags = set(re.findall(r'Tag="(LOC_[A-Z0-9_]+)"', open('text/en_us/DamsText.xml').read()))
 used = set()
-for f in ['dams.modinfo'] + ['data/' + x for x in os.listdir('data')] + ['ui/dams.js']:
+for f in ['dams.modinfo'] + ['data/' + x for x in os.listdir('data')] + ['ui/dams.js', 'ui/dams-pips.js']:
     used |= set(re.findall(r'LOC_[A-Z0-9_]+', open(f).read()))
 used = {t for t in used if not t.startswith(('LOC_MODULE', 'LOC_PEDIA', 'LOC_BUILDING_CONSTRUCT'))}
 gaps = sorted(used - tags)

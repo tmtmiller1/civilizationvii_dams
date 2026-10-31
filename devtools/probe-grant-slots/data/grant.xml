@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <GameModifiers>
+        <Row ModifierId="MOD_DAMSLOT_GRANT_DAM_ANTIQUITY"/>
+        <Row ModifierId="MOD_DAMSLOT_GRANT_LIBRARY"/>
+        <Row ModifierId="MOD_DAMSLOT_GRANT_MARKET"/>
+        <Row ModifierId="MOD_DAMSLOT_GRANT_BARRACKS"/>
+        <Row ModifierId="MOD_DAMSLOT_GRANT_MONUMENT"/>
+        <Row ModifierId="MOD_DAMSLOT_GRANT_GARDEN"/>
+        <Row ModifierId="MOD_DAMSLOT_GRANT_ANCIENT_BRIDGE"/>
+    </GameModifiers>
+</Database>

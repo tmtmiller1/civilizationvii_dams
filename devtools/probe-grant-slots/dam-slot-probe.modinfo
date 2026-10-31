@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Throwaway: unlocks the Dams and a few base Antiquity buildings for every major player, for the building-slot probe (S1). Dev only. -->
+<Mod id="dam-slot-probe" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>Dam Slot Probe (dev)</Name>
+        <Description>Dev only: unlocks the Dams and a few Antiquity buildings at once.</Description>
+        <Authors>Tower</Authors>
+        <Package>DamSlotProbe</Package>
+        <PackageSortIndex>9996</PackageSortIndex>
+        <Version>0.0.1</Version>
+        <AffectsSavedGames>0</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME" />
+        <Mod id="tower-dams" title="LOC_DAMS_MOD_NAME" />
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="dam-slot-game" scope="game" criteria="always">
+            <Properties><LoadOrder>200</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/dam-gameeffects.xml</Item>
+                    <Item>data/grant.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>

@@ -17,7 +17,7 @@
         <Authors>Tower</Authors>
         <Package>Dams</Package>
         <PackageSortIndex>100</PackageSortIndex>
-        <Version>2.0.4</Version>
+        <Version>2.1.0</Version>
         <AffectsSavedGames>0</AffectsSavedGames>
     </Properties>
     <Dependencies>
@@ -96,7 +96,7 @@
                 <ImportFiles><Item>icons/dam_ancient.png</Item><Item>icons/dam_ancient_128.png</Item><Item>icons/dam_ancient_64.png</Item><Item>icons/dam_medieval.png</Item><Item>icons/dam_medieval_128.png</Item><Item>icons/dam_medieval_64.png</Item><Item>icons/dam_modern.png</Item><Item>icons/dam_modern_128.png</Item><Item>icons/dam_modern_64.png</Item></ImportFiles>
                 <UpdateIcons><Item>data/dams-icons.xml</Item></UpdateIcons>
                 <!-- Tower Settings Keeper: listed first, imports nothing, so it runs before anything reads storage. -->
-                <UIScripts><Item>ui/settings-keeper.js</Item><Item>ui/dams.js</Item><Item>ui/dams-sites.js</Item></UIScripts>
+                <UIScripts><Item>ui/settings-keeper.js</Item><Item>ui/dams.js</Item><Item>ui/dams-sites.js</Item><Item>ui/dams-pips.js</Item></UIScripts>
             </Actions>
         </ActionGroup>
         <!-- Tech unlocks live in per-age groups: a node of another age is not in that age's database. -->

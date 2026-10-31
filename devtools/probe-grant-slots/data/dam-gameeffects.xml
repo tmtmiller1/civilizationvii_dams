@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Probe-only unlock grants (the dam-grant-probe shape) for the building-slot probe. -->
+<GameEffects xmlns="GameEffects">
+    <Modifier id="MOD_DAMSLOT_GRANT_DAM_ANTIQUITY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMSLOT_DAM_ANTIQUITY</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMSLOT_DAM_ANTIQUITY" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_DAM_ANTIQUITY</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMSLOT_GRANT_LIBRARY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMSLOT_LIBRARY</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMSLOT_LIBRARY" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_LIBRARY</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMSLOT_GRANT_MARKET" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMSLOT_MARKET</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMSLOT_MARKET" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_MARKET</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMSLOT_GRANT_BARRACKS" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMSLOT_BARRACKS</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMSLOT_BARRACKS" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_BARRACKS</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMSLOT_GRANT_MONUMENT" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMSLOT_MONUMENT</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMSLOT_MONUMENT" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_MONUMENT</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMSLOT_GRANT_GARDEN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMSLOT_GARDEN</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMSLOT_GARDEN" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_GARDEN</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMSLOT_GRANT_ANCIENT_BRIDGE" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMSLOT_ANCIENT_BRIDGE</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMSLOT_ANCIENT_BRIDGE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_ANCIENT_BRIDGE</Argument>
+    </Modifier>
+</GameEffects>

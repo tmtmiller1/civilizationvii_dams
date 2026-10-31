@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "lint": "npx --yes eslint \"ui/**/*.js\" --no-error-on-unmatched-pattern",
-    "check": "node --check ui/dams.js",
+    "check": "node --check ui/dams.js && node --check ui/dams-pips.js",
     "icons": "python3 icons/src/build-icon.py",
     "verify": "npm run lint && npm run check && npm run pedia && npm run i18n",
     "check:all": "zsh scripts/check.sh",

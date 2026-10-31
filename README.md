@@ -135,6 +135,10 @@ pillaged Dam pillaged by a flood its Dam would hold; a 1.3.0 save loading with i
 floodplain under one put back; the game's AI over 60 turns weighing the Dam about as it weighs a Gristmill and
 building none; and a LAN game reading as a network game, with the mod on its network path.
 
+Tested in 2.1.0 (31 October 2026): an Ancient Dam and a Library on one tile make a quarter and fill both of its
+slots, and in the placement view a tile holding only an Ancient Dam shows the Ancient Bridge icon in the Dam's slot
+beside the empty one. The Medieval and Modern Dams' slot icons haven't been seen in a game yet.
+
 Not yet tested in 2.0.0: a Dam offered and built in a network game (the hosted LAN game started once and offered no
 tile, and the lobby did not start again in two more tries), Levees falling back when a Dam on a shared river is
 pillaged, and the Medieval Dam's tech in a game that reaches Machinery.
