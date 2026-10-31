@@ -18,6 +18,7 @@ const ENGINE_GLOBALS = {
   Modding: "readonly",
   UI: "readonly",
   WorldUI: "readonly",
+  WorldAnchors: "readonly",
   Loading: "readonly",
   InputActionStatuses: "readonly",
   SpriteMode: "readonly",

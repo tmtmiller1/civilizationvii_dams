@@ -136,8 +136,9 @@ floodplain under one put back; the game's AI over 60 turns weighing the Dam abou
 building none; and a LAN game reading as a network game, with the mod on its network path.
 
 Tested in 2.1.0 (31 October 2026): an Ancient Dam and a Library on one tile make a quarter and fill both of its
-slots, and in the placement view a tile holding only an Ancient Dam shows the Ancient Bridge icon in the Dam's slot
-beside the empty one. The Medieval and Modern Dams' slot icons haven't been seen in a game yet.
+slots. In the placement view, a tile holding only an Ancient, a Medieval or a Modern Dam shows that Dam's own icon in
+its slot beside the empty one, at the size of the other slots near and far, and the icon goes under the game's panels
+when the map moves under them.
 
 Not yet tested in 2.0.0: a Dam offered and built in a network game (the hosted LAN game started once and offered no
 tile, and the lobby did not start again in two more tries), Levees falling back when a Dam on a shared river is

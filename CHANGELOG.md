@@ -5,9 +5,9 @@ runs live in `devtools/`, outside the shipped files.
 
 ## [2.1.0] - 2026-10-31
 
-- The building slots shown under each district when you place a building now show the Dam. A Dam always took one of
-  the tile's two slots and makes a quarter with another building of its age, but its slot looked empty. The game can
-  only draw its own icons there, so the Dam's slot shows the Bridge icon of the same age.
+- The building slots shown under each district when you place a building now show the Dam's own icon, for all three
+  Dams. A Dam always took one of the tile's two slots and makes a quarter with another building of its age, but its
+  slot looked empty.
 
 ## [2.0.4] - 2026-10-17
 
