@@ -28,11 +28,11 @@ age has its own Dam, unlocked by one of that age's techs. Single player and mult
 Pick the Dam in a settlement's production list and place it on a river tile, a navigable river or a land tile with a
 minor river:
 
-| Age | Building | Unlocked by | Production cost | Gold upkeep | Yields | Holds back |
-| --- | --- | --- | --- | --- | --- | --- |
-| Antiquity | Ancient Dam | Irrigation | 150 | 1 | +2 Food, +2 Production | Moderate floods |
-| Exploration | Medieval Dam | Machinery | 275 | 2 | +3 Food, +3 Production | Moderate and major floods |
-| Modern | Modern Dam | Electricity | 600 | 3 | +4 Food, +6 Production | Every flood, 1000-year floods included |
+| Age | Building | Unlocked by | Production cost | Gold upkeep | Yields | Adjacency, per adjacent tile | Holds back |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Antiquity | Ancient Dam | Irrigation | 150 | 1 | +2 Food, +2 Production | +1 Food for rivers, lakes and wonders; +1 Production for navigable rivers | Moderate floods |
+| Exploration | Medieval Dam | Machinery | 275 | 2 | +3 Food, +3 Production | +1 Food for rivers and lakes; +1 Production for navigable rivers and resources | Moderate and major floods |
+| Modern | Modern Dam | Electricity | 600 | 3 | +4 Food, +6 Production | +1 Food for lakes; +1 Production for rivers, navigable rivers and quarters | Every flood, 1000-year floods included |
 
 The Dam goes where the game lets the settlement put a building, so a young settlement is offered only the river tiles
 beside its city center, and more as it grows. Any river can take one, and a settlement on two rivers can dam both.
@@ -43,7 +43,11 @@ first is cheap and a settlement full of them is not. The game's AI pays the same
 any other building.
 
 The yields are set against the age's base buildings: a little under a Gristmill, Sawmill or Factory of the same age,
-since a Dam also guards its settlement.
+since a Dam also guards its settlement. The adjacency bonuses work like any building's: a Dam sitting between two
+river tiles gets +2 from them, and a specialist placed on the Dam's tile adds the whole adjacency bonus again. A
+navigable river tile is a river too, so it counts twice: an Ancient or Medieval Dam next to one gets +1 Food and +1
+Production from it, and a Modern Dam +2 Production. Pick the tile in the growth screen as you would for a Library; the
+Dam tile shows the same specialist circles.
 
 ## What a Dam protects
 

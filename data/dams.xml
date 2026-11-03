@@ -65,6 +65,35 @@
         <Row ConstructibleType="BUILDING_DAM_MODERN" YieldType="YIELD_FOOD" YieldChange="4"/>
         <Row ConstructibleType="BUILDING_DAM_MODERN" YieldType="YIELD_PRODUCTION" YieldChange="6"/>
     </Constructible_YieldChanges>
+    <!-- Adjacency bonuses, one per adjacent tile like the game's own buildings. The reservoir waters the valley: Food
+         from adjacent river tiles in Antiquity and Exploration; the Medieval Dam also powers mills on adjacent Resources,
+         and the Modern Dam is a power station, Production from adjacent river tiles and Quarters. Every Dam also gets
+         Food from adjacent lakes and Production from adjacent navigable rivers; a navigable river tile is a river too,
+         so it counts for both rows. A specialist on the tile adds these again. Own IDs throughout, so a rename in the
+         base game can't fail a key here. -->
+    <Adjacency_YieldChanges>
+        <Row ID="DamRiverFood" YieldType="YIELD_FOOD" YieldChange="1" AdjacentRiver="true"/>
+        <Row ID="DamWonderFood" YieldType="YIELD_FOOD" YieldChange="1" AdjacentDistrict="DISTRICT_WONDER"/>
+        <Row ID="DamResourceProduction" YieldType="YIELD_PRODUCTION" YieldChange="1" AdjacentResource="true"/>
+        <Row ID="DamRiverProduction" YieldType="YIELD_PRODUCTION" YieldChange="1" AdjacentRiver="true"/>
+        <Row ID="DamQuarterProduction" YieldType="YIELD_PRODUCTION" YieldChange="1" AdjacentQuarter="true"/>
+        <Row ID="DamLakeFood" YieldType="YIELD_FOOD" YieldChange="1" AdjacentLake="true"/>
+        <Row ID="DamNavigableRiverProduction" YieldType="YIELD_PRODUCTION" YieldChange="1" AdjacentTerrain="TERRAIN_NAVIGABLE_RIVER"/>
+    </Adjacency_YieldChanges>
+    <Constructible_Adjacencies>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" YieldChangeId="DamRiverFood"/>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" YieldChangeId="DamWonderFood"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" YieldChangeId="DamRiverFood"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" YieldChangeId="DamResourceProduction"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" YieldChangeId="DamRiverProduction"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" YieldChangeId="DamQuarterProduction"/>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" YieldChangeId="DamLakeFood"/>
+        <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" YieldChangeId="DamNavigableRiverProduction"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" YieldChangeId="DamLakeFood"/>
+        <Row ConstructibleType="BUILDING_DAM_EXPLORATION" YieldChangeId="DamNavigableRiverProduction"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" YieldChangeId="DamLakeFood"/>
+        <Row ConstructibleType="BUILDING_DAM_MODERN" YieldChangeId="DamNavigableRiverProduction"/>
+    </Constructible_Adjacencies>
     <Constructible_Maintenances>
         <Row ConstructibleType="BUILDING_DAM_ANTIQUITY" YieldType="YIELD_GOLD" Amount="1"/>
         <Row ConstructibleType="BUILDING_DAM_EXPLORATION" YieldType="YIELD_GOLD" Amount="2"/>

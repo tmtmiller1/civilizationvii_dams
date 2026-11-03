@@ -3,6 +3,15 @@
 All notable changes to Dams are documented here. This project follows semantic versioning. The probes and harness
 runs live in `devtools/`, outside the shipped files.
 
+## [2.2.0] - 2026-11-03
+
+- Every Dam has adjacency bonuses, one per adjacent tile like the game's own buildings: the Ancient Dam +1 Food for
+  rivers and wonders, the Medieval Dam +1 Food for rivers and +1 Production for resources, the Modern Dam +1
+  Production for rivers and quarters. Every Dam also gets +1 Food for each lake tile next to it and +1 Production for
+  each navigable river tile; a navigable river is a river too, so it counts for both. A specialist on the Dam's tile
+  adds the bonus again, so placing one there is worth it now; before, the growth screen offered the tile but a
+  specialist gained nothing on it. The building descriptions and the Civilopedia list the bonuses in every language.
+
 ## [2.1.0] - 2026-10-31
 
 - The building slots shown under each district when you place a building now show the Dam's own icon, for all three
