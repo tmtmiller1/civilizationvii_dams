@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Throwaway: unlocks three Antiquity Wonders with no placement rule, and five Modern base buildings, for every major
+     player from turn 1, so the adjacency probe can put a Wonder and a Quarter next to a Dam, and 2500 Food a turn in every city so a
+     citizen is waiting to place. Dev only. -->
+<Mod id="dam-adj-probe" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>Dam Adjacency Probe (dev)</Name>
+        <Description>Dev only: unlocks three Antiquity Wonders and five Modern buildings at turn 1.</Description>
+        <Authors>Tower</Authors>
+        <Package>DamAdjProbe</Package>
+        <PackageSortIndex>9996</PackageSortIndex>
+        <Version>0.0.1</Version>
+        <AffectsSavedGames>0</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME" />
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="dam-adj-game" scope="game" criteria="always">
+            <Properties><LoadOrder>200</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/adj-gameeffects.xml</Item>
+                    <Item>data/grant.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>

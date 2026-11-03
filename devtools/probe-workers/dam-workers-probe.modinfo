@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Throwaway: every major player's cities get a specialist cap of 2 from turn 1 (the Currency tech normally gives
+     the first point). Dev only, for the specialist placement probes. -->
+<Mod id="dam-workers-probe" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>Dam Workers Probe (dev)</Name>
+        <Description>Dev only: specialist cap of 2 in every city from turn 1.</Description>
+        <Authors>Tower</Authors>
+        <Package>DamWorkersProbe</Package>
+        <PackageSortIndex>9996</PackageSortIndex>
+        <Version>0.0.1</Version>
+        <AffectsSavedGames>0</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME" />
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="dam-workers-game" scope="game" criteria="always">
+            <Properties><LoadOrder>200</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/workers-gameeffects.xml</Item>
+                    <Item>data/grant.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>

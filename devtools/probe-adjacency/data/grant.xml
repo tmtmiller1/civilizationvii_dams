@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <GameModifiers>
+        <Row ModifierId="MOD_DAMADJ_GRANT_WONDER_GATE_OF_ALL_NATIONS"/>
+        <Row ModifierId="MOD_DAMADJ_GRANT_WONDER_DUR_SHARRUKIN"/>
+        <Row ModifierId="MOD_DAMADJ_GRANT_WONDER_GREAT_STELE"/>
+        <Row ModifierId="MOD_DAMADJ_GRANT_BUILDING_SCHOOLHOUSE"/>
+        <Row ModifierId="MOD_DAMADJ_GRANT_BUILDING_CANNERY"/>
+        <Row ModifierId="MOD_DAMADJ_GRANT_BUILDING_MUSEUM"/>
+        <Row ModifierId="MOD_DAMADJ_GRANT_BUILDING_MILITARY_ACADEMY"/>
+        <Row ModifierId="MOD_DAMADJ_GRANT_BUILDING_CITY_PARK"/>
+        <Row ModifierId="MOD_DAMADJ_FOOD"/>
+    </GameModifiers>
+</Database>

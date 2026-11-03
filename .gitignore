@@ -10,3 +10,4 @@ devtools/harness/*.txt
 devtools/harness/*.done
 devtools/harness/*.ips
 __pycache__/
+devtools/harness/full-logs/

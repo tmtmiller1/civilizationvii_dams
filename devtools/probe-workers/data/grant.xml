@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <GameModifiers>
+        <Row ModifierId="MOD_DAM_WORKERS_GRANT"/>
+    </GameModifiers>
+</Database>

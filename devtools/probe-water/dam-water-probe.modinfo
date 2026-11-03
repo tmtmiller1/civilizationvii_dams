@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Throwaway: adds +1 Food per adjacent lake tile and +1 Production per adjacent navigable river tile to the three
+     Dams, so a lab game can watch both levers before the shipping data changes. Dev only. -->
+<Mod id="dam-water-probe" version="1" xmlns="ModInfo">
+    <Properties>
+        <Name>Dam Water Adjacency Probe (dev)</Name>
+        <Description>Dev only: lake and navigable river adjacency on the Dams.</Description>
+        <Authors>Tower</Authors>
+        <Package>DamWaterProbe</Package>
+        <PackageSortIndex>9995</PackageSortIndex>
+        <Version>0.0.1</Version>
+        <AffectsSavedGames>0</AffectsSavedGames>
+    </Properties>
+    <Dependencies>
+        <Mod id="base-standard" title="LOC_MODULE_BASE_STANDARD_NAME" />
+    </Dependencies>
+    <ActionCriteria>
+        <Criteria id="always"><AlwaysMet></AlwaysMet></Criteria>
+    </ActionCriteria>
+    <ActionGroups>
+        <ActionGroup id="dam-water-game" scope="game" criteria="always">
+            <Properties><LoadOrder>210</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>data/water.sql</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+    </ActionGroups>
+</Mod>

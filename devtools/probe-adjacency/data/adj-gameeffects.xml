@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Probe-only unlock grants (the dam-grant-probe shape) for the adjacency probe. -->
+<GameEffects xmlns="GameEffects">
+    <Modifier id="MOD_DAMADJ_GRANT_WONDER_GATE_OF_ALL_NATIONS" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMADJ_WONDER_GATE_OF_ALL_NATIONS</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMADJ_WONDER_GATE_OF_ALL_NATIONS" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">WONDER_GATE_OF_ALL_NATIONS</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMADJ_GRANT_WONDER_DUR_SHARRUKIN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMADJ_WONDER_DUR_SHARRUKIN</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMADJ_WONDER_DUR_SHARRUKIN" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">WONDER_DUR_SHARRUKIN</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMADJ_GRANT_WONDER_GREAT_STELE" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMADJ_WONDER_GREAT_STELE</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMADJ_WONDER_GREAT_STELE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">WONDER_GREAT_STELE</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMADJ_GRANT_BUILDING_SCHOOLHOUSE" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMADJ_BUILDING_SCHOOLHOUSE</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMADJ_BUILDING_SCHOOLHOUSE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_SCHOOLHOUSE</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMADJ_GRANT_BUILDING_CANNERY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMADJ_BUILDING_CANNERY</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMADJ_BUILDING_CANNERY" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_CANNERY</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMADJ_GRANT_BUILDING_MUSEUM" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMADJ_BUILDING_MUSEUM</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMADJ_BUILDING_MUSEUM" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_MUSEUM</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMADJ_GRANT_BUILDING_MILITARY_ACADEMY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMADJ_BUILDING_MILITARY_ACADEMY</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMADJ_BUILDING_MILITARY_ACADEMY" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_MILITARY_ACADEMY</Argument>
+    </Modifier>
+    <Modifier id="MOD_DAMADJ_GRANT_BUILDING_CITY_PARK" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMADJ_BUILDING_CITY_PARK</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMADJ_BUILDING_CITY_PARK" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_CONSTRUCTIBLE_UNLOCK">
+        <Argument name="ConstructibleType">BUILDING_CITY_PARK</Argument>
+    </Modifier>
+    <!-- 2500 Food a turn in every city (Modern growth needs about 3,800), so a city grows each turn and has a citizen waiting to place. -->
+    <Modifier id="MOD_DAMADJ_FOOD" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAMADJ_FOOD</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAMADJ_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+        <Argument name="YieldType">YIELD_FOOD</Argument>
+        <Argument name="Amount">2500</Argument>
+    </Modifier>
+</GameEffects>

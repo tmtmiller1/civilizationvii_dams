@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+    <Modifier id="MOD_DAM_WORKERS_GRANT" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+        <Argument name="ModifierId">ATTACH_DAM_WORKERS_CAP</Argument>
+    </Modifier>
+    <Modifier id="ATTACH_DAM_WORKERS_CAP" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_CAP">
+        <Argument name="Amount">2</Argument>
+    </Modifier>
+</GameEffects>
